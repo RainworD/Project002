@@ -1,0 +1,65 @@
+body {
+  position: relative;
+}
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #3cb371;
+  height: 40px;
+}
+.bar {
+  position: relative;
+  width: 100%;
+  padding: 0 10px;
+}
+.bar .lfbar {
+  position: absolute;
+  top: 5px;
+  height: 30px;
+}
+.bar .lfbar .lfbarimg {
+  height: 30px;
+  width: 30px;
+  float: left;
+}
+.bar .lfbar .lfbarimg .logo {
+  width: 30px;
+  height: 30px;
+}
+.bar .lfbar .lfbarp {
+  padding-left: 15px;
+  float: left;
+  font-size: 20px;
+  color: #fff;
+  height: 30px;
+  line-height: 30px;
+}
+.bar .rtbar {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+.bar .rtbar .rtbari {
+  font-size: 20px;
+  color: #434343;
+}
+.container {
+  width: 100%;
+  margin-top: 40px;
+}
+.container .content {
+  width: 100%;
+  padding: 0 10px;
+}
+.container .content .selbar .selbarlist {
+  padding-left: 0;
+}
+.container .content .selbar .selbarlist .selbaritem {
+  font-size: 16px;
+  display: inline-block;
+  padding: 15px 5px;
+}
