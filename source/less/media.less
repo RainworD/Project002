@@ -1,59 +1,10 @@
+@import url('init.less');
 body {
     position: relative;
 }
 
-.header {
-	width:100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #3cb371;
-    height: 40px;
-}
-.bar{
-	position: relative;
-	width:100%;
-	padding:0 10px;
-	.lfbar{
-		position: absolute;
-		top:5px;
-		height:30px;
-		.lfbarimg{
-			height:30px;
-			width:30px;
-			float: left;
-			.logo{
-				width:30px;
-				height:30px;
-			}
-		}
-		.lfbarp{
-			padding-left:15px;
-			float: left;
-			font-size: 20px;
-			color:#fff;
-			height:30px;
-			line-height: 30px;
-		}
-	}
-	.rtbar{
-		width:20px;
-		height:20px;
-		position: absolute;
-		top:5px;
-		right:10px;
-		.rtbari{
-			font-size: 20px;
-			color:#434343;
-
-
-		}
-	}
-
-}
 .container{
 	width:100%;
-	margin-top:40px;
 	.content{
 		width:100%;
 		padding:0 10px;
@@ -68,5 +19,53 @@ body {
 				}
 			}
 		}
+		.mui-table-view .mui-table-view-cell .mui-slider-overflowb{
+			overflow:inherit;
+		}
+		.mui-content .mui-slider-overflowa{
+			overflow:visible;
+		}
+		.mui-slider-group .mui-scroll-wrapper{
+			overflow:visible;
+		}
+		.mui-slider .mui-slider-group .mui-slider-item{
+			height:250px;
+			padding-bottom:0px;
+		}
+		.mui-slider .mui-slider-group .mui-slider-item .mui-slider-title{
+			line-height:50px;
+			height:50px;
+			font-size: 16px;
+		}
+		.mui-content .mui-slider #sliderSegmentedControl{
+			position: relative;
+		}
+		.mui-content .mui-slider .plusContainer{
+			width:25px;
+			height:40px;
+            position: absolute;
+            right:0px;
+            bottom:0px;
+            z-index:2;
+            background-color:#fff;
+            .plusa{
+            	display:block;
+            	padding-top:6px;
+            	padding-right:10px;
+                .plusi{
+                	font-size: 20px;
+	            	color:#bbb;
+	            	font-weight:bold;
+                }
+            }
+		}
+		.mui-slider-indicator.mui-segmented-control{
+			background-color: #fff;
+		}
 	}
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after{
+	margin-left:0;
+	font-size: inherit;
 }
