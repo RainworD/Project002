@@ -1,58 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>银监青年</title>
+    <link rel="stylesheet" type="text/css" href="../source/font/flaticon.css">
     <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/media.css">
-    <link rel="stylesheet" type="text/css" href="../font-awesome-4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../source/css/barselect.css">
+    <link rel="stylesheet" type="text/css" href="../source/css/app.css"/>
     <link rel="stylesheet" type="text/css" href="../source/css/mui.min.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/media.css">
     <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/reset.css">
     <script type="text/javascript" src="../source/js/jquery-1.7.2.js"></script>
-</head>
-
-<body>
-    <div class="header">
-        <div class="bar">
-            <div class="lfbar">
-                <div class="lfbarimg">
-                    <img class="logo" src="">
-                </div>
-                <p class="lfbarp">银监青年</p>
-            </div>
-            <div class="rtbar">
-                <i class="icon-search rtbari"></i>
-            </div>
-        </div>
-    </div>
+    </head>
+    <body>
     <div class="container">
         <div class="content">
             <div class="mui-content">
-            <div id="slider" class="mui-slider mui-fullscreen">
+            <div id="slider" class="mui-slider mui-fullscreen mui-slider-overflowa">
                 <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
                     <div class="mui-scroll">
                         <a class="mui-control-item mui-active" href="#item1mobile">
-                            推荐
+                            首页
                         </a>
                         <a class="mui-control-item" href="#item2mobile">
-                            热点
+                            通知公告
                         </a>
                         <a class="mui-control-item" href="#item3mobile">
-                            北京
+                            党团之声
                         </a>
                         <a class="mui-control-item" href="#item4mobile">
-                            社会
+                            评优评先
                         </a>
                         <a class="mui-control-item" href="#item5mobile">
-                            娱乐
+                            意见反馈
                         </a>
                         <a class="mui-control-item" href="#item6mobile">
-                            科技
+                            青年心得
                         </a>
                     </div>
-                    <div class="plus"></div>
+                    <div class="plusContainer">
+                       <a href="" class="plusa"><i class="flaticon-add plusi"></i></a>
+                    </div>
                 </div>
                 <div class="mui-slider-group">
                     <div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
@@ -60,7 +49,48 @@
                             <div class="mui-scroll">
                                 <ul class="mui-table-view">
                                     <li class="mui-table-view-cell">
-                                        第1个选项卡子项-1
+                                        <div id="slider sliderimg" class="mui-slider mui-slider-overflowb">
+                                            <div class="mui-slider-group mui-slider-loop">
+                                                <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+                                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                                    <a href="#">
+                                                        <img src="../source/img/dsn4.jpeg">
+                                                        <p class="mui-slider-title">上海迪士尼开园图4</p>
+                                                    </a>
+                                                </div>
+                                                <div class="mui-slider-item">
+                                                    <a href="#">
+                                                        <img src="../source/img/dsn1.png">
+                                                        <p class="mui-slider-title">上海迪士尼开园图1</p>
+                                                    </a>
+                                                </div>
+                                                <div class="mui-slider-item">
+                                                    <a href="#">
+                                                        <img src="../source/img/dsn2.jpeg">
+                                                        <p class="mui-slider-title">上海迪士尼开园图2</p>
+                                                    </a>
+                                                </div>
+                                                <div class="mui-slider-item">
+                                                    <a href="#">
+                                                        <img src="../source/img/dsn3.jpeg">
+                                                        <p class="mui-slider-title">上海迪士尼开园图3</p>
+                                                    </a>
+                                                </div>
+                                                <div class="mui-slider-item">
+                                                    <a href="#">
+                                                        <img src="../source/img/dsn4.jpeg">
+                                                        <p class="mui-slider-title">上海迪士尼开园图4</p>
+                                                    </a>
+                                                </div>
+                                                <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+                                                <div class="mui-slider-item mui-slider-item-duplicate">
+                                                    <a href="#">
+                                                        <img src="../source/img/dsn1.png">
+                                                        <p class="mui-slider-title">上海迪士尼开园图1</p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </li>
                                     <li class="mui-table-view-cell">
                                         第1个选项卡子项-2
@@ -479,21 +509,15 @@
             </div>
         </div>
     </div>
-    <div class="footer">
-        <div class="footercontent">
-            <ul>
-                <li>消息</li>
-                <li>通讯录</li>
-                <li>门户</li>
-                <li>应用</li>
-                <li>我</li>
-            </ul>
-        </div>
-    </div>
     <script src="../source/js/mui.min.js"></script>
         <script src="../source/js/mui.pullToRefresh.js"></script>
         <script src="../source/js/mui.pullToRefresh.material.js"></script>
         <script type="text/javascript" src="../source/js/barselect.js"></script>
-</body>
-
+        <script type="text/javascript">
+        var slider = mui("#sliderimg");
+                slider.slider({
+                    interval: 5000
+                });
+        </script>
+    </body>
 </html>
