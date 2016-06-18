@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Search</title>	
+	<link rel="stylesheet" type="text/css" href="../source/font/flaticon.css">
+	<link rel="stylesheet" type="text/css" href="../source/flaticon/flaticon.css">
+	<link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/reset.css">
+	<link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/search.css">
+	<script type="text/javascript" src="../source/js/jquery-1.7.2.js"></script>
+</head>
+<body>
+	<div class="searchTitle">
+		<a href="index.html">
+            <p class="backBtn">
+            	<i class="flaticon-back backfont"></i>
+            </p>
+        </a>
+        <p class="bookTitle">搜索框</p>
+	</div>
+	<div class="searchContainer">
+		<div class="searchHeader">
+			<div class="searchBar">
+				<p class="searchIcon">
+					<i class="flaticon-search-1"></i>
+				</p>
+				<input class="searchInput" placeholder="请输入关键字"></input>
+			</div>
+		</div>
+		<div class="searchContent">
+			<div class="searchHistory">
+				<div class="searchHistoryTitle">
+					<p class="readHistory">阅读历史</p>
+					<p class="readMore">查看更多</p>
+				</div>
+				<div class="searchHistoryContent">
+					<p class="searchHistoryPara">谷歌今日单挑整个世界</p>
+					<p class="searchHistoryPara">家属围殴医生致死</p>
+					<p class="searchHistoryPara paraHidden">用户阅读历史3</p>
+					<p class="searchHistoryPara paraHidden">用户阅读历史4</p>
+					<p class="readLess">收起更多</p>
+				</div>
+				<div class="searchHistoryTitle">
+					<p class="readHistory">近期热词</p>
+				</div>
+				<div class="hotList">
+					<div class="hotWordsBox">
+						<p class="hotWords">热词1</p>
+					</div>
+					<div class="hotWordsBox">
+						<p class="hotWords">热词2</p>
+					</div>
+					<div class="hotWordsBox">
+						<p class="hotWords">热词3</p>
+					</div>
+					<div class="hotWordsBox">
+						<p class="hotWords">热词4</p>
+					</div>
+					<div class="hotWordsBox">
+						<p class="hotWords">热词5</p>
+					</div>
+					<div class="hotWordsBox">
+						<p class="hotWords">热词6</p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(".readMore").bind('click',function(){
+			$(".paraHidden").show();
+			$(".readLess").show();
+		})
+		$(".readLess").bind('click',function(){
+			$(".paraHidden").hide();
+			$(".readLess").hide();
+		})
+	</script>
+</body>
+</html>
