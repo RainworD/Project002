@@ -26,6 +26,7 @@ body {
   position: relative;
 }
 .header {
+  z-index: 2;
   width: 100%;
   position: fixed;
   top: 0;
@@ -40,13 +41,14 @@ body {
 }
 .bar .lfbar {
   position: absolute;
-  top: 5px;
+  top: 0px;
   height: 30px;
 }
 .bar .lfbar .lfbarimg {
   height: 30px;
   width: 30px;
   float: left;
+  margin-top: 10px;
 }
 .bar .lfbar .lfbarimg .logo {
   width: 30px;
@@ -57,8 +59,8 @@ body {
   float: left;
   font-size: 20px;
   color: #fff;
-  height: 30px;
-  line-height: 30px;
+  height: 50px;
+  line-height: 50px;
 }
 .bar .rtbar {
   width: 20px;
@@ -99,6 +101,9 @@ body {
 .container .content .mui-slider .mui-slider-group .mui-slider-item {
   height: 250px;
   padding-bottom: 0px;
+}
+.container .content .mui-slider .mui-slider-group .mui-slider-item a {
+  height: 100%;
 }
 .container .content .mui-slider .mui-slider-group .mui-slider-item .mui-slider-title {
   line-height: 50px;

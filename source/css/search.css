@@ -111,7 +111,11 @@
   clear: both;
 }
 .searchContainer .searchContent .searchHistoryTitle:after {
-  border: 1px solid #c8c7cc;
+  height: 1px;
+  background-color: #c8c7cc;
+  -webkit-transform: scaleY(0.5);
+  -ms-transform: scaleY(0.5);
+  transform: scaleY(0.5);
 }
 .searchContainer .searchContent .searchHistoryContent {
   position: relative;

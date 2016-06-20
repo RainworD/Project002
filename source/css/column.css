@@ -94,6 +94,25 @@ ul {
 .searchContainer .searchContent .rightColumn .rightColumnBox {
   display: none;
 }
+.searchContainer .searchContent .rightColumn .rightColumnBox .columnName {
+  float: left;
+}
+.searchContainer .searchContent .rightColumn .rightColumnBox .bookBtn {
+  float: right;
+  padding: 0 10px;
+  border: 1px solid #70a0e2;
+  color: #70a0e2;
+  border-radius: 3px;
+}
+.searchContainer .searchContent .rightColumn .rightColumnBox .grey {
+  color: #999;
+  border: 1px solid #999;
+}
+.searchContainer .searchContent .rightColumn .rightColumnBox:after {
+  display: block;
+  content: '';
+  clear: both;
+}
 .searchContainer .searchContent .rightColumn .rightColumnBox1 {
   display: block;
   width: 100%;
