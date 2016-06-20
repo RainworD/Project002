@@ -63,7 +63,7 @@
                             <div id="scroll1" class="mui-scroll-wrapper">
                                 <div class="mui-scroll">
                                     <ul class="mui-table-view">
-                                        <li class="mui-table-view-cell">
+                                        <li class="mui-table-view-cell mui-table-view-cell1">
                                             <div id="slider" class="mui-slider mui-slider-overflowb">
                                                 <div class="mui-slider-group mui-slider-loop">
                                                     <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
@@ -113,30 +113,32 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-container">
-                                                <div class="item-content">
-                                                    <div class="item-img"></div>
-                                                    <p class="item-title">
-                                                        美国总统奥巴马与副总统拜登到访枪击案临时纪念地，悼念遇难者。
-                                                    </p>
-                                                    <p class="article-sorts">
-                                                        通知公告
-                                                    </p>
-                                                    <div class="like-and-reply">
-                                                        <p class="like">
-                                                            <span class="likenum">4869</span>
-                                                            &nbsp;
-                                                            <i class="flaticon-like-1 likefont"></i>
+                                        <a href="newsDetail.html">
+                                            <li class="mui-table-view-cell">
+                                                <div class="item-container newsDetail">
+                                                    <div class="item-content">
+                                                        <div class="item-img"></div>
+                                                        <p class="item-title">
+                                                            美国总统奥巴马与副总统拜登到访枪击案临时纪念地，悼念遇难者。
                                                         </p>
-                                                        <p class="reply">
-                                                            <span class="replynum">300</span>&nbsp;
-                                                            <i class="flaticon-edit-1 editfont"></i>
-                                                        </p>                            
+                                                        <p class="article-sorts">
+                                                            通知公告
+                                                        </p>
+                                                        <div class="like-and-reply">
+                                                            <p class="like">
+                                                                <span class="likenum">4869</span>
+                                                                &nbsp;
+                                                                <i class="flaticon-like-1 likefont"></i>
+                                                            </p>
+                                                            <p class="reply">
+                                                                <span class="replynum">300</span>&nbsp;
+                                                                <i class="flaticon-edit-1 editfont"></i>
+                                                            </p>                            
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        </a>
                                         <li class="mui-table-view-cell">
                                             <div class="item-content-whole">
                                                 <p class="item-vedio-title">
@@ -927,6 +929,9 @@
                 });
         $(".plusi").bind('click',function(){
             window.location.href="book.html";
+        })
+        $(".newsDetail").bind('click',function(){
+            window.location.href="newsDetail.html";
         })
         </script>
     </body>

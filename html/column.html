@@ -45,21 +45,21 @@
         					<li class="mui-table-view-cell">
         						<p class="columnName">通知公告
         						</p>
-        						<p class="bookBtn">
+        						<p class="bookBtn bookAlready">
         							订阅
         						</p>
         					</li>
         					<li class="mui-table-view-cell">
         						<p class="columnName">党团之声
         						</p>
-        						<p class="bookBtn">
+        						<p class="bookBtn bookAlready">
         							订阅
         						</p>
         					</li>
         					<li class="mui-table-view-cell">
-        						<p class="columnName">评优评先
+        						<p class="columnName ">评优评先
         						</p>
-        						<p class="bookBtn">
+        						<p class="bookBtn bookAlready">
         							订阅
         						</p>
         					</li>
@@ -70,7 +70,7 @@
         					<li class="mui-table-view-cell">
         						<p class="columnName">青年心得
         						</p>
-        						<p class="bookBtn">
+        						<p class="bookBtn bookAlready">
         							订阅
         						</p>
         					</li>
@@ -88,7 +88,7 @@
         					<li class="mui-table-view-cell">
         						<p class="columnName">意见反馈
         						</p>
-        						<p class="bookBtn">
+        						<p class="bookBtn bookAlready">
         							订阅
         						</p>
         					</li>
@@ -177,6 +177,14 @@
     		$(".rightColumn").children().eq(i).show().siblings().hide();
 
     	})
+        $(".bookAlready").addClass("grey");
+        $(".bookAlready").html("已订阅");
+        $(".bookBtn").bind('click',function(){
+            $(this).addClass("grey");
+            $(this).html("已订阅");
+
+
+        })
     </script>
 </body>
 </html>
