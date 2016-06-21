@@ -89,7 +89,7 @@ body {
   display: inline-block;
   padding: 15px 5px;
 }
-.container .content .mui-table-view .mui-table-view-cell .mui-slider-overflowb {
+.container .content .scroll1 .mui-slider-overflowb {
   overflow: inherit;
 }
 .container .content .mui-content .mui-slider-overflowa {
@@ -163,7 +163,7 @@ body {
   position: absolute;
   left: 120px;
   bottom: 0;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
 }
 .container .content .mui-table-view-cell .item-container .item-content .like-and-reply {
@@ -192,16 +192,29 @@ body {
   content: '';
   clear: both;
 }
+.container .content .mui-table-view-cell .item-vedio-title {
+  padding-bottom: 20px;
+  font-size: 14px;
+  color: #757575;
+  font-weight: 600px;
+}
+.container .content .mui-table-view-cell .item-vedio-img {
+  width: 100%;
+}
+.container .content .mui-table-view-cell .item-vedio-img .imageLar,
+.container .content .mui-table-view-cell .item-vedio-img .imagelarge {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+.container .content .mui-table-view-cell .item-vedio-img .imageHide {
+  display: none;
+}
 .container .content .item-content-whole {
   position: relative;
   width: 100%;
   padding: 10px 0;
-}
-.container .content .item-content-whole .item-vedio-title {
-  padding-bottom: 10px;
-  font-size: 14px;
-  color: #757575;
-  font-weight: 600px;
 }
 .container .content .item-content-whole .item-vedio {
   width: 100%;
