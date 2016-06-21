@@ -182,7 +182,8 @@
         $(".bookBtn").bind('click',function(){
             $(this).addClass("grey");
             $(this).html("已订阅");
-
+            var m=$(this).siblings().text();
+            console.log(m);
 
         })
     </script>

@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="bookHeader">
-        <a href="index.html">
+        <a id="backLink">
             <p class="backBtn"><i class="flaticon-back backfont"></i></p>
         </a>
         <p class="bookTitle">新闻详情</p>
@@ -95,7 +95,7 @@
 	    			</li>
                     
 	    			<li class="mui-table-view-cell commentsTitle">
-	    				<a href="moreComments.html">
+	    				<a href="moreComments.html" id="lookMore">
 	    					<p class="lookMore">查看更多评论</p>
 	    				</a>
 	    			</li>
@@ -126,5 +126,17 @@
 	<script>
 		mui.previewImage();
 		$(".mui-table-view-cell>a:not(.mui-btn)").removeClass("mui-active");
+		mui('body').on('tap','#lookMore',function(){
+			mui.openWindow({
+				url:"moreComments.html",
+				id:'lookMore'
+			})
+		})
+		$("#backLink").bind('tap',function(){
+			mui.openWindow({
+				url:"index.html",
+				id:'backLink'
+			})
+		})
 	</script>
 </html>

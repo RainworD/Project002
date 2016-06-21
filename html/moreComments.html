@@ -14,7 +14,7 @@
 <body>
 	<div class="comContainer">
 		<div class="bookHeader">
-	        <a href="index.html">
+	        <a id="backLink">
 	            <p class="backBtn"><i class="flaticon-back backfont"></i></p>
 	        </a>
     	</div>
@@ -200,6 +200,12 @@
 					mui('#pullrefresh').pullRefresh().pullupLoading();
 				});
 			}
+			$("#backLink").bind('tap',function(){
+				mui.openWindow({
+					url:history.go(-1),
+					id:'#backLink'
+				})
+			})
 		</script>
 </body>
 </html>

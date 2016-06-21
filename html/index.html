@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../source/css/app.css"/>
     <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/media.css">
     <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/reset.css">
+    <link rel="stylesheet" href="../source/css/onLarge.css">
     <script type="text/javascript" src="../source/js/jquery-1.7.2.js"></script>
     </head>
     <body>
@@ -22,7 +23,7 @@
                 </div>
                 <p class="lfbarp">银监青年</p>
             </div>
-            <a href="search.html">
+            <a class="searchLink">
                 <div class="rtbar">
                     <i class="flaticon-search-1 searchicon"></i>
                 </div>
@@ -35,7 +36,7 @@
                 <div id="slider" class="mui-slider mui-fullscreen mui-slider-overflowa">
                     <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
                         <div class="mui-scroll">
-                            <a class="mui-control-item mui-active" href="#item1mobile">
+                            <a class="mui-control-item mui-active" href="#item1mobile" id="mainPage">
                                 首页
                             </a>
                             <a class="mui-control-item" href="#item2mobile">
@@ -111,33 +112,20 @@
                                         </div>
                                     </div>  
                                     <ul class="mui-table-view">
-                                        <a href="newsDetail.html">
-                                            <li class="mui-table-view-cell">
-                                                <div class="item-container newsDetail">
-                                                    <div class="item-content">
-                                                        <div class="item-img"></div>
-                                                        <p class="item-title">
-                                                            美国总统奥巴马与副总统拜登到访枪击案临时纪念地，悼念遇难者。
-                                                        </p>
-                                                        <p class="article-sorts">
-                                                            通知公告
-                                                        </p>
-                                                        <div class="like-and-reply">
-                                                            <p class="like">
-                                                                <span class="likenum">4869</span>
-                                                                &nbsp;
-                                                                <i class="flaticon-like-1 likefont"></i>
-                                                            </p>
-                                                            <p class="reply">
-                                                                <span class="replynum">300</span>&nbsp;
-                                                                <i class="flaticon-edit-1 editfont"></i>
-                                                            </p>                            
-                                                        </div>
-                                                    </div>
+                                        <li class="mui-table-view-cell goDetail" id="obemaNews">
+                                            <div class="item-container newsDetail">
+                                                <div class="item-content">
+                                                    <div class="item-img"></div>
+                                                    <p class="item-title">
+                                                        美国总统奥巴马与副总统拜登到访枪击案临时纪念地，悼念遇难者。
+                                                    </p>
+                                                    <p class="article-sorts">
+                                                        通知公告&nbsp;北京银监会&nbsp;203评论&nbsp;400赞
+                                                    </p>
                                                 </div>
-                                            </li>
-                                        </a>
-                                        <li class="mui-table-view-cell">
+                                            </div>
+                                        </li>
+                                        <li class="mui-table-view-cell goDetail">
                                             <div class="item-content-whole">
                                                 <p class="item-vedio-title">
                                                     直播：广西环江遭暴雨侵袭 121名群众被洪水围困
@@ -147,66 +135,49 @@
                                                     
                                                 </div>
                                                 <p class="article-sorts">
-                                                    党团之声
+                                                    党团之声&nbsp;北京银监会&nbsp;203评论&nbsp;400赞
                                                 </p>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                
                                             </div>
                                         </li>
-                                        <li class="mui-table-view-cell">
+                                        <li class="mui-table-view-cell ">
+                                            <p class="item-vedio-title">
+                                                上周，中国内地首座、全球第六座迪士尼主题乐园——上海迪士尼度假区正式开园。
+                                            </p>
+                                            <div class="item-vedio-img">
+                                               <img class="imageLar" src="../source/img/dsn1.png" data-preview-src="" data-preview-group="1" >
+                                               <!-- <img class="imageHide" src="../source/img/dsn2.jpeg" data-preview-src="" data-preview-group="2" >
+                                               <img class="imageHide" src="../source/img/dsn3.jpeg"
+                                               data-preview-src="" data-preview-group="3" >
+                                               <img class="imageHide" src="../source/img/dsn4.jpeg"
+                                               data-preview-src="" data-preview-group="4" > -->
+                                            </div>
+                                            <p class="article-sorts">
+                                                青春风采&nbsp;天津银监会&nbsp;183评论&nbsp;200赞
+                                            </p>
+                                        </li>
+                                        <li class="mui-table-view-cell goDetail">
                                             <div class="item-content-whole">
                                                 <p class="item-vedio-title">
                                                     习近平今启程访欧亚三国并出席上合峰会
                                                 </p>
                                                 <p class="article-sorts">
-                                                    评优评先
+                                                    评优评先&nbsp;北京银监会&nbsp;203评论&nbsp;400赞
                                                 </p>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                
                                             </div>
                                         </li>
-                                        <li class="mui-table-view-cell">
+                                        <li class="mui-table-view-cell goDetail">
                                             <div class="item-content-whole">
                                                 <p class="item-vedio-title">
                                                     军方：中国军舰正常通过日临近海域 符合国际法
                                                 </p>
                                                 <p class="article-sorts">
-                                                    通知公告
+                                                    政策法规&nbsp;中国银监会&nbsp;203评论&nbsp;400赞
                                                 </p>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                
                                             </div>
                                         </li>
-                                        <!-- <li class="mui-table-view-cell">
-                                            第1个选项卡子项-6
-                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -216,73 +187,15 @@
                                 <div class="mui-scroll">
                                     <ul class="mui-table-view">
                                         <li class="mui-table-view-cell">
-                                            <div id="slider" class="mui-slider mui-slider-overflowb">
-                                                <div class="mui-slider-group mui-slider-loop">
-                                                    <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-                                                    <div class="mui-slider-item mui-slider-item-duplicate">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn4.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图4</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn1.png">
-                                                            <p class="mui-slider-title">上海迪士尼开园图1</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn2.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图2</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn3.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图3</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn4.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图4</p>
-                                                        </a>
-                                                    </div>
-                                                    <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-                                                    <div class="mui-slider-item mui-slider-item-duplicate">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn1.png">
-                                                            <p class="mui-slider-title">上海迪士尼开园图1</p>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="mui-slider-indicator mui-text-right">
-                                                    <div class="mui-indicator mui-active"></div>
-                                                    <div class="mui-indicator"></div>
-                                                    <div class="mui-indicator"></div>
-                                                    <div class="mui-indicator"></div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
                                             <div class="item-container">
                                                 <div class="item-content">
                                                     <div class="item-img"></div>
                                                     <p class="item-title">
                                                         美国总统奥巴马与副总统拜登到访枪击案临时纪念地，悼念遇难者。
                                                     </p>
-                                                    <div class="like-and-reply">
-                                                        <p class="like">
-                                                            <span class="likenum">4869</span>
-                                                            &nbsp;
-                                                            <i class="flaticon-like-1 likefont"></i>
-                                                        </p>
-                                                        <p class="reply">
-                                                            <span class="replynum">300</span>&nbsp;
-                                                            <i class="flaticon-edit-1 editfont"></i>
-                                                        </p>                            
-                                                    </div>
+                                                    <p class="article-sorts">
+                                                        北京银监会
+                                                    </p>
                                                 </div>
                                             </div>
                                         </li>
@@ -295,17 +208,9 @@
                                                     <!-- <embed src="http://v.163.com/paike/VBHLIPIJM/VBOQMUL8H.html#from=vindex_hot" width="100%" height="85" autostart="true"></embed> -->
                                                     
                                                 </div>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                <p class="article-sorts">
+                                                    北京银监会
+                                                </p>
                                             </div>
                                         </li>
                                         <li class="mui-table-view-cell">
@@ -313,17 +218,9 @@
                                                 <p class="item-vedio-title">
                                                     习近平今启程访欧亚三国并出席上合峰会
                                                 </p>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                <p class="article-sorts">
+                                                    北京银监会
+                                                </p>
                                             </div>
                                         </li>
                                         <li class="mui-table-view-cell">
@@ -331,17 +228,9 @@
                                                 <p class="item-vedio-title">
                                                     军方：中国军舰正常通过日临近海域 符合国际法
                                                 </p>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                <p class="article-sorts">
+                                                    北京银监会
+                                                </p>
                                             </div>
                                         </li>
                                         <!-- <li class="mui-table-view-cell">
@@ -356,73 +245,12 @@
                                 <div class="mui-scroll">
                                    <ul class="mui-table-view">
                                         <li class="mui-table-view-cell">
-                                            <div id="slider" class="mui-slider mui-slider-overflowb">
-                                                <div class="mui-slider-group mui-slider-loop">
-                                                    <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-                                                    <div class="mui-slider-item mui-slider-item-duplicate">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn4.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图4</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn1.png">
-                                                            <p class="mui-slider-title">上海迪士尼开园图1</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn2.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图2</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn3.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图3</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn4.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图4</p>
-                                                        </a>
-                                                    </div>
-                                                    <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-                                                    <div class="mui-slider-item mui-slider-item-duplicate">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn1.png">
-                                                            <p class="mui-slider-title">上海迪士尼开园图1</p>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="mui-slider-indicator mui-text-right">
-                                                    <div class="mui-indicator mui-active"></div>
-                                                    <div class="mui-indicator"></div>
-                                                    <div class="mui-indicator"></div>
-                                                    <div class="mui-indicator"></div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
                                             <div class="item-container">
                                                 <div class="item-content">
                                                     <div class="item-img"></div>
                                                     <p class="item-title">
                                                         美国总统奥巴马与副总统拜登到访枪击案临时纪念地，悼念遇难者。
                                                     </p>
-                                                    <div class="like-and-reply">
-                                                        <p class="like">
-                                                            <span class="likenum">4869</span>
-                                                            &nbsp;
-                                                            <i class="flaticon-like-1 likefont"></i>
-                                                        </p>
-                                                        <p class="reply">
-                                                            <span class="replynum">300</span>&nbsp;
-                                                            <i class="flaticon-edit-1 editfont"></i>
-                                                        </p>                            
-                                                    </div>
                                                 </div>
                                             </div>
                                         </li>
@@ -435,17 +263,7 @@
                                                     <!-- <embed src="http://v.163.com/paike/VBHLIPIJM/VBOQMUL8H.html#from=vindex_hot" width="100%" height="85" autostart="true"></embed> -->
                                                     
                                                 </div>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                
                                             </div>
                                         </li>
                                         <li class="mui-table-view-cell">
@@ -453,17 +271,7 @@
                                                 <p class="item-vedio-title">
                                                     习近平今启程访欧亚三国并出席上合峰会
                                                 </p>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                
                                             </div>
                                         </li>
                                         <li class="mui-table-view-cell">
@@ -471,17 +279,7 @@
                                                 <p class="item-vedio-title">
                                                     军方：中国军舰正常通过日临近海域 符合国际法
                                                 </p>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                
                                             </div>
                                         </li>
                                         <!-- <li class="mui-table-view-cell">
@@ -496,73 +294,12 @@
                                 <div class="mui-scroll">
                                     <ul class="mui-table-view">
                                         <li class="mui-table-view-cell">
-                                            <div id="slider" class="mui-slider mui-slider-overflowb">
-                                                <div class="mui-slider-group mui-slider-loop">
-                                                    <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-                                                    <div class="mui-slider-item mui-slider-item-duplicate">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn4.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图4</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn1.png">
-                                                            <p class="mui-slider-title">上海迪士尼开园图1</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn2.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图2</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn3.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图3</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn4.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图4</p>
-                                                        </a>
-                                                    </div>
-                                                    <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-                                                    <div class="mui-slider-item mui-slider-item-duplicate">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn1.png">
-                                                            <p class="mui-slider-title">上海迪士尼开园图1</p>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="mui-slider-indicator mui-text-right">
-                                                    <div class="mui-indicator mui-active"></div>
-                                                    <div class="mui-indicator"></div>
-                                                    <div class="mui-indicator"></div>
-                                                    <div class="mui-indicator"></div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
                                             <div class="item-container">
                                                 <div class="item-content">
                                                     <div class="item-img"></div>
                                                     <p class="item-title">
                                                         美国总统奥巴马与副总统拜登到访枪击案临时纪念地，悼念遇难者。
                                                     </p>
-                                                    <div class="like-and-reply">
-                                                        <p class="like">
-                                                            <span class="likenum">4869</span>
-                                                            &nbsp;
-                                                            <i class="flaticon-like-1 likefont"></i>
-                                                        </p>
-                                                        <p class="reply">
-                                                            <span class="replynum">300</span>&nbsp;
-                                                            <i class="flaticon-edit-1 editfont"></i>
-                                                        </p>                            
-                                                    </div>
                                                 </div>
                                             </div>
                                         </li>
@@ -575,17 +312,7 @@
                                                     <!-- <embed src="http://v.163.com/paike/VBHLIPIJM/VBOQMUL8H.html#from=vindex_hot" width="100%" height="85" autostart="true"></embed> -->
                                                     
                                                 </div>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                
                                             </div>
                                         </li>
                                         <li class="mui-table-view-cell">
@@ -593,17 +320,7 @@
                                                 <p class="item-vedio-title">
                                                     习近平今启程访欧亚三国并出席上合峰会
                                                 </p>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                
                                             </div>
                                         </li>
                                         <li class="mui-table-view-cell">
@@ -611,17 +328,7 @@
                                                 <p class="item-vedio-title">
                                                     军方：中国军舰正常通过日临近海域 符合国际法
                                                 </p>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                
                                             </div>
                                         </li>
                                         <!-- <li class="mui-table-view-cell">
@@ -636,73 +343,12 @@
                                 <div class="mui-scroll">
                                     <ul class="mui-table-view">
                                         <li class="mui-table-view-cell">
-                                            <div id="slider" class="mui-slider mui-slider-overflowb">
-                                                <div class="mui-slider-group mui-slider-loop">
-                                                    <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-                                                    <div class="mui-slider-item mui-slider-item-duplicate">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn4.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图4</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn1.png">
-                                                            <p class="mui-slider-title">上海迪士尼开园图1</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn2.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图2</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn3.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图3</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn4.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图4</p>
-                                                        </a>
-                                                    </div>
-                                                    <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-                                                    <div class="mui-slider-item mui-slider-item-duplicate">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn1.png">
-                                                            <p class="mui-slider-title">上海迪士尼开园图1</p>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="mui-slider-indicator mui-text-right">
-                                                    <div class="mui-indicator mui-active"></div>
-                                                    <div class="mui-indicator"></div>
-                                                    <div class="mui-indicator"></div>
-                                                    <div class="mui-indicator"></div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
                                             <div class="item-container">
                                                 <div class="item-content">
                                                     <div class="item-img"></div>
                                                     <p class="item-title">
                                                         美国总统奥巴马与副总统拜登到访枪击案临时纪念地，悼念遇难者。
                                                     </p>
-                                                    <div class="like-and-reply">
-                                                        <p class="like">
-                                                            <span class="likenum">4869</span>
-                                                            &nbsp;
-                                                            <i class="flaticon-like-1 likefont"></i>
-                                                        </p>
-                                                        <p class="reply">
-                                                            <span class="replynum">300</span>&nbsp;
-                                                            <i class="flaticon-edit-1 editfont"></i>
-                                                        </p>                            
-                                                    </div>
                                                 </div>
                                             </div>
                                         </li>
@@ -715,17 +361,7 @@
                                                     <!-- <embed src="http://v.163.com/paike/VBHLIPIJM/VBOQMUL8H.html#from=vindex_hot" width="100%" height="85" autostart="true"></embed> -->
                                                     
                                                 </div>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                
                                             </div>
                                         </li>
                                         <li class="mui-table-view-cell">
@@ -733,17 +369,7 @@
                                                 <p class="item-vedio-title">
                                                     习近平今启程访欧亚三国并出席上合峰会
                                                 </p>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                
                                             </div>
                                         </li>
                                         <li class="mui-table-view-cell">
@@ -751,17 +377,7 @@
                                                 <p class="item-vedio-title">
                                                     军方：中国军舰正常通过日临近海域 符合国际法
                                                 </p>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                
                                             </div>
                                         </li>
                                         <!-- <li class="mui-table-view-cell">
@@ -776,73 +392,12 @@
                                 <div class="mui-scroll">
                                     <ul class="mui-table-view">
                                         <li class="mui-table-view-cell">
-                                            <div id="slider" class="mui-slider mui-slider-overflowb">
-                                                <div class="mui-slider-group mui-slider-loop">
-                                                    <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-                                                    <div class="mui-slider-item mui-slider-item-duplicate">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn4.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图4</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn1.png">
-                                                            <p class="mui-slider-title">上海迪士尼开园图1</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn2.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图2</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn3.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图3</p>
-                                                        </a>
-                                                    </div>
-                                                    <div class="mui-slider-item">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn4.jpeg">
-                                                            <p class="mui-slider-title">上海迪士尼开园图4</p>
-                                                        </a>
-                                                    </div>
-                                                    <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-                                                    <div class="mui-slider-item mui-slider-item-duplicate">
-                                                        <a href="#">
-                                                            <img src="../source/img/dsn1.png">
-                                                            <p class="mui-slider-title">上海迪士尼开园图1</p>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="mui-slider-indicator mui-text-right">
-                                                    <div class="mui-indicator mui-active"></div>
-                                                    <div class="mui-indicator"></div>
-                                                    <div class="mui-indicator"></div>
-                                                    <div class="mui-indicator"></div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
                                             <div class="item-container">
                                                 <div class="item-content">
                                                     <div class="item-img"></div>
                                                     <p class="item-title">
                                                         美国总统奥巴马与副总统拜登到访枪击案临时纪念地，悼念遇难者。
                                                     </p>
-                                                    <div class="like-and-reply">
-                                                        <p class="like">
-                                                            <span class="likenum">4869</span>
-                                                            &nbsp;
-                                                            <i class="flaticon-like-1 likefont"></i>
-                                                        </p>
-                                                        <p class="reply">
-                                                            <span class="replynum">300</span>&nbsp;
-                                                            <i class="flaticon-edit-1 editfont"></i>
-                                                        </p>                            
-                                                    </div>
                                                 </div>
                                             </div>
                                         </li>
@@ -855,17 +410,7 @@
                                                     <!-- <embed src="http://v.163.com/paike/VBHLIPIJM/VBOQMUL8H.html#from=vindex_hot" width="100%" height="85" autostart="true"></embed> -->
                                                     
                                                 </div>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                
                                             </div>
                                         </li>
                                         <li class="mui-table-view-cell">
@@ -873,17 +418,7 @@
                                                 <p class="item-vedio-title">
                                                     习近平今启程访欧亚三国并出席上合峰会
                                                 </p>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                
                                             </div>
                                         </li>
                                         <li class="mui-table-view-cell">
@@ -891,17 +426,7 @@
                                                 <p class="item-vedio-title">
                                                     军方：中国军舰正常通过日临近海域 符合国际法
                                                 </p>
-                                                <div class="like-and-reply">
-                                                    <p class="like">
-                                                        <span class="likenum">4869</span>
-                                                        &nbsp;
-                                                        <i class="flaticon-like-1 likefont"></i>
-                                                    </p>
-                                                    <p class="reply">
-                                                        <span class="replynum">300</span>&nbsp;
-                                                        <i class="flaticon-edit-1 editfont"></i>
-                                                    </p>                            
-                                                </div>
+                                                
                                             </div>
                                         </li>
                                         <!-- <li class="mui-table-view-cell">
@@ -916,21 +441,48 @@
             </div>
         </div>
     </div>
-    <script src="../source/js/mui.min.js"></script>
+        <script src="../source/js/mui.min.js"></script>
         <script src="../source/js/mui.pullToRefresh.js"></script>
         <script src="../source/js/mui.pullToRefresh.material.js"></script>
         <script type="text/javascript" src="../source/js/barselect.js"></script>
+        <script src="../source/js/mui.zoom.js"></script>
+        <script src="../source/js/mui.previewimage.js"></script>
+        <script>
+            $(".imageLar").bind('click',function(){
+                mui.previewImage();
+                $(".item-vedio-img").append("<img class='imageLar' src='../source/img/dsn2.jpeg' data-preview-src='' data-preview-group='2' >","<img class='imageLar' src='../source/img/dsn3.jpeg' data-preview-src='' data-preview-group='3' >");
+            })
+        </script>
         <script type="text/javascript">
-        var slider = mui(".mui-slider-overflowb");
-                slider.slider({
-                    interval: 5000
-                });
-        $(".plusi").bind('click',function(){
-            window.location.href="book.html";
-        })
-        $(".newsDetail").bind('click',function(){
-            window.location.href="newsDetail.html";
-        })
+            var slider = mui(".mui-slider-overflowb");
+                    slider.slider({
+                        interval: 5000
+                    });
+            $(".plusi").bind('tap',function(){
+              mui.openWindow({
+                url:'book.html',
+                class:'.plusi'
+              })  
+            })
+            $(".searchLink").bind('tap',function(){
+                mui.openWindow({
+                    url:'search.html',
+                    class:'.searchLink'
+                })
+            })
+            $("#obema").bind('tap',function(){
+                 mui.openWindow({
+                    url:'newsDetail.html',
+                    id:'obema'
+                })
+            })
+            $(".goDetail").bind('tap',function(){
+                 mui.openWindow({
+                    url:'newsDetail.html',
+                    class:'mui-table-view-cell'
+                })
+            })
         </script>
     </body>
 </html>
+
