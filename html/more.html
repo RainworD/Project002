@@ -14,7 +14,7 @@
 <body>
 	<div class="comContainer">
 		<div class="bookHeader">
-	        <a id="backLink">
+	        <a href="index.html">
 	            <p class="backBtn"><i class="flaticon-back backfont"></i></p>
 	        </a>
     	</div>
@@ -76,7 +76,7 @@
 		    						<p class="rightPara3 rightPara">为遇难者祈福...</p>
 		    					</div>
 		    					<p class="like">
-		    						<i class="flaticon-heart likeFont"></i>&nbsp;999+
+		    						<i class="flaticon-heart likeFont"></i>&nbsp;2120
 		    					</p>
 		    				</div>
 						</li>
@@ -89,7 +89,7 @@
 		    						<p class="rightPara3 rightPara">愿逝者安息，生者节哀</p>
 		    					</div>
 		    					<p class="like">
-		    						<i class="flaticon-heart likeFont"></i>&nbsp;999+
+		    						<i class="flaticon-heart likeFont"></i>&nbsp;1920
 		    					</p>
 		    				</div>
 						</li>
@@ -115,7 +115,7 @@
 		    						<p class="rightPara3 rightPara">为遇难者祈福...</p>
 		    					</div>
 		    					<p class="like">
-		    						<i class="flaticon-heart likeFont"></i>&nbsp;999+
+		    						<i class="flaticon-heart likeFont"></i>&nbsp;1120
 		    					</p>
 		    				</div>
 						</li>
@@ -133,7 +133,13 @@
     		</div>
 		</div>
 	</div>
-	</script>
+	<script type="text/javascript">
+    	$(".likeFont").toggle(function(){
+    		$(this).addClass("red");
+    	},function(){
+    		$(this).removeClass("red");
+    	})
+    </script>
     <script src="../source/js/mui.min.js"></script>
 		<script>
 			mui.init({
@@ -158,7 +164,7 @@
 					for (var i = cells.length, len = i + 3; i < len; i++) {
 						var li = document.createElement('li');
 						li.className = 'mui-table-view-cell';
-						li.innerHTML = '<div class="CommentItems"><div class="leftItem leftItem1"></div><div class="rightItem"><p class="rightPara1 rightPara">向丽</p><p class="rightPara2 rightPara">13小时前</p><p class="rightPara3 rightPara">为遇难者祈福...</p></div><p class="like"><i class="flaticon-heart likeFont"></i>&nbsp;999+</p></div>';
+						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
 						//下拉刷新，新纪录插到最前面；
 						table.insertBefore(li, table.firstChild);
 					}
@@ -177,7 +183,7 @@
 					for (var i = cells.length, len = i + 20; i < len; i++) {
 						var li = document.createElement('li');
 						li.className = 'mui-table-view-cell';
-						li.innerHTML = '<div class="CommentItems"><div class="leftItem leftItem1"></div><div class="rightItem"><p class="rightPara1 rightPara">向丽</p><p class="rightPara2 rightPara">13小时前</p><p class="rightPara3 rightPara">为遇难者祈福...</p></div><p class="like"><i class="flaticon-heart likeFont"></i>&nbsp;999+</p></div>';
+						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
 						table.appendChild(li);
 					}
 				}, 1500);
@@ -194,24 +200,6 @@
 					mui('#pullrefresh').pullRefresh().pullupLoading();
 				});
 			}
-			$("#backLink").bind('tap',function(){
-				mui.openWindow({
-					url:history.go(-1),
-					id:'#backLink'
-				})
-			})
-		</script>
-		<script type="text/javascript">
-			var tapNum=0;
-			$(".likeFont").on('tap',function(){  
-				if(tapNum%2==0){
-            		$(this).addClass("red");
-            	}
-            	else{
-            		$(this).removeClass("red");
-            	}
-            	tapNum++;
-            });  
 		</script>
 </body>
 </html>

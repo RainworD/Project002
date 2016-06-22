@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>银监青年</title>
+    <link rel="stylesheet" type="text/css" href="../source/flaticon/flaticon.css">
     <link rel="stylesheet" type="text/css" href="../source/font/flaticon.css">
+    <link rel="stylesheet" href="../source/css/onLarge.css">
     <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/media.css">
     <link rel="stylesheet" type="text/css" href="../source/css/barselect.css">
     <link rel="stylesheet" type="text/css" href="../source/css/mui.min.css">
     <link rel="stylesheet" type="text/css" href="../source/css/app.css"/>
     <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/media.css">
     <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/reset.css">
-    <link rel="stylesheet" href="../source/css/onLarge.css">
     <script type="text/javascript" src="../source/js/jquery-1.7.2.js"></script>
     </head>
     <body>
@@ -145,12 +146,12 @@
                                                 上周，中国内地首座、全球第六座迪士尼主题乐园——上海迪士尼度假区正式开园。
                                             </p>
                                             <div class="item-vedio-img">
-                                               <img class="imageLar" src="../source/img/dsn1.png" data-preview-src="" data-preview-group="1" >
-                                               <!-- <img class="imageHide" src="../source/img/dsn2.jpeg" data-preview-src="" data-preview-group="2" >
-                                               <img class="imageHide" src="../source/img/dsn3.jpeg"
-                                               data-preview-src="" data-preview-group="3" >
-                                               <img class="imageHide" src="../source/img/dsn4.jpeg"
-                                               data-preview-src="" data-preview-group="4" > -->
+                                               <img class="imageLar" src="../source/img/dsn1.png" data-preview-src="" data-preview-group="1" data-content="6月16日，万众期待的上海迪士尼乐园正式开园。不过自5月以来，上海迪斯尼就已经热爆全国。">
+                                               <img class="imageLar" src="../source/img/dsn2.jpeg" data-preview-src="" data-preview-group="1" data-content="根据网友在阿里旅行平台对上海迪士尼乐园的搜索数据，阿里研究院、阿里旅行联合日前发布“迪士尼城市热榜50强”。">
+                                               <img class="imageLar" src="../source/img/dsn3.jpeg"
+                                               data-preview-src="" data-preview-group="1"  data-content="榜单数据显示，自5月以来，迪士尼相关关键词累计搜索量达8900万，是上海地标东方明珠的45倍。">
+                                               <img class="imageLar" src="../source/img/dsn4.jpeg"
+                                               data-preview-src="" data-preview-group="1" data-content="上海迪士尼试运营一个月接待游客超过50万人次，是黄山月均游客量的2倍。">
                                             </div>
                                             <p class="article-sorts">
                                                 青春风采&nbsp;天津银监会&nbsp;183评论&nbsp;200赞
@@ -309,10 +310,8 @@
                                                     直播：广西环江遭暴雨侵袭 121名群众被洪水围困
                                                 </p>
                                                 <div class="item-vedio">
-                                                    <!-- <embed src="http://v.163.com/paike/VBHLIPIJM/VBOQMUL8H.html#from=vindex_hot" width="100%" height="85" autostart="true"></embed> -->
-                                                    
+                                                    <!-- <embed src="http://v.163.com/paike/VBHLIPIJM/VBOQMUL8H.html#from=vindex_hot" width="100%" height="85" autostart="true"></embed> --> 
                                                 </div>
-                                                
                                             </div>
                                         </li>
                                         <li class="mui-table-view-cell">
@@ -446,12 +445,12 @@
         <script src="../source/js/mui.pullToRefresh.material.js"></script>
         <script type="text/javascript" src="../source/js/barselect.js"></script>
         <script src="../source/js/mui.zoom.js"></script>
-        <script src="../source/js/mui.previewimage.js"></script>
+        <script src="../source/js/mui.previewimagenew.js"></script>
         <script>
             $(".imageLar").bind('click',function(){
                 mui.previewImage();
-                $(".item-vedio-img").append("<img class='imageLar' src='../source/img/dsn2.jpeg' data-preview-src='' data-preview-group='2' >","<img class='imageLar' src='../source/img/dsn3.jpeg' data-preview-src='' data-preview-group='3' >");
             })
+
         </script>
         <script type="text/javascript">
             var slider = mui(".mui-slider-overflowb");
@@ -482,6 +481,7 @@
                     class:'mui-table-view-cell'
                 })
             })
+
         </script>
     </body>
 </html>
