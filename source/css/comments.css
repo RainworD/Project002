@@ -67,6 +67,7 @@
   width: 40px;
   height: 40px;
   background-size: cover;
+  border-radius: 50%;
 }
 .comContainer .comContent .CommentItems .leftItem1 {
   background-image: url("../img/leftIem1.jpg");
@@ -88,8 +89,8 @@
   color: #5b5b5b;
 }
 .comContainer .comContent .CommentItems .rightItem .rightPara2 {
-  font-size: 12px;
-  color: #7b7b7b;
+  font-size: 10px;
+  color: #ccc;
 }
 .comContainer .comContent .CommentItems .rightItem .rightPara3 {
   font-size: 13px;
@@ -104,8 +105,13 @@
   position: absolute;
   right: 0;
   top: 0;
+  width: 87px;
 }
-.comContainer .comContent .CommentItems .red {
+.comContainer .comContent .CommentItems .like .likeFont {
+  font-size: 16px;
+  color: #555;
+}
+.comContainer .comContent .CommentItems .like .red {
   color: red;
 }
 .comContainer .comContent .sendComments {

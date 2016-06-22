@@ -1,3 +1,4 @@
+@import url('../flaticon/flaticon.css');
 .mui-preview-image.mui-fullscreen {
 				position: fixed;
 				z-index: 20;
@@ -13,11 +14,37 @@
 			.mui-preview-header {
 				height: 44px;
 				top: 0;
+				.backfont1{
+					display:block;
+					padding-top:10px;
+					color:#fff;
+					font-size: 16px;
+				}
+				[class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after{
+					margin-left:10px;
+					padding-top:10px;
+				}
 			}
 			.mui-preview-footer {
 				height: 50px;
-				bottom: 0px;
-			}
+				bottom: 10px;
+				.commentsBtn{
+				    display: block;
+				    float: left;
+				    border:none;
+				    border-radius:15px;
+				    background-color: #555;
+				    height:30px;
+				    margin-right:30px;
+				    margin-left:15px;
+				    padding-left:15px;
+				 }
+				.commentsFont{
+				    float: left;
+				    color:#fff;
+				    font-size: 20px;
+				}
+				}
 			.mui-preview-header .mui-preview-indicator {
 				display: block;
 				line-height: 25px;
@@ -151,3 +178,11 @@
 				max-width: 100%;
 				height: auto;
 			}
+			.mui-slider-img-content {
+                position: absolute;
+                bottom: 120px;
+                left: 0px;
+                color: white;
+                line-height: 21px;
+                text-indent: 2em;
+            }

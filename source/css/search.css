@@ -162,6 +162,10 @@
   margin-top: 18px;
   width: 120px;
 }
+.searchContainer .searchContent .hotList .hotWordsBox .hotWords:active {
+  background-color: #aaa;
+  color: #fff;
+}
 .searchContainer .searchContent .hotList:after {
   display: block;
   content: '';

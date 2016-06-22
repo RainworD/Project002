@@ -200,6 +200,8 @@ body {
 }
 .container .content .mui-table-view-cell .item-vedio-img {
   width: 100%;
+  overflow: hidden;
+  height: 230px;
 }
 .container .content .mui-table-view-cell .item-vedio-img .imageLar,
 .container .content .mui-table-view-cell .item-vedio-img .imagelarge {
