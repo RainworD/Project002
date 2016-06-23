@@ -1,4 +1,3 @@
-@import url('../flaticon/flaticon.css');
 .mui-preview-image.mui-fullscreen {
   position: fixed;
   z-index: 20;
@@ -191,5 +190,6 @@ p img {
   color: white;
   line-height: 21px;
   text-indent: 2em;
+  padding: 10px;
 }
 /*# sourceMappingURL=onLarge.css.map */

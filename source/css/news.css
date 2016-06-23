@@ -151,6 +151,7 @@
   width: 40px;
   height: 40px;
   background-size: cover;
+  border-radius: 50%;
 }
 .newsContainer .newsContent .comments .CommentItems .leftItem1 {
   background-image: url("../img/leftIem1.jpg");
