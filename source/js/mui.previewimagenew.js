@@ -171,45 +171,45 @@
 		img.classList.remove($.className('transitioning'));
 		img.removeEventListener('webkitTransitionEnd', this._imgTransitionEnd.bind(this));
 	};
-	proto._loadItem = function(index, isOpening) { //TODO 暂时仅支持img
-		var itemEl = this.scroller.querySelector($.classSelector('.slider-item:nth-child(' + (index + 1) + ')'));
-		var itemData = this.currentGroup[index];
-		var imgEl = itemEl.querySelector('img');
-		this._initImgData(itemData, imgEl);
-		if (isOpening) {
-			var posi = this._getPosition(itemData);
-			imgEl.style.webkitTransitionDuration = '0ms';
-			imgEl.style.webkitTransform = 'translate3d(' + posi.x + 'px,' + posi.y + 'px,0) scale(' + itemData.sScale + ')';
-			imgEl.offsetHeight;
-		}
-		if (!itemData.loaded && imgEl.getAttribute('data-preview-lazyload')) {
-			var self = this;
-			self.loader.classList.add($.className('active'));
-			//移动位置动画
-			imgEl.style.webkitTransitionDuration = '0.5s';
-			imgEl.addEventListener('webkitTransitionEnd', self._imgTransitionEnd.bind(self));
-			imgEl.style.webkitTransform = 'translate3d(0,0,0) scale(' + itemData.sScale + ')';
-			this.loadImage(imgEl, function() {
-				itemData.loaded = true;
-				imgEl.src = itemData.lazyload;
-				self._initZoom(itemEl, this.width, this.height);
-				imgEl.classList.add($.className('transitioning'));
-				imgEl.addEventListener('webkitTransitionEnd', self._imgTransitionEnd.bind(self));
-				imgEl.setAttribute('style', '');
-				imgEl.offsetHeight;
-				self.loader.classList.remove($.className('active'));
-			});
-		} else {
-			itemData.lazyload && (imgEl.src = itemData.lazyload);
-			this._initZoom(itemEl, imgEl.width, imgEl.height);
-			imgEl.classList.add($.className('transitioning'));
-			imgEl.addEventListener('webkitTransitionEnd', this._imgTransitionEnd.bind(this));
-			imgEl.setAttribute('style', '');
-			imgEl.offsetHeight;
-		}
-		this._preloadItem(index + 1);
-		this._preloadItem(index - 1);
-	};
+	// proto._loadItem = function(index, isOpening) { //TODO 暂时仅支持img
+	// 	var itemEl = this.scroller.querySelector($.classSelector('.slider-item:nth-child(' + (index + 1) + ')'));
+	// 	var itemData = this.currentGroup[index];
+	// 	var imgEl = itemEl.querySelector('img');
+	// 	this._initImgData(itemData, imgEl);
+	// 	if (isOpening) {
+	// 		var posi = this._getPosition(itemData);
+	// 		imgEl.style.webkitTransitionDuration = '0ms';
+	// 		imgEl.style.webkitTransform = 'translate3d(' + posi.x + 'px,' + posi.y + 'px,0) scale(' + itemData.sScale + ')';
+	// 		imgEl.offsetHeight;
+	// 	}
+	// 	if (!itemData.loaded && imgEl.getAttribute('data-preview-lazyload')) {
+	// 		var self = this;
+	// 		self.loader.classList.add($.className('active'));
+	// 		//移动位置动画
+	// 		imgEl.style.webkitTransitionDuration = '0.5s';
+	// 		imgEl.addEventListener('webkitTransitionEnd', self._imgTransitionEnd.bind(self));
+	// 		imgEl.style.webkitTransform = 'translate3d(0,0,0) scale(' + itemData.sScale + ')';
+	// 		this.loadImage(imgEl, function() {
+	// 			itemData.loaded = true;
+	// 			imgEl.src = itemData.lazyload;
+	// 			self._initZoom(itemEl, this.width, this.height);
+	// 			imgEl.classList.add($.className('transitioning'));
+	// 			imgEl.addEventListener('webkitTransitionEnd', self._imgTransitionEnd.bind(self));
+	// 			imgEl.setAttribute('style', '');
+	// 			imgEl.offsetHeight;
+	// 			self.loader.classList.remove($.className('active'));
+	// 		});
+	// 	} else {
+	// 		itemData.lazyload && (imgEl.src = itemData.lazyload);
+	// 		this._initZoom(itemEl, imgEl.width, imgEl.height);
+	// 		imgEl.classList.add($.className('transitioning'));
+	// 		imgEl.addEventListener('webkitTransitionEnd', this._imgTransitionEnd.bind(this));
+	// 		imgEl.setAttribute('style', '');
+	// 		imgEl.offsetHeight;
+	// 	}
+	// 	this._preloadItem(index + 1);
+	// 	this._preloadItem(index - 1);
+	// };
 	proto._preloadItem = function(index) {
 		var itemEl = this.scroller.querySelector($.classSelector('.slider-item:nth-child(' + (index + 1) + ')'));
 		if (itemEl) {

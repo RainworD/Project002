@@ -111,7 +111,6 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 100%;
 }
 .mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
   width: 100%;
@@ -191,5 +190,6 @@ p img {
   line-height: 21px;
   text-indent: 2em;
   padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
 }
 /*# sourceMappingURL=onLarge.css.map */

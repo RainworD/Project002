@@ -431,7 +431,7 @@
         mui.previewImage();
     })
     $.get('/home/index/blank', function(data) {
-        console.log(data);
+        console.log(data); 
         for (var i = 0; i < data.length; i++) {
             var record = $('.mui-control-item').first().clone();
             record.text(data[i].theme);

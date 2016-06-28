@@ -23,7 +23,13 @@
   font-weight: 600px;
 }
 body {
-  position: relative;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.mui-bar-nav ~ .mui-content {
+  padding-top: 0;
+  top: 0;
 }
 .header {
   z-index: 2;
@@ -75,11 +81,15 @@ body {
 }
 .container {
   width: 100%;
-  margin-top: 50px;
+  height: 100%;
 }
 .container .content {
   width: 100%;
+  height: 100%;
   padding: 0 10px;
+}
+.container .content .mui-content .mui-fullscreen {
+  padding-top: 0;
 }
 .container .content .selbar .selbarlist {
   padding-left: 0;
@@ -89,35 +99,31 @@ body {
   display: inline-block;
   padding: 15px 5px;
 }
-.container .content .scroll1 .mui-slider-overflowb {
-  overflow: inherit;
-}
-.container .content .mui-content .mui-slider-overflowa {
-  overflow: visible;
-}
-.container .content .mui-slider-group .mui-scroll-wrapper {
-  overflow: visible;
-}
-.container .content .mui-slider .mui-slider-group .mui-slider-item {
-  height: 250px;
-  padding-bottom: 0px;
+.container .content .mui-slider-group .mui-scroll-wrapper .mui-control-item {
+  padding: 0 8px;
 }
 .container .content .mui-slider .mui-slider-group .mui-slider-item a {
   height: 100%;
+}
+.container .content .mui-slider .mui-slider-group .lunbodiv {
+  height: 200px;
+}
+.container .content .mui-slider .mui-slider-group .mui-slider-item a .lunboimg {
+  margin-top: 0;
 }
 .container .content .mui-slider .mui-slider-group .mui-slider-item .mui-slider-title {
   line-height: 50px;
   height: 50px;
   font-size: 16px;
 }
-.container .content .mui-content .mui-slider #sliderSegmentedControl {
-  position: relative;
-}
 .container .content .mui-segmented-control.mui-scroll-wrapper .mui-scroll {
   padding-right: 60px;
 }
+.container .content .mui-segmented-control.mui-scroll-wrapper .mui-control-item {
+  padding: 0 8px;
+}
 .container .content .mui-content .mui-slider .plusContainer {
-  width: 35px;
+  width: 45px;
   position: absolute;
   right: 0px;
   bottom: 0px;
@@ -126,8 +132,9 @@ body {
 }
 .container .content .mui-content .mui-slider .plusContainer .plusa {
   display: block;
-  padding-bottom: 6px;
-  padding-right: 10px;
+  padding-bottom: 3px;
+  padding-right: 5px;
+  padding-left: 15px;
   z-index: 3;
 }
 .container .content .mui-content .mui-slider .plusContainer .plusa .plusi {
@@ -146,9 +153,10 @@ body {
 .container .content .mui-table-view-cell .item-container .item-content {
   position: relative;
   float: left;
-  font-size: 14px;
+}
+.container .content .mui-table-view-cell .item-container .item-content .item-title {
+  font-size: 15px;
   color: #757575;
-  font-weight: 600px;
 }
 .container .content .mui-table-view-cell .item-container .item-content .item-img {
   width: 100px;
@@ -160,11 +168,9 @@ body {
   margin-right: 20px;
 }
 .container .content .mui-table-view-cell .item-container .item-content .article-sorts {
-  position: absolute;
-  left: 120px;
-  bottom: 0;
   font-size: 12px;
-  font-weight: normal;
+  color: #aaa;
+  padding-top: 10px;
 }
 .container .content .mui-table-view-cell .item-container .item-content .like-and-reply {
   position: absolute;
@@ -193,15 +199,18 @@ body {
   clear: both;
 }
 .container .content .mui-table-view-cell .item-vedio-title {
-  padding-bottom: 20px;
-  font-size: 14px;
+  font-size: 15px;
   color: #757575;
-  font-weight: 600px;
+  padding-bottom: 15px;
+}
+.container .content .mui-table-view-cell .item-vedio-title .item-title {
+  font-size: 15px;
+  color: #757575;
 }
 .container .content .mui-table-view-cell .item-vedio-img {
   width: 100%;
   overflow: hidden;
-  height: 230px;
+  height: 180px;
 }
 .container .content .mui-table-view-cell .item-vedio-img .imageLar,
 .container .content .mui-table-view-cell .item-vedio-img .imagelarge {
@@ -213,25 +222,30 @@ body {
 .container .content .mui-table-view-cell .item-vedio-img .imageHide {
   display: none;
 }
+.container .content .mui-table-view-cell .article-sorts {
+  font-size: 12px;
+  color: #aaa;
+  font-weight: normal;
+}
 .container .content .item-content-whole {
   position: relative;
   width: 100%;
-  padding: 10px 0;
 }
 .container .content .item-content-whole .item-vedio {
   width: 100%;
   height: 90px;
   margin-bottom: 10px;
+  background-image: url('../img/rain.jpg');
+  -webkit-background-size: cover;
+  background-size: cover;
 }
 .container .content .item-content-whole .item-vedio .vedio-img {
   width: 100%;
   height: 80px;
 }
 .container .content .item-content-whole .article-sorts {
-  position: absolute;
-  left: 0px;
-  bottom: 0;
-  font-size: 14px;
+  font-size: 12px;
+  color: #aaa;
   font-weight: normal;
 }
 .container .content .item-content-whole .like-and-reply {

@@ -30,7 +30,7 @@ mui.init();
 										self.endPullUpToRefresh();
 									}, 1000);
 								}
-							}
+							} 
 						});
 					});
 					var createFragment = function(ul, index, count, reverse) {
@@ -39,7 +39,7 @@ mui.init();
 						var li;
 						for (var i = 0; i < count; i++) {
 							li = document.createElement('li');
-							li.className = 'mui-table-view-cell';
+							li.className = 'mui-table-view-cell goDetail';
 							li.innerHTML = '<div class="item-content-whole"><p class="item-vedio-title">军方：中国军舰正常通过日临近海域 符合国际法</p><p class="article-sorts">政策法规&nbsp;中国银监会&nbsp;203评论&nbsp;400赞</p></div>';
 							fragment.appendChild(li);
 						}
