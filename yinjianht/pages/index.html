@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="../common/css/jedate.css">
     <link rel="stylesheet" href="../common/css/reset.css">
     <link rel="stylesheet" href="../common/css/ui.css">
     <link rel="stylesheet" type="text/css" href="../common/css/index.css">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="../common/css/colpick.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../common/css/classic.css">
     <link rel="stylesheet" type="text/css" href="../common/css/classic.date.css">
+    <link rel="stylesheet" type="text/css"  href="../common/css/vote.css">
     <script src="../common/js/jquery-1.11.1.min.js"></script>
     <script src="../common/js/jedate.js"></script>
     <script src="../common/js/public.js"></script>
@@ -62,27 +64,12 @@
             <ul class="leftmenu" id="zh">
                 <!--     <if condition="$state eq 0"> -->
                 <li id="bi" class="xl">
-                    <i class="fa fa-star fa-lg"></i>
-                    <span style="margin-left:18px;" id="w2">文章管理</span>
-                    <i class="fa fa-angle-down fa-lg" style="float:right;margin-top:13px;" id="xiala01"></i>
+                    <a href="#/finished_article.html">
+                        <i class="fa fa-star fa-lg"></i>
+                        <span style="margin-left:18px;" id="w2">文章管理</span>
+                        <i class="fa fa-angle-down fa-lg" style="float:right;margin-top:13px;" id="xiala01"></i>
+                    </a>
                 </li>
-                <ul class="form" id="fo">
-                    <li>
-                        <a href="#/article.html">
-                            <div><i class="fa fa-caret-right fa-lg"></i><span>发布文章</span></div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#/waiting_article.html">
-                            <div><i class="fa fa-caret-right fa-lg"></i><span>待审核文章</span></div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#/finished_article.html">
-                            <div><i class="fa fa-caret-right fa-lg"></i><span>已发布文章</span></div>
-                        </a>
-                    </li>
-                </ul>
                 <li id="form" class="xl">
                     <i class="fa fa-users fa-lg"></i>
                     <span>用户管理</span>
@@ -114,21 +101,14 @@
                     </li>
                     <li id="com" class="xl">
                         <i class="fa fa-cogs fa-lg"></i>
+                        <span>一般管理员管理</span>
+                        <i class="fa fa-angle-down fa-lg" style="float:right;margin-top:13px;" id="xiala03"></i>
+                    </li>
+                    <li id="com" class="xl">
+                        <i class="fa fa-cogs fa-lg"></i>
                         <span>栏目管理</span>
                         <i class="fa fa-angle-down fa-lg" style="float:right;margin-top:13px;" id="xiala03"></i>
                     </li>
-                    <ul class="form" id="column">
-                        <li>
-                            <a href="#/unit_management.html">
-                                <div><i class="fa fa-caret-right fa-lg"></i><span>单位管理</span></div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#/column_management.html">
-                                <div><i class="fa fa-caret-right fa-lg"></i><span>栏目管理</span></div>
-                            </a>
-                        </li>
-                    </ul>
                     <li id="form" class="xl">
                         <a href="#/hot_word.html">
                         <i class="fa fa-users fa-lg"></i>

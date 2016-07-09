@@ -1,258 +1,416 @@
 <style>
-.ar-input{
-	height: auto;
+.ar-input {
+    height: auto;
 }
+body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin: 0;padding: 0;border: 0;outline: 0;font-size: 100%;}
+table{border-collapse:collapse;border-spacing:0;font-size:100%;empty-cells:show}
+
+
 </style>
-	<div class="ar-header">
-		<i class="fa fa-star fa-2x"></i>
-		<span style="font-size:28px;">&nbsp;发表文章</span>
-	</div>
-	<div class="ar-box">
-	<div class="ar-input">
-		<div class="ar-word">标题</div>
-		<input id="aticle_title" type="text" class="nr ui-input" placeholder="请输入标题" style="width:90%;">
-	</div>
-	<div class="ar-input" id="mainTagBox">
-		<div class="ar-word">发布位置</div>
-		<input type="checkbox"  style="margin-left:10px;" id="column1" value="0">&nbsp;&nbsp;<label for="column1">党团之声</label>
-		<input type="checkbox"  style="margin-left:10px;" id="column2" value="1">&nbsp;&nbsp;<label for="column2">评先评优</label>
-		<!-- 一般管理员选择发布的栏目分类 -->
-	</div>
-	<div class="ar-input" id="display">
-		<div class="ar-word">首页显示</div>
-		<input type="radio" name="xianshi" style="margin-left:10px;" id="shi" value="0">&nbsp;&nbsp;<label for="shi">是</label>
-		<input type="radio" name="xianshi" style="margin-left:10px;" id="fou" value="1">&nbsp;&nbsp;<label for="fou">否</label>	
-	</div>
-
-	<div class="ar-input" id="articleSorts">
-		<div class="ar-word">文章类型</div>
-		<select>
-			<option>普通文章</option>
-			<option>图文文章</option>
-			<option>投票文章</option>
-			<option>问卷调查</option>
-		</select>
-		<!-- <input type="radio" name="arti-sorts" style="margin-left:10px;" id="comarticle" value="0">&nbsp;&nbsp;<label for="common">普通文章</label>
-		<input type="radio" name="arti-sorts" style="margin-left:10px;" id="imgarticle" value="1">&nbsp;&nbsp;<label for="imgtxt">图文文章</label>
-		<input type="radio" name="arti-sorts" style="margin-left:10px;" id="votearticle" value="2">&nbsp;&nbsp;<label for="vote">投票文章</label>
-		<input type="radio" name="arti-sorts" style="margin-left:10px;" id="investarticle" value="3">&nbsp;&nbsp;<label for="invest">问卷调查</label> -->
-	</div>
-	<div class="ar-input">
-		<div class="ar-word">发布时间</div>
-		<div style="position:relative;"><input id="dateinfo" type="text" class="datainp nr ui-input" placeholder="请输入发布时间" style="width:90%;" readonly></div>
-	</div>
-	<div class="ar-input">
-		<div class="ar-word">发布人</div>
-		<input id="article_author" type="text" class="nr ui-input" placeholder="请输入发布人" style="width:90%;"/>
-	</div>
-	<div class="ar-input">
-		<div class="ar-word">配图</div>
-		<!-- <input type="file" class="tianjia"> -->
-		<!-- <div class="ar-tupian"></div> -->
-		<div class="imgm-box">
-			<div class="imgm-img">
-				<div class="imgm-jia">
-					<i class="fa fa-plus-square-o fa-5x" style="color:#ebebeb"></i>
-					<input type="file" class="imgm-tj" id="tupiantianjia" >
-				</div>
-			</div>
-			<div class="imgm-btn1">确定</div>
-			<div class="imgm-btn2">删除</div>
-		</div>
-		<div class="imgpara"><textarea placeholder="请输入图片描述..." class="enterde"></textarea></div>
-		（若无则不上传）
-	</div>
-	<div class="ar-input">
-		<div class="ar-word">正文</div>
-		<script id="editor" type="text/plain" style="height: 500px;"></script>
-	</div>
-	<div class="fabu">发布</div>
+<div class="ar-header">
+    <i class="fa fa-star fa-2x"></i>
+    <span style="font-size:28px;">&nbsp;发表文章</span>
 </div>
+<div class="ar-box">
+    <div class="ar-input">
+        <div class="ar-word">标题</div>
+        <input id="aticle_title" type="text" class="nr ui-input" placeholder="请输入标题" style="width:90%;">
+    </div>
+    <div class="ar-input" id="articleSorts">
+        <div class="ar-word">文章类型</div>
+        <select class="arttype">
+            <option selected="selected" value='0'>普通文章</option>
+            <option value='1'>图文文章</option>
+        </select>
+        <!-- <input type="radio" name="arti-sorts" style="margin-left:10px;" id="comarticle" value="0">&nbsp;&nbsp;<label for="common">普通文章</label>
+        <input type="radio" name="arti-sorts" style="margin-left:10px;" id="imgarticle" value="1">&nbsp;&nbsp;<label for="imgtxt">图文文章</label>
+        <input type="radio" name="arti-sorts" style="margin-left:10px;" id="votearticle" value="2">&nbsp;&nbsp;<label for="vote">投票文章</label>
+        <input type="radio" name="arti-sorts" style="margin-left:10px;" id="investarticle" value="3">&nbsp;&nbsp;<label for="invest">问卷调查</label> -->
+    </div>
+    <div class="ar-input" id="mainTagBox" style="margin-bottom: 10px;">
+        <div class="ar-word">发布位置</div>
+        <div class="themeTag" style="float:left">
+            <input type="radio" name="theme" style="margin-left:10px;" value="0">&nbsp;&nbsp;
+            <label for="column1" class="themeLabel">党团之声</label>
+        </div>
+        <!-- 一般管理员选择发布的栏目分类 -->
+    </div>
 
+    <div class="ar-input" id="display">
+        <div class="ar-word">是否置顶</div>
+        <input type="radio" name="xianshi" style="margin-left:10px;" id="shi" value="0">&nbsp;&nbsp;
+        <label for="shi">是</label>
+        <input type="radio" name="xianshi" style="margin-left:10px;" id="fou" value="1" checked>&nbsp;&nbsp;
+        <label for="fou">否</label>
+    </div>
+    <div class="ar-input">
+        <div class="ar-word">发布时间</div>
+        <div style="position:relative;">
+            <input id="dateinfo" type="text" class="datainp nr ui-input" placeholder="请输入发布时间" style="width:90%;
+" readonly>
+        </div>
+    </div>
+    <div class="commonart">
+        <div class="ar-input imgList" style="height:400px">
+            <div class="ar-word">配图</div>
+            <!-- <input type="file" class="tianjia"> -->
+            <!-- <div class="ar-tupian"></div> -->
+            <div class="imgBox">
+                <div class="imgm-box">
+                    <div class="imgm-img">
+                        <iframe src="iframe.html" frameborder="0" style="width:260px" class="picIframe">
+                        </iframe>
+                    </div>
+                    <div class="imgm-btn1 confirm">添加</div>
+                    <div class="imgm-btn2">删除</div>
+                </div>
+               <!--  <div class="imgpara">
+                    <textarea placeholder="请输入图片描述...(第一张图不需要)" class="enterde" disabled></textarea>
+                </div> -->
+                
+            </div>
+            <p class="imgtips">(若无就不上传)</p>
+            <div class="imgm-btn1 uploadPic">上传图片</div>
+        </div>
+        <div class="ar-input">
+            <div class="ar-word">正文</div>
+            <script id="editor" type="text/plain" style="height: 500px;width:700px"></script>
+            <div class="charu">
+                <ul>
+                    <li class="charuItem vote"><i class="fa fa-line-chart"></i>&nbsp;投票</li>
+                    <li class="charuItem"><i class="fa fa-pencil-square-o"></i>&nbsp;问卷调查</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="picart" style="display: none;">
+        <div class="ar-input imgList" style="height:400px">
+            <div class="ar-word">配图</div>
+            <!-- <input type="file" class="tianjia"> -->
+            <!-- <div class="ar-tupian"></div> -->
+            <div class="imgContainer">
+                <div class="imgBox">
+                <div class="imgm-box">
+                    <div class="imgm-img">
+                        <iframe src="iframe.html" frameborder="0" style="width:160px" class="picIframe">
+                        </iframe>
+                    </div>
+                    <div class="imgm-btn1 confirm">添加</div>
+                    <div class="imgm-btn2">删除</div>
+                </div>
+                <div class="imgpara">
+                    <textarea placeholder="请输入图片描述...(第一张图不需要)" class="enterde"></textarea>
+                </div>
+                
+            </div>
+            </div>
+            <p class="imgplus"><i class="fa fa-plus-square fa-5x" style="color:#ccc;"></i></p>
+            <p class="imgtips" style="bottom:50px;">(若无就不上传)</p>
+            <div class="imgm-btn1 uploadPic" style="bottom:0px;">上传图片</div>
+        </div>
+    </div>
+    <div class="fabu">发布</div>
+</div>
+<div class="mask"></div>
+<div class="voteContainer">
+    <div class="header">
+        <p class="headerPara">
+            发起投票
+        </p>
+        <p class="cancle"><i class="fa fa-remove fa-2x"></i></p>
+    </div>
+    <div class="voteContent">
+        <div class="switchBar">
+            <div class="switchBtn">新投票</div>
+            <!-- <div class="switchBtn">已有投票</div> -->
+        </div>
+        <div class="switchContainer1">
+            <div class="switchContent switchContent1">
+                <p class="voteTitle">投票名称</p>
+                <input class="voteinput">
+            </div>
+            <p class="voteTip">投票名称只用于管理，不显示在下发的投票内容中</p>
+            <div class="switchContent">
+                <p class="voteTitle">截止时间</p>
+                <p class="datep"><input class="datainp  voteinput" id="dateinfo2" type="text" placeholder="请选择"  readonly></p>
+            </div>
+            <div class="switchContent">
+                <p class="voteTitle">投票权限</p>
+                <p class="rightp">所有人都可参与</p>
+            </div>
+            <p class="uploadTip">
+                上传图片的最佳尺寸：300像素*300像素，其他尺寸会影响页面效果，格式png,jpeg,jpg,gif.大小不超过1M
+            </p>
+            <div class="queContainer">
+                <div class="queBox">
+                    <div class="queHeader">
+                        <p class="queNum">问题1</p>
+                        <p class="titleShow"></p>
+                        <p class="receive">收起</p>
+                    </div>
+
+                    <div class="queContent">
+                        <div class="switchContent switchContent1">
+                            <p class="voteTitle">标题</p>
+                            <input class="voteinput titleInput">
+                        </div>
+                        <p class="voteTip1 voteTip">
+                            <input type="radio" name="chioce" value="0" class="radioclass"/>&nbsp;单选&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="chioce" value="1" class="radioclass"/>&nbsp;多选
+                        </p>
+                        <div class="selectList">
+                            <div class="switchContent">
+                                <p class="voteTitle">选项1</p>
+                                <input class="voteinput"/>
+                                <input class="uploadImg" value="上传图片"/>
+                            </div>
+                            <div class="switchContent">
+                                <p class="voteTitle">选项2</p>
+                                <input class="voteinput"/>
+                                <input class="uploadImg" value="上传图片"/>
+                            </div>
+                            <!-- <div class="switchContent otherItem">
+                                <p class="voteTitle">选项三</p>
+                                <input class="voteinput"/>
+                                <input class="uploadImg" value="上传图片"/>
+                                <p class="deleteItem">删除选项</p>
+                            </div> -->
+                        </div>
+                        <div class="addsome">
+                            <p class="addItems">添加选项</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="addQue">
+                <p class="addPara"><i class="flaticon-add"></i>添加问题</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p class="submit">确定</p>
+    </div>
+</div>
 <script type="text/javascript">
-
+$(".arttype").bind("change",function(){
+    var val=$(this).val();
+    switch(val){
+        case '0':
+            $(".commonart").show().next().hide();
+        break;
+        case '1':
+        $(".imgtips").hide();
+            $(".picart").show().prev().hide();
+        break;
+    }
+})
+$(".imgplus").bind("click",function(){
+    var imgItems=$('<div class="imgBox">'+
+                        '<div class="imgm-box">'+
+                            '<div class="imgm-img">'+
+                            '<iframe src="iframe.html" frameborder="0" style="width:260px" class="picIframe">'+
+                            '</iframe>'+
+                        '</div>'+
+                        '<div class="imgm-btn1 confirm">添加</div>'+
+                        '<div class="imgm-btn2">删除</div>'+
+                    '</div>'+
+                    '<div class="imgpara">'+
+                        '<textarea placeholder="请输入图片描述...(第一张图不需要)" class="enterde"></textarea>'+
+                    '</div>'+       
+                '</div>');
+    //var rightnew=$(this).css("right");
+    $(this).animate({right:0},600,"linear");
+    $(".imgContainer").append(imgItems);
+    $(".uploadPic").css({right:'-20px',bottom:'180px'});
+    var len=$(".imgBox").length;
+    if(len>4){
+        $(".imgList").height("650");
+       $(".uploadPic").css('bottom','450px');
+    }
+    
+})
 //实例化编辑器
 //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
 UE.delEditor('editor')
-    var ue = UE.getEditor('editor');
-setTimeout(function(){
-	ue.execCommand("drafts");
-},500);
+var ue = UE.getEditor('editor');
+setTimeout(function() {
+    ue.execCommand("drafts");
+}, 500);
 
+$.get('/home/admin/theme_list', function(data) {
+    console.log(data);
+    for (var i = 0; i < data.length; i++) {
+        var msg = data[i];
+        var record = $(".themeTag").first().clone();
+        record.find('.themeLabel').text(msg.theme);
+        record.find('input').attr('value', msg.id);
+        $("#mainTagBox").append(record);
+        record.find('.themeLabel').attr('for', 'column' + i);
+        record.find('input').attr('id', "column" + i);
+    }
+    $(".themeTag").first().remove();
+});
+var result, input;
+var flag = -1;
+$(".picIframe").one('load', function(event) {
+    bindReadFile();
+    console.log("load");
+});
+// 上传图片按钮
+$(".uploadPic").on('click', function(event) {
+    $(".picIframe").contents().find('form').submit();
+    $(".picIframe").hide();
+    $(".imgm-img").append('上传成功');
+});
 
-
-var result = $(".ar-tupian")[0]; 
-var input = $(".tianjia")[0];
-if(typeof FileReader==='undefined'){ 
-    result.innerHTML = "抱歉，你的浏览器不支持 FileReader"; 
-    input.setAttribute('disabled','disabled');
-}
-else{ 
-	input.addEventListener('change',readFile,false);
+function bindReadFile() {
+    flag = flag + 1;
+    result = $(".imgm-img");
+    console.log(flag);
+    input = $(".picIframe").contents().find(".imgm-tj")[flag];
+    console.log(input);
+    setTimeout(function() {
+        if (typeof FileReader === 'undefined') {
+            result.append("抱歉，你的浏览器不支持 FileReader");
+            input.setAttribute('disabled', 'disabled');
+        } else {
+            input.addEventListener('change', readFile, false);
+        }
+    }, 1000)
 }
 var imagefile;
-function readFile(){ 
-    var file = this.files[0]; 
-    if(!/image\/\w+/.test(file.type)){ 
-        alert("文件必须为图片！"); 
-        return false; 
-    } 
-    var reader = new FileReader(); 
+// 发布文章按钮
+$(".fabu").click(function() {
+    var picData = JSON.parse($(".picIframe").contents().find('body').text());
+    console.log(picData);
+    var data = {};
+    data.text = ue.getContent();
+    data.title = $("#aticle_title").val();
+    data.in_time = $("#dateinfo").val();
+    if ($("#shi").prop("checked")) {
+        data.type = 1;
+    } else {
+        data.type = 0;
+    }
+    data.theme_id = ($("#mainTagBox :checked").val());
+    data.info = info;
+    for (var i = 0; i < picData.length; i++) {
+        data.info[i][0] = picData[i].file;
+    }
+    console.log(data);
+    $.post('/home/admin/common_article_input', data, function(data, textStatus, xhr) {
+        // var data = JSON.parse(data);
+        console.log(data);
+        console.log(data.state);
+        if (data.state == "0") {
+            alert("发布成功");
+            // window.location.href = "index.html#/waiting_article.html";
+        }
+    });
+    ue.execCommand('clearlocaldata');
+});
+
+
+function readFile() {
+    var file = this.files[0];
+    console.log(this.files);
+    if (!/image\/\w+/.test(file.type)) {
+        alert("文件必须为图片！");
+        return false;
+    }
+    var reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = function(e){ 
-        result.innerHTML = '<img style="width:250px;height:141px;" src="'+this.result+'" alt=""/>';
+    reader.onload = function(e) {
+        result.append('<img style="width:260px;height:140px;position:relative;top:-155px" src="' + this.result + '" alt=""/>');
         imagefile = this.result.split(',')[1];
     }
 }
 var timeout;
-$("#tagInput").bind("keyup",function(){
-	var keyword = $.trim($(this).val());
-	var $this = $(this);
-	clearTimeout(timeout);
-	if(keyword!=""){
-		timeout = setTimeout(function(){
-			$.when(getTagList("__ROOT__",keyword)).done(function(data){
-				if(data.state==0){
-					var order = data.order;
-					if(order.length){
-						var html = '';
-						for(var i = 0; i < order.length; i++){
-							html += "<div class='textline' data-type='"+order[i]["type"]+"'>"+order[i]["tags"]+"</div>";
-						}
-						$this.next(".taglist").empty().append(html).addClass("show");
-					}
-				}
-				else{
-					console.log(data);
-				}
-			});
-		},300);
-	}
+var textFlag = 1;
+var info = [];
+$(".confirm").on('click', function(event) {
+    var record = $(".imgm-img img");
+    record.css({
+        top: '40px',
+        left: '40px'
+    });;
+    console.log(record);
+    $(".imgList").append(record);
+    if ($(".enterde").val()) {
+        info.push(["file" + textFlag, $(".enterde").val()]);
+    } else {
+        info.push(["file" + textFlag, ""]);
+    }
+    textFlag = textFlag + 1;
+    $(".enterde").val("");
+    $(".enterde").removeAttr('disabled');
+    console.log(info);
+    bindReadFile();
+});
+$("#tagInput").bind("keyup", function() {
+    var keyword = $.trim($(this).val());
+    var $this = $(this);
+    clearTimeout(timeout);
+    if (keyword != "") {
+        timeout = setTimeout(function() {
+            $.when(getTagList("__ROOT__", keyword)).done(function(data) {
+                if (data.state == 0) {
+                    var order = data.order;
+                    if (order.length) {
+                        var html = '';
+                        for (var i = 0; i < order.length; i++) {
+                            html += "<div class='textline' data-type='" + order[i]["type"] + "'>" + order[i]["tags"] + "</div>";
+                        }
+                        $this.next(".taglist").empty().append(html).addClass("show");
+                    }
+                } else {
+                    console.log(data);
+                }
+            });
+        }, 300);
+    }
 });
 
-$(".taglist").on("click",".textline",function(){
-	var labelhtml=$('<span style="margin-left:2px;margin-top:4px;" class="lab-tag" data-type="'+$(this).attr("data-type")+'">'+
-						$(this).text()+
-						'<i class="fa fa-close closeicon"></i>'+
-				    '</span>');
-	$(".tagsbox").append(labelhtml);
-	tagInputResize();
-	$(this).closest(".taglist").removeClass("show").empty();
+$(".taglist").on("click", ".textline", function() {
+    var labelhtml = $('<span style="margin-left:2px;margin-top:4px;" class="lab-tag" data-type="' + $(this).attr("data-type") + '">' +
+        $(this).text() +
+        '<i class="fa fa-close closeicon"></i>' +
+        '</span>');
+    $(".tagsbox").append(labelhtml);
+    tagInputResize();
+    $(this).closest(".taglist").removeClass("show").empty();
 });
-function tagInputResize(){
-	var total = $(".tagsAutoCom").width()-8;
-	var tagbox = $(".tagsbox").width();
-	$("#tagInput").width(total-tagbox).val("").focus();
+
+function tagInputResize() {
+    var total = $(".tagsAutoCom").width() - 8;
+    var tagbox = $(".tagsbox").width();
+    $("#tagInput").width(total - tagbox).val("").focus();
 }
-$(".tagsbox").on("click",".closeicon",function(){
-	tagInputResize();
-	$(this).closest("span").remove();
+
+$(".tagsbox").on("click", ".closeicon", function() {
+    tagInputResize();
+    $(this).closest("span").remove();
 });
 // 绑定时间插件
 // $('#artile_dd').pickadate();
 jeDate({
-		dateCell:"#dateinfo",
-		format:"YYYY-MM-DD hh:mm:ss",
-		isinitVal:true,
-		isTime:true, //isClear:false,
-		minDate:"2014-09-19 00:00:00",
-		okfun:function(val){alert(val)}
-	})// 发布文章按钮
-// 发布文章按钮
-// var canfabu = true;
-$(".fabu").click(function(){
-	// if(canfabu){
-		var title = $.trim($("#aticle_title").val()),
-			time = $('#dateinfo').val(),
-			name = $.trim($("#article_author").val()),
-			text = ue.getContent(),
-			summary = $.trim($("#article_abstract").val()),
-			tags = 0,
-			key = $('#display input:radio:checked').val(),
-			value = [];
-		
-		$.each($("#mainTagBox input[type='checkbox']:checked"),function(){
-			tags+=$(this).val()-0;
-		});
-		$.each($(".tagsAutoCom .tagsbox span"),function(){
-			value.push({"tags":$(this).text(),"type":$(this).attr("data-type")});
-		});
-		if(title==""){
-			alert("文章标题不能为空");
-		}
-		else if(time==""){
-			alert("发表时间不能为空");
-		}
-		else if(name==""){
-			alert("作者不能为空");
-		}
-		else if(text==""){
-			alert("正文不能为空");
-		}
-		else if(summary==""){
-			alert("摘要不能为空");
-		}
-		else if(value.length==0){
-			alert("标签必填，且必须从备选列表中选择，纯文字输入无效");
-		}
-		else{
-			// canfabu = false;
-			// var timearray = $('#artile_dd').val().split("-");
-			// time = Date.parse(new Date(timearray[0],timearray[1]-1,timearray[2]))/1000;
-			var data = {
-					"title":title,
-					"tags":tags,
-					"time":time,
-					"name":name,
-					"text":text,
-					"value":value,
-					"summary":summary,
-					"key":key
-				};
-			// 照片
-			if($(".ar-tupian img").attr("src")!=(""||undefined)){
-				data["photo"]=$(".ar-tupian img").attr("src").split(',')[1];
-			}
-			// 榜单三种颜色
-			if($("#bangdan").is(":checked")){
-				var colorValue = $("input[name='color']:checked").val();
-				data["color1"] = "#"+colorValue;
-				data["color2"] = "#"+(("0x"+colorValue) - ("0x201008")).toString(16);
-				data["color3"] = "#"+(("0x"+colorValue) - ("0xa6a6a6")).toString(16);
-			}
-			$.ajax({
-				url: "__ROOT__/article_inputapi",
-				type: "POST",
-				data: data,
-				success: function(data){
-					if(data.state==0){
-						alert("文章发布成功，等待审核");
-						ue.execCommand('clearlocaldata');
-						 //window.location.reload();
-
-					}
-					else{
-						alert(data.detail);
-						// canfabu = true;
-					}
-				},
-				error: function(){
-					alert("网络异常")
-					// canfabu = true;
-				}
-			});
-		}
-	// }
-});
+        dateCell: "#dateinfo",
+        format: "YYYY-MM-DD hh:mm:ss",
+        isinitVal: true,
+        isTime: true, //isClear:false,
+        minDate: "2014-09-19 00:00:00",
+        okfun: function(val) {
+            alert(val)
+        }
+    }) // 发布文章按钮
 
 // 勾选榜单后
-$("#bangdan").bind('change',function(){
-	if($(this).prop("checked")){
-		$("#yanse").show();
-	}
-	else{
-		$("#yanse").hide();
-	}
+$("#bangdan").bind('change', function() {
+    if ($(this).prop("checked")) {
+        $("#yanse").show();
+    } else {
+        $("#yanse").hide();
+    }
 });
 // 勾选精选后
 // $("#jingxuan").bind('change',function(){
@@ -266,4 +424,109 @@ $("#bangdan").bind('change',function(){
 // 		$(".tagsbox").find(".selectedTag").remove();
 // 	}
 // });
+</script>
+<script type="text/javascript">
+    $(".addPara").bind("click",function(){
+        $(this).parent().prev(".queContainer").find(".queContent").hide();
+        // var titleShow=$(this).parent().prev(".queContainer").find(".titleInput").val();
+        // $(this).parent().prev(".queContainer").find(".titleShow").text(titleShow);
+        $(this).parent().prev(".queContainer").find(".receive").text('编辑');
+        var newBox=$('<div class="queBox">'+
+                        '<div class="queHeader">'+
+                            '<p class="queNum"></p>'+
+                            '<p class="titleShow"></p>'+
+                            '<p class="receive">收起</p>'+
+                        '</div>'+
+
+                        '<div class="queContent">'+
+                            '<div class="switchContent switchContent1">'+
+                                '<p class="voteTitle">标题</p>'+
+                                '<input class="voteinput titleInput">'+
+                            '</div>'+
+                            '<p class="voteTip1 voteTip">'+
+                                '<input type="radio" name="chioce" value="0" class="radioclass"/>&nbsp;单选&nbsp;&nbsp;&nbsp;'+
+                                '<input type="radio" name="chioce" value="1" class="radioclass"/>&nbsp;多选'+
+                            '</p>'+
+                            '<div class="selectList">'+
+                                '<div class="switchContent">'+
+                                    '<p class="voteTitle">选项1</p>'+
+                                    '<input class="voteinput"/>'+
+                                    '<input class="uploadImg" value="上传图片"/>'+
+                                '</div>'+
+                                '<div class="switchContent">'+
+                                    '<p class="voteTitle">选项2</p>'+
+                                    '<input class="voteinput"/>'+
+                                    '<input class="uploadImg" value="上传图片"/>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="addsome">'+
+                                '<p class="addItems">添加选项</p>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>');
+    var mylen=$(".queBox").length;
+    var mynewlen=mylen+1;
+    newBox.find(".queNum").text('问题'+mynewlen);
+    newBox.find('.voteTitle').val();
+    // var titleShow1=newBox.find(".titleInput").val();
+    // newBox.find(".titleShow").text(titleShow1);
+    $('.queContainer').append(newBox);
+
+    })
+    $("body").delegate(".addItems","click",function(){
+        var addCon=$('<div class="switchContent otherItem">'+
+                        '<p class="voteTitle"></p>'+
+                        '<input class="voteinput"/>'+
+                        '<input class="uploadImg" value="上传图片"/>'+
+                        '<p class="deleteItem">删除选项</p>'+
+                    '</div>');
+        // var len=$(".selectList").children().length;
+        var len=$(this).parent().prev('.selectList').children().length;
+        console.log(len);
+        var newlen=len+1;
+        addCon.find(".voteTitle").text('选项'+newlen);
+        $(this).parent().prev('.selectList').append(addCon);
+    })
+    $("body").delegate(".receive","click",function(){
+
+            if($(this).text()=='编辑'){
+                $(this).parent().next().show();
+                $(this).text('收起');
+
+            }
+            else{
+                $(this).parent('.queHeader').css("background-color","#fff");
+                $(this).parent('.queHeader').css("border","1px solid #e7e7eb");
+                $(this).parents('.queBox').css("border","none");
+                $(this).parent().next().hide();
+                var titleShow=$(this).parent().next(".queContent").find(".titleInput").val();
+                $(this).prev().text(titleShow);
+                $(this).text('编辑');
+            }
+        })
+    $("body").delegate(".deleteItem","click",function(){
+        $(this).parent('.switchContent').remove();
+    })
+    $(".vote").bind("click",function(){
+        var myheight=$(window).height();
+        var mywidth=$(window).width();
+        $(".mask").attr('height', myheight);
+        $(".mask").attr('width', mywidth);
+        $(".mask").show();
+        $(".voteContainer").show();
+    })
+    $(".cancle").bind('click',function(){
+        $(".mask").hide();
+        $(".voteContainer").hide();
+    })
+    jeDate({
+        dateCell: "#dateinfo2",
+        format: "YYYY-MM-DD hh:mm:ss",
+        isinitVal: true,
+        isTime: true, //isClear:false,
+        minDate: "2014-09-19 00:00:00",
+        okfun: function(val) {
+            alert(val)
+        }
+    }) // 发布文章按钮
 </script>
