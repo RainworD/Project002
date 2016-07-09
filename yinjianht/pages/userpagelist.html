@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>青塔</title>
+    <link href="__PUBLIC__/source/img/favicon.ico" rel="icon">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/public.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/public_mobile.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/user.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/font-awesome-4.4.0/css/font-awesome.min.css">
+    <script src="__PUBLIC__/source/js/jquery-1.7.2.min.js"></script>
+    <script src="__PUBLIC__/source/js/jquery.pagination.min.js"></script>
+</head>
+<body>
+	<include file="header" />
+	<div class="content usercontent">
+		<div class="cenbox">
+			<div class="userright userpagelist">
+				<div class="userunit">
+					<h1>{$nick}</h1>
+					<p class="email">{$email}</p>
+					<div class="databox">
+						<a href="__ROOT__/userpagelist.html?key=我的收藏" target="_blank">
+							<span class="number">{$measures}</span>
+							<span class="type">收藏</span>
+						</a>
+						<a href="__ROOT__/userpagelist.html?key=我的问题" target="_blank">
+							<span class="number">{$questions}</span>
+							<span class="type">问题</span>
+						</a>
+						<a href="__ROOT__/userpagelist.html?key=我的问答" target="_blank">
+							<span class="number">{$answers}</span>
+							<span class="type">回答</span>
+						</a>
+						<a href="__ROOT__/userpagelist.html?key=我的评论" target="_blank">
+							<span class="number">{$comments}</span>
+							<span class="type">评论</span>
+						</a>
+						<!--<a href="__ROOT__/userpagelist.html?key=我的补充" target="_blank">
+							<span class="number">{$supplys}</span>
+							<span class="type">补充</span>
+						</a>-->
+					</div>
+					<div class="links">
+						<a id="changePass" href="__ROOT__/index.php/Home/Index/changepass.html" target="_blank">修改密码</a>
+						<a id="logout">退出登录</a>
+					</div>
+				</div>
+			</div>
+			<div class="userleft">
+				<div class="userunit">
+					<h1>{$result}</h1>
+					<div class="list">
+						<if condition="$result eq '我的收藏'">
+							<volist name='data' id='vo'>
+							<article>
+								<if condition="$vo.type eq 0">
+									<a href="__ROOT__/index.html?p={$vo.collect_id}">{$vo.title}</a>
+									<time><php>echo date('Y-m-d',$vo["collect_time"]);</php></time>
+								<else />
+									<a href="__ROOT__/answerinfo.html?p={$vo.collect_id}">{$vo.title}</a>
+									<time><php>echo date('Y-m-d',$vo["in_time"]);</php></time>
+							</if>
+							</article>
+							</volist>
+						<elseif condition="$result eq '我的问题'" />
+							<volist name='data' id='vo'>
+							<article>
+								<if condition="$vo.count neq 0">
+									<span class="message">{$vo.count}</span>
+								</if>
+								<a href="__ROOT__/answerinfo.html?p={$vo.id}">{$vo.title}</a>
+								<time><php>echo date('Y-m-d',$vo["in_time"]);</php></time>
+							</article>
+							</volist>
+						<elseif condition="$result eq '我的问答'" />
+							<volist name='data' id='vo'>
+							<article>
+								<if condition="$vo.count neq 0">
+									<span class="message">{$vo.count}</span>
+								</if>
+								<a href="__ROOT__/answerinfo.html?p={$vo.question_id}">{$vo.text}</a>
+								<time><php>echo date('Y-m-d',$vo["in_time"]);</php></time>
+							</article>
+							</volist>
+						<elseif condition="$key eq '我的补充'" />
+							<volist name='data' id='vo'>
+							<article>
+								<php>if($vo['state']=="0"){echo 通过;}</php>
+								<a href="__ROOT__/data_axis.html?school={$vo.tags}">{$vo.title}</a>
+							</article>
+							</volist>
+						<else />
+							<volist name='data' id='vo'>
+							<article>
+								<if condition="$vo.count neq 0">
+									<span class="message">{$vo.count}</span>
+								</if>
+								<a href="__ROOT__/index.html?p={$vo.article_id}">{$vo.text|htmlspecialchars_decode}</a>
+								<time><php>echo date('Y-m-d',$vo["in_time"]);</php></time>
+							</article>
+							</volist>
+						</if>
+					</div>
+					<if condition ="$totalData gt $showData">
+                    <div class="M-box"></div>
+                </if>
+				</div>
+			</div>
+		</div>
+	</div>
+	<include file="footer" />
+<script src="__PUBLIC__/source/js/public.js"></script>
+<script>
+
+var pageData = {
+	"pageIndex":-1
+};
+init(pageData);
+$('.M-box').pagination({
+	totalData:{$totalData},
+    showData:{$showData},
+    current:{$current},
+    count:2,
+    jump:true,
+	coping:true,
+	prevContent:'<i class="fa fa-angle-left"></i>',		//上一页内容
+	nextContent:'<i class="fa fa-angle-right"></i>',		//下一页内容
+    callback:function(index){
+        location.href="__ROOT__/userpagelist.html?key={$result}&page="+index;
+    }
+});
+$("#logout").click(function(){
+	$.ajax({
+	    ROOT:"__ROOT__/logoutapi",
+	    type:"POST",
+	    success: function(data){
+	        switch(data.state){
+	            case "0":
+	            location.href="__ROOT__/main.html";
+	            break;
+	            default: alert(data.detail);break;
+	        }
+	    },
+	    error: function(){
+	            
+	    }
+    });
+});
+</script>
+</body>
+</html> 

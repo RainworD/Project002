@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>青塔</title>
+    <link href="__PUBLIC__/source/img/favicon.ico" rel="icon">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/public.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/public_mobile.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/login.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/font-awesome-4.4.0/css/font-awesome.min.css">
+    <script src="__PUBLIC__/source/js/jquery-1.7.2.min.js"></script>
+    <script src="__PUBLIC__/source/js/jquery.pagination.min.js"></script>
+</head>
+<body>
+    <include file="header" />
+    <div class="content">
+        <div class="cenbox">
+            <div class="midbox regist" style="float:none;margin: 0 auto;">
+                <h1>找回密码</h1>
+                <input class="yyinput" type="email" id="mail" placeholder="您的注册邮箱" />
+                <input class="yyinput" type="password" id="password01" placeholder="您需要重设的新密码" />
+                <input class="yyinput" type="password" id="password02" placeholder="确认重设的密码" />
+                <a class="loginbutton" id="findButton">确认找回</a>
+            </div>
+        </div>
+    </div>
+    <include file="footer" />
+<script src="__PUBLIC__/source/js/public.js"></script>
+<script src="__PUBLIC__/source/js/md5.js"></script>
+<script>
+var pageData = {
+    "pageIndex":-1,
+    "pageId":"login"
+};
+init(pageData);
+var mailRex = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(?:\.[a-zA-Z]+)+$/;
+$("#findButton").bind("click",function(){
+    var password01 = $("#password01").val(),
+        password02 = $("#password02").val(),
+        mail = $("#mail").val();
+    if(password01!=password02){
+        alert("两次输入的密码不一致，请重新输入")
+    }
+    else if(mailRex.exec(mail)==null){
+        alert("请输入正确的邮箱");
+    }
+    else{
+        $.ajax({
+            url:"__ROOT__/pswd_getbackapi",
+            type:"POST",
+            data:{
+                "email":mail,
+                "repassword":hex_md5(password02)
+            },
+            success: function(data){
+                switch(data.state){
+                    case "0":
+                        alert("已发送验证邮件，请登录您的邮箱验证");
+                    break;
+                    default: alert(data.detail);break;
+                }
+            },
+            error: function(data){
+                alert("网络异常");
+            }
+        });
+    }
+});
+</script>
+</body>
+</html> 

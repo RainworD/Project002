@@ -1,0 +1,172 @@
+<div class="co-header">
+		<i class="fa fa-users fa-2x"></i>
+		<span style="font-size:28px;font-weight:400;">&nbsp;用户补充</span>
+	</div>
+	
+	<!-- <div class="co-box"></div> -->
+	<div class="co-search">
+		<div class="icon_lqy">
+			<i class="fa fa-reply"></i>返回列表
+		</div>
+		<div style="float:right;height:30px;">
+			<span>Search:</span><input type="text" style="width:250px;height:30px;border:1px solid #ccc;margin-left:10px;padding-right:30px;" class="ui-input" id="search" placeholder="输入标题、标签或内容关键词搜索">
+			<i class="fa fa-search" aria-hidden="true" style="margin-left:-30px;cursor:pointer;width:20px;height:20px;" id="searching"></i>
+		</div>
+	</div>
+	<table  class="co-table" border="1">
+		<thead>
+			<tr style="font-weight:bold;font-size:14px;" id="tianjia">
+				<th >标题</th>
+				<th style="width:150px;">用户名</th>
+				<th style="width:150px;">标签</th>
+				<!-- <th>内容</th> -->
+				<th style="width:150px;">回复</th>
+				<th style="width:200px;">时间</th>
+				<th style="width:150px;">状态</th>
+				<th style="width:150px;">操作</th>
+			</tr>
+		</thead>
+		<tbody id="tianjia">
+			<volist name='supply' id='vo'>
+				<tr class="dianjiyc">
+					<td>{$vo.title}</td>
+					<td>{$vo.nick}</td>
+					<td>{$vo.tags}</td>
+					<td>
+						<a href="__ROOT__/index.html#/supplyedit?p={$vo.id}">
+						<div class="z" data-id="{$vo.id}">
+					    <i class="fa fa-pencil" style="color:white;margin-left:4.5px;"></i>
+						</div></a>
+					</td>
+					<!-- <td >{$vo.text}</td> -->
+				    <td><php>echo date('Y-m-d H：i：s',$vo['in_time']);</php></td>
+				    <td>{$vo.state}</td>
+				    <td>
+				    	<div class="y" data-id="{$vo.id}">
+						<i class="fa fa-check" style="color:white;margin-left:2.5px;"></i>
+						</div>
+						<div class="x" data-id="{$vo.id}">
+							<i class="fa fa-remove" style="color:white;margin-left:4.5px;"></i>
+						</div>
+				    </td>
+				</tr>
+			</volist>
+		</tbody>
+		
+		
+	</table>
+	<div class="bottom-search" >
+		
+	</div>
+
+<script>
+    $(document).unbind('click');
+	TablePage(".co-table",20);
+	$("tr:odd").css({background: "#f9f9f9"}); 
+    $("tr:even").css({background: "white"}); 
+	$("#searching").bind("click",function(){
+		$(".yincang").remove();
+		$.ajax({
+		    url:"__ROOT__/supplementsearchapi",
+		    type:"POST",
+		    data:{
+		        "key":$("#search").val()
+		    },
+		    success: function(data){
+		        switch(data.state){
+                    case "0":
+                        $(".bottom-search").hide();
+                    	$(".dianjiyc").hide();
+                    	var order=data.order;
+                    	for (var i = 0; i <order.length; i++){
+                    		var orderhtml=$('<tr class="yincang">'+
+										'<td>'+
+											order[i]["title"]+
+										'</td>'+
+										'<td>'+
+											order[i]["nick"]+
+										'</td>'+
+										'<td>'+
+											order[i]["tags"]+
+										'</td>'+
+										'<td>'+
+										'<a href="__ROOT__/index.html#/supplyedit?p='+order[i]["id"]+'">'+
+						                '<div class="z">'+
+					                    '<i class="fa fa-pencil" style="color:white;margin-left:4.5px;">'+
+					                    '</i>'+
+						                '</div>'+
+						                '</a>'+
+					                    '</td>'+
+										// '<td>'+
+										// 	order[i]["text"]+
+										// '</td>'+
+										'<td>'+
+											order[i]["in_time"]+
+										'</td>'+
+										'<td>'+
+											order[i]["state"]+
+										'</td>'+
+										'<td>'+
+				    	                '<div class="y" data-id='+order[i]["id"]+'>'+
+						                '<i class="fa fa-check" style="color:white;margin-left:2.5px;">'+
+						                '</i>'+
+						                '</div>'+
+						                '<div class="x" data-id='+order[i]["id"]+'>'+
+							            '<i class="fa fa-remove" style="color:white;margin-left:4.5px;">'+
+							            '</i>'+
+						                '</div>'+
+				                        '</td>');
+		                    $("tr:odd").css({background: "#f9f9f9"}); 
+		                    $("tr:even").css({background: "white"}); 
+		                    $("#tianjia").after(orderhtml);
+                    	}
+                    break;
+                    default:
+                    break;
+                }
+		    },
+		    error: function(){}
+		});
+	});
+// $(document).on("click",".z",function(){
+// 	loadContent("__ROOT__/supplyedit");
+// })
+$(document).on("click",".y",function(){
+	$.ajax({
+		url: "__ROOT__/supplyapi",
+		type: "POST",
+		data: {
+			"id":$(this).attr("data-id"),
+			"key":0
+		},
+		success: function(data){
+			if(data.state==0){
+				alert("新增成功");
+				window.location.reload();
+			}
+			else{
+				// console.log(data);
+			}
+		}
+	});
+})
+$(document).on("click",".x",function(){
+	$.ajax({
+		url: "__ROOT__/supplyapi",
+		type: "POST",
+		data: {
+			"id":$(this).attr("data-id"),
+			"key":2
+		},
+		success: function(data){
+			if(data.state==10033){
+				alert("驳回成功");
+				window.location.reload();
+			}
+			else{
+				// console.log(data);
+			}
+		}
+	});
+})
+</script>

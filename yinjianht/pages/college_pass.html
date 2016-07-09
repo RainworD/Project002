@@ -1,0 +1,174 @@
+<div class="col-header">
+		<i class="fa fa-tachometer fa-2x"></i>
+		<span style="font-size:28px;font-weight:400;">&nbsp;待审核高校</span>
+	</div>
+	
+	<div class="col-box3">
+	<!-- <div class="col-box"></div> -->
+	<div class="col-search">
+		<div style="float:left;line-height:30px;">省/市/自治区<select style="margin-left:20px;">
+			<volist name="province" id="vo">
+				<option>请选择</option>
+				<option>{$vo}</option>
+			</volist>
+		</select></div>
+		<div style="float:right;height:30px;">
+			<span>Search:</span><input type="text" style="width:250px;height:30px;border:1px solid #ccc;margin-left:10px;" class="ui-input" id="search">
+			<i class="fa fa-search" aria-hidden="true" style="margin-left:-30px;cursor:pointer;width:20px;height:20px;" id="searching"></i>
+		</div>
+	</div>
+	
+	<table  class="col-table" border="1">
+		<tr style="font-weight:bold;font-size:14px;" id="tianjia">
+			<td>高校名</td>
+			<td>省份</td>
+			
+			<td>时间</td>
+			<!-- <td style="width:400px;">简介</td> -->
+			<td>操作</td>	
+		</tr>
+		<volist name='school' id='vo'>
+			<tr style="background-color:#f9f9f9;" data-id="{$vo.id}" class="dianjiyc">
+			<td>{$vo.name}</td>
+			<td>{$vo.province_name}</td>
+			<td><php>echo date('Y-m-d H：m：s',$vo['in_time']);</php></td>
+			<!-- <td>{$vo.introduction}</td> -->
+			<td style="width:300px;">
+				<div class="y" data-name="{$vo.name}" data-intro="{$vo.introduction}">
+					<i class="fa fa-check" style="color:white;margin-left:2.5px;"></i>
+				</div>
+				<div class="x" data-name="{$vo.name}" data-intro="{$vo.introduction}">
+					<i class="fa fa-remove" style="color:white;margin-left:4.5px;"></i>
+				</div>
+			</td>	
+			</tr>
+		</if>
+		</volist>
+	</table>
+	<div class="bottom-search" >
+		
+	</div>
+	</div>
+	
+	
+
+	<script type="text/javascript">
+
+		TablePage(".col-table",10);
+
+		$("tr:odd").css({background: "#f9f9f9"}); 
+        $("tr:even").css({background: "white"}); 
+
+		$(".col-table").on("click",".y",function(){
+			$.ajax({
+			    url:"__ROOT__/intro_approveapi",
+			    type:"POST",
+			    data:{
+			       "name":$(this).attr("data-name"),
+			       "introduction":$(this).attr("data-intro"),
+			       "key":"0"
+			    },
+			    success: function(data){
+			        switch(data.state){
+                        case "0":
+                        alert(data.detail);
+                        loadContent("college_pass.html");
+                        break;
+                        default: alert(data.detail);loadContent("college_pass.html");break;
+                    }
+			    },
+			    error: function(){
+			            
+			    }
+
+    		});
+		})
+		
+		$(".col-table").on('click','.x',function(){
+			$.ajax({
+			    url:"__ROOT__/intro_approveapi",
+			    type:"POST",
+			    data:{
+			       "name":$(this).attr("data-name"),
+			       "introduction":$(this).attr("data-intro"),
+			       "key":"1"
+			    },
+			    success: function(data){
+			        switch(data.state){
+                        case "0":
+                        alert(data.detail);
+                        loadContent("college_pass.html");
+                        break;
+                        default: alert(data.detail);loadContent("college_pass.html");break;
+                    }
+			    },
+			    error: function(){
+			            
+			    }
+
+    });
+		})
+
+		
+$("#searching").on("click",function(){
+  				// loadContent("comment.html");
+  				$.ajax({
+			    url:"__ROOT__/waiting_collegesearchapi",
+			    type:"POST",
+			    data:{
+			        "key":$("#search").val()
+			    },
+			    success: function(data){
+			    	
+			        switch(data.state){
+                        case "0":
+                            $(".bottom-search").hide();
+                        	$(".dianjiyc").hide();
+                        	var  order=data.order;
+                        	for (var i = 0; i <order.length; i++){
+                        var orderhtml=$('<tr style="width:300px;">'+
+										'<td>'+
+										order[i]["name"]+
+										'</td>'+
+										'<td>'+
+										order[i]["province_name"]+
+										'</td>'+
+										'<td>'+
+										order[i]["in_time"]+
+										'</td>'+
+										// '<td>'+
+										// order[i]["introduction"]+
+										// '</td>'+
+										
+										'<td>'+
+										'<div class="y" data-name="'+order[i]["name"]+'" data-intro="'+order[i]["introduction"]+'">'+
+										'<i class="fa fa-check" style="color:white;margin-left:2.5px;">'+
+										'</i>'+
+										'</div>'+
+										'<div class="x" data-name="'+order[i]["name"]+'" data-intro="'+order[i]["introduction"]+'">'+
+										'<i class="fa fa-remove" style="color:white;margin-left:4.5px;">'+
+										'</i>'+
+										'</div>'+
+									    '</td>'+	
+								        '</tr>');
+                        $("#tianjia").after(orderhtml);
+                        	}
+                        break;
+                        default: 
+                        // alert(data.detail);
+                        
+                        break;
+                    }
+			    },
+			    error: function(){
+			            
+			    }
+
+    		});
+
+  			});
+    	
+
+
+ 	
+	</script>

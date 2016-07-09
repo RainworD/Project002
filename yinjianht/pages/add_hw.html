@@ -1,0 +1,44 @@
+
+	<div class="co-header">
+		<i class="fa fa-users fa-2x"></i>
+		<span style="font-size:28px;font-weight:400;">&nbsp;热词管理</span>
+	</div>
+	<table  class="co-table" border="1">
+		<thead>
+			<tr style="font-size:14px;" id="tianjia">
+				<th>热词名称</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="dianjiyc">
+				<td><input placeholder="请输入新增热词..." class="nr ui-input hwinput"></td>
+				<td style="width:80px;">
+					<div class="x">
+						<i class="fa fa-check" title="确定" style="color:white;margin-left:4.3px;"></i>
+					</div>
+				</td>	
+			</tr>
+		</tbody>
+	</table>
+	<div class="bottom-search" >
+		
+	</div>
+	<script type="text/javascript">
+		$(".x").bind("click",function(){
+			var hwinput=$(".hwinput").val();
+			$.post('/home/admin/hotwords_management', {hotwords: hwinput}, function(data, textStatus, xhr) {
+				if(data.state==0){
+	    			alert("新增成功！");
+	    			location.href="#/hot_word.html";
+	    			$('.hwinput').val("");
+	    		}
+	    		else{
+	    			alert(data.detail);
+	    		}
+			});
+		});
+	$(document).unbind('click');
+	$("tr:odd").css({background: "#f9f9f9"}); 
+    $("tr:even").css({background: "white"}); 
+	</script>

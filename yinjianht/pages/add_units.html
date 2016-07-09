@@ -1,0 +1,76 @@
+<style>
+.ar-input{
+	height: auto;
+}
+</style>
+	<div class="ar-header">
+		<i class="fa fa-star fa-2x"></i>
+		<span style="font-size:28px;">&nbsp;新增单位</span>
+	</div>
+	<div class="ar-box">
+	<div class="ar-input">
+		<div class="ar-word">单位名称</div>
+		<input id="aticle_title" type="text" class="nr ui-input unitsinput" placeholder="请输入单位名称" style="width:90%;">
+	</div>
+	<!-- <div class="ar-input">
+		<div class="ar-word">分配栏目</div>
+		<div class="ar-label tagsAutoCom" style="width:90%;"> -->
+			<!-- <div class="tagsbox">
+				<span style="margin-left:2px;margin-top:4px;" class="lab-tag" data-type="0"><i class="fa fa-close closeicon"></i></span>
+			</div> -->
+			<!-- <input id="tagInput" class="nr tagInput" type="text" placeholder="输入栏目名后选择弹出的选项，至少要分配一个栏目">
+			<div class="taglist onlyfocus"></div>
+		</div>
+	</div> -->
+	<div class="ar-input">
+		<div class="ar-word">分配栏目</div>
+		<input id="aticle_title" type="text" class="nr ui-input unitsinput" placeholder="请输入单位名称" style="width:90%;">
+	</div>
+<!-- 	<div class="ar-input">
+		<div class="ar-word">新增时间</div>
+		<div style="position:relative;"><input id="dateinfo" type="text" class="datainp nr ui-input" placeholder="请输入新增时间" style="width:90%;" readonly></div>
+	</div> -->
+	<div class="fabu">新增</div>
+</div>
+<script type="text/javascript">
+	$(".fabu").bind('click',function(){
+		var unitsname=$(".unitsinput").val();
+		var columnlist=$(".columnsinput").val();
+		$.post('/home/admin/admin_management', {nick:unitsname,theme:columnlist}, function(data, textStatus, xhr) {
+			if(data.state==0){
+	    			alert("新增成功！");
+	    			location.href="#/unit_management.html";
+	    			// $('.unitsinput').val("");
+	    			// $(".columnsinput").val("");
+	    		}
+	    		else{
+	    			alert(data.detail);
+	    		}
+		});
+	})
+
+	$(".taglist").on("click",".textline",function(){
+	var labelhtml=$('<span style="margin-left:2px;margin-top:4px;" class="lab-tag" data-type="'+$(this).attr("data-type")+'">'+
+						$(this).text()+
+						'<i class="fa fa-close closeicon"></i>'+
+				    '</span>');
+	$(".tagsbox").append(labelhtml);
+	tagInputResize();
+	$(this).closest(".taglist").removeClass("show").empty();
+});
+function tagInputResize(){
+	var total = $(".tagsAutoCom").width()-8;
+	var tagbox = $(".tagsbox").width();
+	$("#tagInput").width(total-tagbox).val("").focus();
+}
+$(".tagsbox").on("click",".closeicon",function(){
+	tagInputResize();
+	$(this).closest("span").remove();
+});
+</script>
+
+
+
+
+
+

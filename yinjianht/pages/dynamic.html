@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>青塔</title>
+    <link href="__PUBLIC__/source/img/favicon.ico" rel="icon">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/public.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/public_mobile.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/dynamiccontent.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/font-awesome-4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/pagination.css">
+    <script src="__PUBLIC__/source/js/jquery-1.7.2.min.js"></script>
+    <script src="__PUBLIC__/source/js/jquery.pagination.min.js"></script>
+</head>
+<body>
+    <include file="header" />
+    <div class="content dynamiccontent">
+        <if condition="$code_block[0]['state'] neq 0">
+        <div class="adverRow cenbox pc" style="margin-bottom: 20px;">
+            <div class="codeBlockType2">
+                <php>echo htmlspecialchars_decode($code_block[0]['value']);</php>
+            </div>
+        </div>
+        </if>
+        <div class="cenbox">
+            <section class="leftbox">
+                <div class="listbox">
+                    <volist name="article" id="vo" key="k">
+                        <if condition="$k%6 eq 1"><div class="unit"></if>
+                        <article>
+                            <a href="__ROOT__/index.html?p={$vo.id}" target="_blank">{$vo.title}</a>
+                            <time><php>echo date('Y-m-d',$vo['in_time']);</php></time>
+                        </article>
+                        <if condition="$k%6 eq 0"></div></if>
+                    </volist>
+                </div>
+                <if condition ="$totalData gt $showData">
+                    <div class="M-box pc"></div>
+                    <div class="loadMoreButton mobile" data-nowpage="{$current}">加载更多</div>
+                </if>
+            </section>
+            <include file="right" />
+        </div>
+        <div class="adverRow cenbox pc" style="margin-top: 20px;">
+            <if condition="$code_block[6]['state'] neq 0">
+            <div class="codeBlockType2">
+                <php>echo htmlspecialchars_decode($code_block[6]['value']);</php>
+            </div>
+            </if>
+        </div>
+    </div>
+    
+   <include file="footer" />
+</body>
+<script src="__PUBLIC__/source/js/public.js"></script>
+<script>
+
+var pageData = {
+    "pageIndex":3
+};
+init(pageData);
+// 分页
+
+$('.M-box').pagination({
+    totalData:{$totalData},
+    showData:{$showData},
+    current:{$current},
+    count:2,
+    jump:true,
+    coping:true,
+    prevContent:'<i class="fa fa-angle-left"></i>',     //上一页内容
+    nextContent:'<i class="fa fa-angle-right"></i>',        //下一页内容
+    callback:function(index){
+        location.href="__ROOT__/dynamic.html?page="+index
+    }
+});
+$(".loadMoreButton").bind('click',function(){
+    var $this = $(this);
+    var page = $this.attr("data-nowpage");
+    var index = 3;
+    $.ajax({
+        url: "__ROOT__/loadmoreapi",
+        type: "POST",
+        data: {
+            "page":++page,
+            "index":index
+        },
+        success: function(data){
+            if(data.state == 0){
+                var order = data.order;
+                if(order){
+                    var boxhtml='';
+                    for(var i = 0; i<order.length; i++){
+                        if(i%6==0){
+                            boxhtml+='<div class="unit">';
+                        }
+                        boxhtml += createDynamicLine(order[i]);
+                        if(i%6==5||i==(order.length-1)){
+                            boxhtml+='</div>';
+                        }
+                    }
+                    $(".leftbox .listbox").append(boxhtml);
+                    $this.attr("data-nowpage",page);
+                }
+                else{
+                    alert("没有更多文章了");
+                }
+            }
+            else{
+                alert(data.detail);
+            }
+        },
+        error: function(){
+            alert("网络异常");
+        }
+    });
+});
+function createDynamicLine(order){
+    var photo_state = order.photo_state;
+    var value = order.value;
+    var id = order.id;
+    var title = order.title;
+    var summary = order.summary;
+    var name = order.name;
+    var in_time = order.in_time;
+    var html='';
+    
+    html ='<article>'+
+                    '<a href="__ROOT__/index.html?p='+id+'" target="_blank">'+title+'</a>'+
+                    '<time>'+in_time+'</time>'+
+                '</article>';
+    
+    return html;
+}
+</script>
+</body>
+</html> 

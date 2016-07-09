@@ -1,0 +1,147 @@
+
+	<div class="an-header">
+		<i class="fa fa-users fa-2x"></i>
+		<span style="font-size:28px;font-weight:400;">&nbsp;用户回答</span>
+	</div>
+	
+	<!-- <div class="an-box"></div> -->
+	<div class="an-search">
+		<div class="icon_lqy">
+			<i class="fa fa-reply"></i>返回列表
+		</div>
+		<div style="float:right;height:30px;">
+			<span>Search:</span><input type="text" style="width:250px;height:30px;border:1px solid #ccc;margin-left:10px;" class="ui-input" id="search" placeholder="请输入发布人昵称或ID">
+			<i class="fa fa-search" aria-hidden="true" style="margin-left:-30px;cursor:pointer;width:20px;height:20px;" id="searching"></i>
+		</div>
+	</div>
+	<table  class="an-table" border="1">
+		<thead>
+			<tr style="font-weight:bold;font-size:14px;" id="tianjia">
+			<th>回答</th>
+			<th style="width:80px;">发布人ID</th>
+			<th style="width:80px;">发布人</th>
+			<th style="width:200px;">发布时间</th>
+			<th style="width:80px;">文章链接</th>
+			<th style="width:80px;">操作</th>	
+		</tr>
+		</thead>
+		<tbody>
+			<volist name='answer' id='vo'>
+			<tr class="dianjiyc" style="background-color:#f9f9f9;" id="{$vo.id}">
+				<td>{$vo.text}</td>
+				<td style="width:80px;">{$vo.user_id}</td>
+				<td style="width:80px;">{$vo.nick}</td>
+				<td style="width:200px;"><php>echo date('Y-m-d H：i：s',$vo['in_time']);</php></td>
+				<td style="width:80px;"><a href="http://beta.cingta.com/answerinfo.html?p={$vo.question_id}" target="_blank"><div class="y">
+					<i class="fa fa-link" style="color:white;margin-left:3.3px;"></i>
+				</div></a></td>
+			<td style="width:80px;">
+				<div class="x" data-id='{$vo.id}' data-type='{$vo.type}'>
+					<i class="fa fa-remove" style="color:white;margin-left:4.5px;"></i>
+				</div>
+			</td>	
+		</tr>
+		</volist>
+		</tbody>
+		
+	</table>
+	<div class="bottom-search" >
+		
+	</div>
+	<script type="text/javascript">
+	$(document).unbind('click');
+		TablePage(".an-table",20);
+		$("tr:odd").css({background: "#f9f9f9"}); 
+        $("tr:even").css({background: "white"}); 
+        $(".an-table").on("click",".x",function(){
+        	if(confirm("您确定要删除吗？")){
+				var zhi=$(this).attr("data-id");
+				var type = $(this).attr("data-type");
+				$.ajax({
+					
+				    url:"__ROOT__/answerapi",
+				    type:"POST",
+				    data:{
+				        "id":zhi,
+				        "type":type
+				    },
+				    success: function(data){
+				        switch(data.state){
+	                        case "0":
+	                        alert(data.detail);
+	                        loadContent("answer.html"); 
+	                        break;
+	                        default: alert(data.detail);break;
+	                    }
+				    },
+				    error: function(){
+				            
+				    }
+	    		});
+			}
+		})
+
+		$("#searching").on("click",function(){
+  				$(".yincang").hide();
+  				$.ajax({
+			    url:"__ROOT__/answersearchapi",
+			    type:"POST",
+			    data:{
+			        "key":$("#search").val()
+			    },
+			    success: function(data){
+			    	
+			        switch(data.state){
+                        case "0":
+                            $(".bottom-search").hide();
+                        	$(".dianjiyc").hide();
+                        	var order=data.order;
+                        	for (var i = 0; i <order.length; i++){
+                        var orderhtml=$('<tr class="yincang">'+
+				'<td>'+
+				order[i]["text"]+
+				'</td>'+
+				'<td style="width:80px;">'+
+				order[i]["user_id"]+
+				'</td>'+
+				'<td style="width:80px;">'+
+				order[i]["nick"]+
+				'</td>'+
+				'<td style="width:200px;">'+
+				order[i]["in_time"]+
+				'</td >'+
+				'<td style="width:80px;">'+
+				'<a href="http://beta.cingta.com/answerinfo.html?p='+order[i]["question_id"]+'">'+
+				'<div class="y">'+
+				'<i class="fa fa-link" style="color:white;margin-left:3.3px;">'+
+				'</i>'+
+				'</div>'+
+				'</a>'+
+				'</td>'+
+			    '<td style="width:80px;">'+
+				'<div class="x" data-id='+order[i]["id"]+' data-type='+order[i]["type"]+'>'+
+				'<i class="fa fa-remove" style="color:white;margin-left:4.5px;">'+
+				'</i>'+
+				'</div>'+
+			    '</td>'+	
+		        '</tr>')
+                        $("tr:odd").css({background: "#f9f9f9"}); 
+        				$("tr:even").css({background: "white"}); 
+                        $("#tianjia").after(orderhtml);
+                        	}
+                        break;
+                        default: 
+                        // alert(data.detail);
+                        
+                        break;
+                    }
+			    },
+			    error: function(){
+			            
+			    }
+
+    		});
+
+  			});
+			
+	</script>

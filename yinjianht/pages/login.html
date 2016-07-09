@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>青塔</title>
+    <link href="__PUBLIC__/source/img/favicon.ico" rel="icon">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/public.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/public_mobile.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/login.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/font-awesome-4.4.0/css/font-awesome.min.css">
+    <script src="__PUBLIC__/source/js/jquery-1.7.2.min.js"></script>
+    <script src="__PUBLIC__/source/js/jquery.pagination.min.js"></script>
+</head>
+<body>
+    <include file="header" />
+    <div class="content">
+        <div class="cenbox">
+            <div class="midbox login">
+                <h1>登录</h1>
+                <input class="yyinput" type="email" id="mail02" placeholder="邮箱" />
+                <input class="yyinput" type="password" id="password02" placeholder="密码" />
+                <a class="loginbutton" id="loginButton">登录</a>
+                <div style="text-align:right;margin-top:10px;">
+                    <a style="color: #999;" href="__ROOT__/findpass.html">找回密码</a>
+                </div>
+                
+            </div>
+            <div class="midbox regist">
+                <h1>创建新账号</h1>
+                <input class="yyinput" type="email" id="mail" placeholder="注册邮箱" />
+                <input class="yyinput" type="text" id="nickname" placeholder="昵称" />
+                <input class="yyinput" type="password" id="password01" placeholder="密码，不少于6位" />
+                <input class="yyinput" type="password" id="password01_2" placeholder="重复密码" />
+                <label class="tips" for="ty"><input type="checkbox" id="ty" style="margin-right:5px;" checked />同意并接受<a href="__ROOT__/blank.html?p=109" target="_blank">《服务条款》</a></label>
+                <a class="loginbutton" id="registButton">注册</a>
+            </div>
+        </div>
+    </div>
+    <include file="footer" />
+<script src="__PUBLIC__/source/js/public.js"></script>
+<script src="__PUBLIC__/source/js/md5.js"></script>
+<script>
+var pageData = {
+    "pageIndex":-1,
+    "pageId":"login"
+};
+init(pageData);
+var mailRex=/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(?:\.[a-zA-Z]+)+$/;
+$("#registButton").click(function(){
+    var mail = $("#mail").val(),
+        nickname = $("#nickname").val(),
+        password = $("#password01").val();
+        password_2 = $("#password01_2").val();
+    if(mailRex.exec(mail)==null){
+        alert("请输入正确的邮箱");
+    }
+    else if($.trim(nickname)==""){
+        alert("请输入昵称");
+    }
+    else if(password==""){
+        alert("请输入密码");
+    }
+    else if(password != password_2){
+        alert("两次密码输入不一致，请重新输入");
+    }
+    else{
+        $.ajax({
+            url:"__ROOT__/registerapi",
+            type:"POST",
+            data:{
+                "nick":nickname,
+                "email":mail,
+                "password":hex_md5(password)
+            },
+            success: function(data){
+                switch(data.state){
+                    case "0":
+                    alert("已发送验证邮件，请登录您的邮箱验证");
+                    break;
+                    default: alert(data.detail);break;
+                }
+            },
+            error: function(){
+                alert("网络异常");
+            }
+        });
+    }
+});
+$("#loginButton").click(function(){
+    var mail = $("#mail02").val(),
+        password = $("#password02").val();
+    if(mailRex.exec(mail)==null){
+        alert("请输入正确的邮箱");
+    }
+    else if(password==""){
+        alert("请输入密码");
+    }
+    else{
+        $.ajax({
+            url:"__ROOT__/loginapi",
+            type:"POST",
+            data:{
+                "email":mail,
+                "password":hex_md5(password)
+            },
+            success: function(data){
+                switch(data.state){
+                    case "0":
+                    location.href="__ROOT__/main.html";
+                    break;
+                    default: alert(data.detail);break;
+                }
+            },
+            error: function(){
+                alert("网络异常");
+            }
+        });
+    }
+})
+</script>
+</body>
+</html> 

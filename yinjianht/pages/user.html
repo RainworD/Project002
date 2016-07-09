@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>青塔</title>
+    <link href="__PUBLIC__/source/img/favicon.ico" rel="icon">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/public.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/public_mobile.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/user.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/font-awesome-4.4.0/css/font-awesome.min.css">
+    <script src="__PUBLIC__/source/js/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+	<include file="header" />
+	<div class="content usercontent">
+		<div class="cenbox">
+			<div class="userright">
+				<div class="userunit">
+					<h1>{$nick}</h1>
+					<div>
+						<input class="changenick" placeholder="填入修改的昵称">
+					</div>
+					<p class="email">{$email}</p>
+					<div class="databox">
+						<a href="__ROOT__/userpagelist.html?key=我的收藏" target="_blank">
+							<span class="number">{$measures}</span>
+							<span class="type">收藏</span>
+						</a>
+						<a href="__ROOT__/userpagelist.html?key=我的问题" target="_blank">
+							<span class="number">{$questions}</span>
+							<span class="type">问题</span>
+						</a>
+						<a href="__ROOT__/userpagelist.html?key=我的问答" target="_blank">
+							<span class="number">{$answers}</span>
+							<span class="type">回答</span>
+						</a>
+						<a href="__ROOT__/userpagelist.html?key=我的评论" target="_blank">
+							<span class="number">{$comments}</span>
+							<span class="type">评论</span>
+						</a>
+						<!--<a href="__ROOT__/userpagelist.html?key=我的回复" target="_blank">
+							<span class="number">{$replys}</span>
+							<span class="type">回复</span>
+						</a>-->
+					</div>
+					<div class="links">
+						<a id="changePass" href="__ROOT__/changepass.html" target="_blank">修改密码</a>
+						<a id="logout">退出登录</a>
+					</div>
+				</div>
+			</div>
+			<div class="userleft">
+				<div class="userunit">
+					<h1>我的收藏</h1>
+					<div class="list">
+						<volist name='measure' id='vo'>
+						<article>
+							<if condition="$vo.type eq 0">
+								<a href="__ROOT__/index.html?p={$vo.collect_id}" target="_blank">{$vo.title}</a>
+							<else />
+								<a href="__ROOT__/answerinfo.html?p={$vo.collect_id}" target="_blank">{$vo.title}</a>
+							</if>
+							<time><php>echo date('Y-m-d',$vo["collect_time"]);</php></time>
+						</article>
+						</volist>
+					</div>
+					<if condition="$measure neq null">
+					<div class="bottomline"><a href="__ROOT__/userpagelist.html?key=我的收藏" target="_blank">查看全部 <i class="fa fa-angle-right"></i></a></div>
+					</if>
+				</div>
+				<div class="userunit">
+					<h1>我的问题</h1>
+					<div class="list">
+						<volist name='question' id='vo'>
+							<article>
+								<if condition="$vo.count neq 0">
+									<span class="message">{$vo.count}</span>
+								</if>
+								<a href="__ROOT__/answerinfo.html?p={$vo.id}" target="_blank">{$vo.title}</a>
+								<time><php>echo date('Y-m-d',$vo["in_time"]);</php></time>
+							</article>
+						</volist>
+					</div>
+					<if condition="$question neq null">
+					<div class="bottomline"><a href="__ROOT__/userpagelist.html?key=我的问题" target="_blank">查看全部 <i class="fa fa-angle-right"></i></a></div>
+					</if>
+				</div>
+				<div class="userunit">
+					<h1>我的回答</h1>
+					<div class="list">
+						<volist name='answer' id='vo'>
+							<article>
+								<if condition="$vo.count neq 0">
+								<span class="message">{$vo.count}</span>
+								</if>
+								<a href="__ROOT__/answerinfo.html?p={$vo.question_id}" target="_blank">{$vo.text}</a>
+								<time><php>echo date('Y-m-d',$vo["in_time"]);</php></time>
+							</article>
+						</volist>
+						<volist name='answer_reply' id='vo'>
+							<article>
+								<if condition="$vo.count neq 0">
+								<span class="message">{$vo.count}</span>
+								</if>
+								<a href="__ROOT__/answerinfo.html?p={$vo.question_id}" target="_blank">{$vo.text}</a>
+								<time><php>echo date('Y-m-d',$vo["in_time"]);</php></time>
+							</article>
+						</volist>
+					</div>
+					<if condition="$answer neq null">
+					<div class="bottomline"><a href="__ROOT__/userpagelist.html?key=我的问答" target="_blank">查看全部 <i class="fa fa-angle-right"></i></a></div>
+					</if>
+				</div>
+				<div class="userunit">
+					<h1>我的评论</h1>
+					<div class="list">
+						<volist name='comment' id='vo'>
+							<article>
+								<if condition="$vo.count neq 0">
+									<span class="message">{$vo.count}</span>
+								</if>
+								<a href="__ROOT__/index.html?p={$vo.article_id}" target="_blank">{$vo.text}</a>
+								<time><php>echo date('Y-m-d',$vo["in_time"]);</php></time>
+							</article>
+						</volist>
+						<volist name='reply' id='vo'>
+							<article>
+								<if condition="$vo.count neq 0">
+									<span class="message">{$vo.count}</span>
+								</if>
+								<a href="__ROOT__/index.html?p={$vo.article_id}" target="_blank">{$vo.text}</a>
+								<time><php>echo date('Y-m-d',$vo["in_time"]);</php></time>
+							</article>
+						</volist>
+
+					</div>
+					<if condition="$comment neq null">
+					<div class="bottomline"><a href="__ROOT__/userpagelist.html?key=我的评论" target="_blank">查看全部 <i class="fa fa-angle-right"></i></a></div>
+					</if>
+				</div>
+				<!--<div class="userunit">
+					<h1>我的回复</h1>
+					<div class="list">
+						<volist name='reply' id='vo'>
+						<article>
+							<if condition="$vo.type eq 0">
+								<a href="__ROOT__/index.html?p={$vo.id}" target="_blank">{$vo.text}</a>
+							<else />
+								<a href="__ROOT__/answerinfo.html?p={$vo.id}" target="_blank">{$vo.text}</a>
+							</if>
+							<time><php>echo date('Y-m-d',$vo["in_time"]);</php></time>
+						</article>
+						</volist>
+					</div>
+					<if condition="$reply neq null">
+					<div class="bottomline"><a href="__ROOT__/userpagelist.html?key=我的回复" target="_blank">查看全部 <i class="fa fa-angle-right"></i></a></div>
+					</if>
+				</div>-->
+			</div>
+		</div>
+	</div>
+<include file="footer" />
+<script src="__PUBLIC__/source/js/public.js"></script>
+<script>
+var pageData = {
+	"pageIndex":-1
+};
+init(pageData);
+
+$("#logout").click(function(){
+	$.ajax({
+	    url:"__ROOT__/logoutapi",
+	    type:"POST",
+	    success: function(data){
+	        switch(data.state){
+	            case "0":
+	            location.href="__ROOT__/main.html";
+	            break;
+	            default: alert(data.detail);break;
+	        }
+	    },
+	    error: function(){
+	            
+	    }
+    });
+});
+</script>
+</body>
+</html> 

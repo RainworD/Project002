@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="../source/css/mui.min.css">
+	<link rel="stylesheet" type="text/css" href="../source/font/flaticon.css">
+	<link rel="stylesheet" type="text/css" href="../source/flaticon/flaticon.css">
+	<link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/reset.css">
+	<link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/column.css">
+	<script type="text/javascript" src="../source/js/jquery-1.7.2.js"></script>
+	<title>栏目分类</title>
+</head>
+<body> 
+        <!-- <a href="index.html">
+            <p class="backBtn"><i class="flaticon-back backfont"></i></p>
+        </a>
+        <p class="bookTitle">栏目分类</p>
+        <a href="searchColumn.html">
+            <p class="search"><i class="flaticon-search-1"></i>
+            </p>
+        </a>  -->
+    <div class="searchContainer">
+    	<div class="searchContent">
+    		<div class="leftColumn">
+    			<ul class="mui-table-view leftColumnList">
+    			</ul>
+    		</div>
+    		<div class="rightColumn">
+    		</div>
+    	</div>
+	</div>
+    <script type="text/javascript">
+        $.get('/home/index/themeapi', function(data) {
+            console.log(data);
+           for (var i = 0; i < data.length; i++) {
+                var leftColumn=$('<li class="mui-table-view-cell leftColumnItem"></li>');
+                var rightColumn=$('<div class="rightColumnBox">'+
+                                    '<ul class="mui-table-view rightColumnList">'+
+                                        
+                                    '</ul>'+
+                                '</div>');
+                var theme=data[i].theme;
+                var unitName=data[i].nick;
+                for (var j = 0; j < theme.length; j++) {
+                    var themeid=theme[j].theme_id;
+                    var title=theme[j].theme;
+                    var state=theme[j].state;
+                    var rightItem=$('<li class="mui-table-view-cell">'+
+                                        '<p class="columnName"></p>'+
+                                        '<p class="bookBtn"></p>'+
+                                    '</li>');
+
+                    // if(themeid==0){
+                    //     rightColumn.find(".bookBtn").text("订阅");
+                    // }
+                    // else{
+                    //     rightColumn.find(".bookBtn").addClass("grey").text("已订阅");
+                    // }
+                    rightItem.attr("data-id",themeid);
+                    rightItem.find(".columnName").text(title);
+                    rightItem.find(".bookBtn").text(state);
+                    rightColumn.find(".rightColumnList").append(rightItem);
+                    if(state=="已订阅")
+                    {
+                        rightItem.find(".bookBtn").css({color:"#ccc",border:"1px solid #ccc"});
+                    }
+                    // else{
+                    //     rightItem.find(".bookBtn").css({color:"#70a0e2",border:"1px solid #70a0e2"});
+                    // }
+                     rightItem.find(".bookBtn").bind('click',function(){   
+                        var id= $(this).parent('li').attr("data-id"); 
+                        if($(this).text()=="已订阅"){
+                            $.post('/home/index/blankapi', {id:id,key:"1"}, function(beta, textStatus, xhr) {
+                            if(beta.state==0){
+                                alert("取消订阅成功！");
+                                location.reload();
+                            }
+                            else{
+                                alert("系统异常！");
+                            }
+                        });
+                        }            
+                        
+                     else{
+                        $.post('/home/index/blankapi', {id:id,key:"2"}, function(beta, textStatus, xhr) {
+                            if(beta.state==0){
+                                alert("订阅成功！");
+                                location.reload();
+                            }
+                            else{
+                                alert("系统异常！");
+                            }
+                        });
+                     }
+                        
+                    })
+                } 
+
+                leftColumn.text(unitName);   
+                $(".leftColumnList").append(leftColumn);
+                $(".rightColumn").append(rightColumn);
+                $(".leftColumnList").children('.mui-table-view-cell').eq(0).addClass('white');         
+                $(".rightColumn").children('.rightColumnBox').eq(0).addClass('rightColumnBox1');
+                leftColumn.bind("click",function(){
+                     $(this).addClass("white").siblings().removeClass("white");
+                    var i=$(this).index();
+                    $(".rightColumn").children().eq(i).show().siblings().hide();
+                })
+            }
+        });
+    </script>
+</body>
+</html>

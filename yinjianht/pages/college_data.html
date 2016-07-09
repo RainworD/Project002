@@ -1,0 +1,239 @@
+
+	<div class="col-header">
+		<i class="fa fa-database fa-2x" aria-hidden="true"></i>
+		<span style="font-size:28px;font-weight:400;">&nbsp;查看高校</span>
+	</div>
+	
+	<div class="col-box3">
+	<div class="col-search">
+		
+		<div style="float:left;line-height:30px;">省/市/自治区
+			<select style="margin-left:20px;" id="shengfen">
+				<option>未选择</option>
+				<volist name="province" id="vo">
+					<option>{$vo}</option>
+				</volist>
+			</select>
+		</div>
+		<div class="icon_lqy">
+			<i class="fa fa-reply"></i>返回列表
+		</div>
+		<div style="float:right;height:30px;">
+			<span>Search:</span><input type="text" style="width:250px;height:30px;border:1px solid #ccc;margin-left:10px;" class="ui-input" id="search" placeholder="请输入高校名或简介">
+			<i class="fa fa-search" aria-hidden="true" style="margin-left:-30px;cursor:pointer;width:20px;height:20px;" id="searching"></i>
+		</div>
+	</div>
+	
+	<table  class="col-table" border="1">
+		<tr style="font-weight:bold;font-size:14px;" id="tianjia">
+			
+			<td style="width:200px;">高校名</td>
+			<td style="width:150px;">省份</td>
+			<td>修改高校数据模块</td>
+			<td style="width:200px;">操作</td>	
+		</tr>
+		<volist name='school' id='vo'>
+		<tr class="dianjiyc" style="background-color:#f9f9f9;">
+			
+			<td style="width:200px;">{$vo.name}</td>
+			<td style="width:150px;">{$vo.province_name}</td>
+			<td>
+				<a href="#/college_block?school={$vo.name}">
+				<div class="z" data-name="{$vo.name}" data-intro="{$vo.introduction}" data-prov="{$vo.province_name}">
+					<i class="fa fa-pencil" style="color:white;margin-left:4.5px;"></i>
+				</div>
+				</a>
+			</td>
+			<!-- <td>{$vo.introduction}</td> -->
+			<td style="width:200px;">
+				<a href="#/college_data_modify?p={$vo.id}">
+				<div class="y" data-name="{$vo.name}" data-intro="{$vo.introduction}" data-prov="{$vo.province_name}" data-id="{$vo.id}">
+					<i class="fa fa-pencil" style="color:white;margin-left:4.5px;"></i>
+				</div>
+				</a>
+				<div class="x" data-id="{$vo.name}">
+					<i class="fa fa-remove" style="color:white;margin-left:4.5px;"></i>
+				</div>
+			</td>	
+		</tr>
+		</volist>
+	
+		
+	</table>
+	
+	<div class="bottom-search" >
+		
+	</div>
+	</div>
+	
+	
+
+	<script type="text/javascript">
+       $(document).unbind('click');
+		TablePage(".col-table",10);
+
+		$("tr:odd").css({background: "#f9f9f9"}); 
+        $("tr:even").css({background: "white"}); 
+
+		
+$(document).on("click",".x",function(){
+			
+	$.ajax({
+				
+			    url:"__ROOT__/college_deleteapi",
+			    type:"POST",
+			    data:{
+			        "name":$(this).attr("data-id")
+			    },
+			    success: function(data){
+			        switch(data.state){
+                        case "0":
+                        
+                        alert(data.detail);
+                        loadContent("college_data.html"); 
+                        
+                        break;
+                        default: alert(data.detail);break;
+                    }
+			    },
+			    error: function(){
+			            
+			    }
+
+    });
+})
+		
+
+		$("#searching").on("click",function(){
+  				$(".yincang").hide();
+  				$.ajax({
+			    url:"__ROOT__/collegesearchapi",
+			    type:"POST",
+			    data:{
+			        "key":$("#search").val()
+			    },
+			    success: function(data){
+			    	
+			        switch(data.state){
+                        case "0":
+                            $(".bottom-search").hide();
+                        	$(".dianjiyc").hide();
+                        	var  order=data.order;
+                        	for (var i = 0; i <order.length; i++){
+                        var orderhtml=$('<tr class="yincang">'+
+							'<td style="width:200px;">'+
+							order[i]["name"]+
+							'</td>'+
+							'<td style="width:150px;">'+
+							order[i]["province_name"]+
+							'</td>'+
+							'<td>'+
+							'<a href="#/college_block?school='+order[i]["name"]+'">'+
+				            '<div class="z" data-name='+order[i]["name"]+'>'+
+					        '<i class="fa fa-pencil" style="color:white;margin-left:4.5px;">'+
+					        '</i>'+
+				            '</div>'+
+				            '</a>'+
+			                '</td>'+
+							// '<td>'+
+							// order[i]["introduction"]+
+							// '</td>'+
+							
+							'<td style="width:200px;">'+
+							'<a href="#/college_data_modify?p='+order[i]["id"]+'">'+
+								'<div class="y" data-name='+order[i]["name"]+' data-intro='+order[i]["introduction"]+' data-prov="'+order[i]["province_name"]+'">'+
+								'<i class="fa fa-pencil" style="color:white;margin-left:3.3px;">'+
+								'</i>'+
+								'</div>'+
+							'</a>'+
+							
+								'<div class="x"  data-id='+order[i]["name"]+'>'+
+								'<i class="fa fa-remove" style="color:white;margin-left:4.3px;">'+
+								'</i>'+
+								'</div>'+
+						    '</td>'+	
+					    '</tr>');
+                        $("tr:odd").css({background: "#f9f9f9"}); 
+        $("tr:even").css({background: "white"}); 
+                        $("#tianjia").after(orderhtml);
+                        	}
+                        break;
+                        default: 
+                        // alert(data.detail);
+                        
+                        break;
+                    }
+			    },
+			    error: function(){
+			            
+			    }
+
+    		});
+
+  			});
+    	
+		$("#shengfen").on("change",function(){
+			$(".yincang").hide();
+			$.ajax({
+				
+			    url:"__ROOT__/finshed_provinceapi",
+			    type:"POST",
+			    data:{
+			        "key":$(this).val()
+			    },
+			    success: function(data){
+			        switch(data.state){
+			                            case "0":
+
+			                            $(".bottom-search").hide();
+                        	            $(".dianjiyc").hide();
+                        	var  order=data.order;
+                        	for (var i = 0; i <order.length; i++){
+                        var orderhtml=$('<tr class="yincang">'+
+				'<td>'+
+				order[i]["name"]+
+				'</td>'+
+				'<td>'+
+				order[i]["province_name"]+
+				'</td>'+
+				'<td>'+
+				'<a href="#/college_block?school='+order[i]["name"]+'">'+
+				'<div class="z" data-name='+order[i]["name"]+'>'+
+			    '<i class="fa fa-pencil" style="color:white;margin-left:4.5px;">'+
+				'</i>'+
+				'</div>'+
+				'</a>'+
+			    '</td>'+
+				
+				'<td>'+
+				'<a href="#/college_data_modify?p='+order[i]["id"]+'">'+
+				'<div class="y" data-name='+order[i]["name"]+' data-intro='+order[i]["introduction"]+' data-prov="'+order[i]["province_name"]+'">'+
+				
+				'<i class="fa fa-pencil" style="color:white;margin-left:3.3px;">'+
+				'</i>'+
+				'</div>'+
+				'</a>'+
+				
+				
+								'<div class="x"  data-id='+order[i]["name"]+'>'+
+								'<i class="fa fa-remove" style="color:white;margin-left:4.3px;">'+
+								'</i>'+
+								'</div>'+
+			    '</td>'+	
+		        '</tr>')
+                        $("tr:odd").css({background: "#f9f9f9"}); 
+        $("tr:even").css({background: "white"}); 
+                        $("#tianjia").after(orderhtml);
+                        	}
+			                            break;
+			                            default: alert(data.detail);break;
+			                        }
+			    },
+			    error: function(){
+			            
+			    }
+
+    });
+		})
+
+	</script>

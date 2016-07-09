@@ -1,0 +1,269 @@
+<style>
+.ar-input{
+	height: auto;
+}
+</style>
+	<div class="ar-header">
+		<i class="fa fa-star fa-2x"></i>
+		<span style="font-size:28px;">&nbsp;发表文章</span>
+	</div>
+	<div class="ar-box">
+	<div class="ar-input">
+		<div class="ar-word">标题</div>
+		<input id="aticle_title" type="text" class="nr ui-input" placeholder="请输入标题" style="width:90%;">
+	</div>
+	<div class="ar-input" id="mainTagBox">
+		<div class="ar-word">发布位置</div>
+		<input type="checkbox"  style="margin-left:10px;" id="column1" value="0">&nbsp;&nbsp;<label for="column1">党团之声</label>
+		<input type="checkbox"  style="margin-left:10px;" id="column2" value="1">&nbsp;&nbsp;<label for="column2">评先评优</label>
+		<!-- 一般管理员选择发布的栏目分类 -->
+	</div>
+	<div class="ar-input" id="display">
+		<div class="ar-word">首页显示</div>
+		<input type="radio" name="xianshi" style="margin-left:10px;" id="shi" value="0">&nbsp;&nbsp;<label for="shi">是</label>
+		<input type="radio" name="xianshi" style="margin-left:10px;" id="fou" value="1">&nbsp;&nbsp;<label for="fou">否</label>	
+	</div>
+
+	<div class="ar-input" id="articleSorts">
+		<div class="ar-word">文章类型</div>
+		<select>
+			<option>普通文章</option>
+			<option>图文文章</option>
+			<option>投票文章</option>
+			<option>问卷调查</option>
+		</select>
+		<!-- <input type="radio" name="arti-sorts" style="margin-left:10px;" id="comarticle" value="0">&nbsp;&nbsp;<label for="common">普通文章</label>
+		<input type="radio" name="arti-sorts" style="margin-left:10px;" id="imgarticle" value="1">&nbsp;&nbsp;<label for="imgtxt">图文文章</label>
+		<input type="radio" name="arti-sorts" style="margin-left:10px;" id="votearticle" value="2">&nbsp;&nbsp;<label for="vote">投票文章</label>
+		<input type="radio" name="arti-sorts" style="margin-left:10px;" id="investarticle" value="3">&nbsp;&nbsp;<label for="invest">问卷调查</label> -->
+	</div>
+	<div class="ar-input">
+		<div class="ar-word">发布时间</div>
+		<div style="position:relative;"><input id="dateinfo" type="text" class="datainp nr ui-input" placeholder="请输入发布时间" style="width:90%;" readonly></div>
+	</div>
+	<div class="ar-input">
+		<div class="ar-word">发布人</div>
+		<input id="article_author" type="text" class="nr ui-input" placeholder="请输入发布人" style="width:90%;"/>
+	</div>
+	<div class="ar-input">
+		<div class="ar-word">配图</div>
+		<!-- <input type="file" class="tianjia"> -->
+		<!-- <div class="ar-tupian"></div> -->
+		<div class="imgm-box">
+			<div class="imgm-img">
+				<div class="imgm-jia">
+					<i class="fa fa-plus-square-o fa-5x" style="color:#ebebeb"></i>
+					<input type="file" class="imgm-tj" id="tupiantianjia" >
+				</div>
+			</div>
+			<div class="imgm-btn1">确定</div>
+			<div class="imgm-btn2">删除</div>
+		</div>
+		<div class="imgpara"><textarea placeholder="请输入图片描述..." class="enterde"></textarea></div>
+		（若无则不上传）
+	</div>
+	<div class="ar-input">
+		<div class="ar-word">正文</div>
+		<script id="editor" type="text/plain" style="height: 500px;"></script>
+	</div>
+	<div class="fabu">发布</div>
+</div>
+
+<script type="text/javascript">
+
+//实例化编辑器
+//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+UE.delEditor('editor')
+    var ue = UE.getEditor('editor');
+setTimeout(function(){
+	ue.execCommand("drafts");
+},500);
+
+
+
+var result = $(".ar-tupian")[0]; 
+var input = $(".tianjia")[0];
+if(typeof FileReader==='undefined'){ 
+    result.innerHTML = "抱歉，你的浏览器不支持 FileReader"; 
+    input.setAttribute('disabled','disabled');
+}
+else{ 
+	input.addEventListener('change',readFile,false);
+}
+var imagefile;
+function readFile(){ 
+    var file = this.files[0]; 
+    if(!/image\/\w+/.test(file.type)){ 
+        alert("文件必须为图片！"); 
+        return false; 
+    } 
+    var reader = new FileReader(); 
+    reader.readAsDataURL(file);
+    reader.onload = function(e){ 
+        result.innerHTML = '<img style="width:250px;height:141px;" src="'+this.result+'" alt=""/>';
+        imagefile = this.result.split(',')[1];
+    }
+}
+var timeout;
+$("#tagInput").bind("keyup",function(){
+	var keyword = $.trim($(this).val());
+	var $this = $(this);
+	clearTimeout(timeout);
+	if(keyword!=""){
+		timeout = setTimeout(function(){
+			$.when(getTagList("__ROOT__",keyword)).done(function(data){
+				if(data.state==0){
+					var order = data.order;
+					if(order.length){
+						var html = '';
+						for(var i = 0; i < order.length; i++){
+							html += "<div class='textline' data-type='"+order[i]["type"]+"'>"+order[i]["tags"]+"</div>";
+						}
+						$this.next(".taglist").empty().append(html).addClass("show");
+					}
+				}
+				else{
+					console.log(data);
+				}
+			});
+		},300);
+	}
+});
+
+$(".taglist").on("click",".textline",function(){
+	var labelhtml=$('<span style="margin-left:2px;margin-top:4px;" class="lab-tag" data-type="'+$(this).attr("data-type")+'">'+
+						$(this).text()+
+						'<i class="fa fa-close closeicon"></i>'+
+				    '</span>');
+	$(".tagsbox").append(labelhtml);
+	tagInputResize();
+	$(this).closest(".taglist").removeClass("show").empty();
+});
+function tagInputResize(){
+	var total = $(".tagsAutoCom").width()-8;
+	var tagbox = $(".tagsbox").width();
+	$("#tagInput").width(total-tagbox).val("").focus();
+}
+$(".tagsbox").on("click",".closeicon",function(){
+	tagInputResize();
+	$(this).closest("span").remove();
+});
+// 绑定时间插件
+// $('#artile_dd').pickadate();
+jeDate({
+		dateCell:"#dateinfo",
+		format:"YYYY-MM-DD hh:mm:ss",
+		isinitVal:true,
+		isTime:true, //isClear:false,
+		minDate:"2014-09-19 00:00:00",
+		okfun:function(val){alert(val)}
+	})// 发布文章按钮
+// 发布文章按钮
+// var canfabu = true;
+$(".fabu").click(function(){
+	// if(canfabu){
+		var title = $.trim($("#aticle_title").val()),
+			time = $('#dateinfo').val(),
+			name = $.trim($("#article_author").val()),
+			text = ue.getContent(),
+			summary = $.trim($("#article_abstract").val()),
+			tags = 0,
+			key = $('#display input:radio:checked').val(),
+			value = [];
+		
+		$.each($("#mainTagBox input[type='checkbox']:checked"),function(){
+			tags+=$(this).val()-0;
+		});
+		$.each($(".tagsAutoCom .tagsbox span"),function(){
+			value.push({"tags":$(this).text(),"type":$(this).attr("data-type")});
+		});
+		if(title==""){
+			alert("文章标题不能为空");
+		}
+		else if(time==""){
+			alert("发表时间不能为空");
+		}
+		else if(name==""){
+			alert("作者不能为空");
+		}
+		else if(text==""){
+			alert("正文不能为空");
+		}
+		else if(summary==""){
+			alert("摘要不能为空");
+		}
+		else if(value.length==0){
+			alert("标签必填，且必须从备选列表中选择，纯文字输入无效");
+		}
+		else{
+			// canfabu = false;
+			// var timearray = $('#artile_dd').val().split("-");
+			// time = Date.parse(new Date(timearray[0],timearray[1]-1,timearray[2]))/1000;
+			var data = {
+					"title":title,
+					"tags":tags,
+					"time":time,
+					"name":name,
+					"text":text,
+					"value":value,
+					"summary":summary,
+					"key":key
+				};
+			// 照片
+			if($(".ar-tupian img").attr("src")!=(""||undefined)){
+				data["photo"]=$(".ar-tupian img").attr("src").split(',')[1];
+			}
+			// 榜单三种颜色
+			if($("#bangdan").is(":checked")){
+				var colorValue = $("input[name='color']:checked").val();
+				data["color1"] = "#"+colorValue;
+				data["color2"] = "#"+(("0x"+colorValue) - ("0x201008")).toString(16);
+				data["color3"] = "#"+(("0x"+colorValue) - ("0xa6a6a6")).toString(16);
+			}
+			$.ajax({
+				url: "__ROOT__/article_inputapi",
+				type: "POST",
+				data: data,
+				success: function(data){
+					if(data.state==0){
+						alert("文章发布成功，等待审核");
+						ue.execCommand('clearlocaldata');
+						 //window.location.reload();
+
+					}
+					else{
+						alert(data.detail);
+						// canfabu = true;
+					}
+				},
+				error: function(){
+					alert("网络异常")
+					// canfabu = true;
+				}
+			});
+		}
+	// }
+});
+
+// 勾选榜单后
+$("#bangdan").bind('change',function(){
+	if($(this).prop("checked")){
+		$("#yanse").show();
+	}
+	else{
+		$("#yanse").hide();
+	}
+});
+// 勾选精选后
+// $("#jingxuan").bind('change',function(){
+// 	if($(this).prop("checked")){
+// 		$(".tagsbox").append('<span style="margin-left:2px;margin-top:4px;" class="lab-tag selectedTag" data-type="0">精选'+
+// 								'<i class="fa fa-close closeicon"></i>'+
+// 						    '</span>');
+// 		$("#tagInput").width($("#tagInput").width()-$(".tagsbox").width()).val("").focus();
+// 	}
+// 	else{
+// 		$(".tagsbox").find(".selectedTag").remove();
+// 	}
+// });
+</script>

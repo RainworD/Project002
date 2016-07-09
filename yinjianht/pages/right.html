@@ -1,0 +1,67 @@
+<section class="rightbox pc">
+	<if condition="$code_block[1]['state'] neq 0">
+	<div class="codeBlockType1">
+		<php>echo htmlspecialchars_decode($code_block[1]['value']);</php>
+	</div>
+	</if>
+	<if condition="$code_block[2]['state'] neq 0">
+	<div class="articleList" <if condition="$page eq 3">style="display:none"</if>>
+		<if condition="$page eq 4">
+			<header class="articleListHeader">
+			<h2>
+				<img src="__PUBLIC__/source/img/hrrwbd.jpg" >
+				热门问答
+			</h2>
+		</header>
+		<div>
+			<volist name="hot" id="vo">
+			<article class="list">
+				<h2 data-id="{$vo.id}"><a href="__ROOT__/answerinfo.html?p={$vo.id}" target="_blank">{$vo.title}</a></h2>
+			</article>
+			</volist>
+		</div>
+		<else />
+ 		<header class="articleListHeader">
+			<h2>
+				<img src="__PUBLIC__/source/img/hrrwbd.jpg" >
+				最新动态
+			</h2>
+		</header>
+		<div>
+			<volist name="new_article" id="vo">
+			<article class="list">
+				<h2 data-id="{$vo.id}"><a href="__ROOT__/index.html?p={$vo.id}" target="_blank">{$vo.title}</a></h2>
+			</article>
+			</volist>
+		</div>
+		</if>
+	</div>
+	</if>
+	<if condition="$code_block[3]['state'] neq 0">
+	<div class="codeBlockType1">
+		<php>echo htmlspecialchars_decode($code_block[3]['value']);</php>
+	</div>
+	</if>
+	<if condition="$code_block[4]['state'] neq 0">
+	<div class="articleList">
+		<header class="articleListHeader">
+			<h2>
+				<img src="__PUBLIC__/source/img/hrrwbd.jpg" >
+				热门文章
+			</h2>
+		</header>
+		<div>
+			<volist name="popular_article" id="vo">
+			<article class="list">
+				<h2 data-id="{$vo.id}"><a href="__ROOT__/index.html?p={$vo.id}" target="_blank">{$vo.title}</a></h2>
+			</article>
+			</volist>
+		</div>
+	</div>
+	</if>
+	<if condition="$code_block[5]['state'] neq 0">
+	<div class="codeBlockType1">
+		<php>echo htmlspecialchars_decode($code_block[5]['value']);</php>
+	</div>
+	</if>
+</section>

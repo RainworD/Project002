@@ -1,0 +1,168 @@
+
+	
+	<div class="imgm-header">
+		<i class="fa fa-picture-o fa-2x"></i>
+		<span style="font-size:28px;font-weight:400;">&nbsp;首页轮播图管理</span>
+	</div>
+
+	<div class="imgm-zh">
+		<p style="padding-left: 30px;padding-top:10px;">请上传宽高比为100：27的图片</p>
+		<volist name='carousel' id='vo'>
+	<div class="imgm-box">
+		<div class="imgm-img">
+			
+				<img src="" style="height: 100%;width: 100%;" />
+		</div>
+
+		<input type="text" style="width:100%;height:30px;border:0px;margin-top:20px;" class="ui-input" placeholder="请填入图片链接">
+
+		<!-- <input type="text" style="width:100%;height:30px;border:0px;margin-top:20px;" class="ui-input" placeholder="请填入页面链接"> -->
+		
+		<input type="text" style="width:100%;height:30px;border:0px;margin-top:20px;" class="ui-input" placeholder="请填入图片顺序">
+		
+		<input class="color ui-input" type="text"  style="width:100%;height:30px;border:0px;margin-top:20px;padding-right:60px;" placeholder="请填入图片说明">
+        
+        <!-- <button id="picker" class="picker">选择颜色</button> -->
+		<div class="imgm-btn2" style="display:block;" data-page="{$vo.page}" data-order="{$vo.orders}" data-url="{$vo.url}">删除</div>
+		<!-- 获取当前删除项对应的图片链接，顺序，以及说明。data-* -->
+	</div>
+</volist>
+	<div class="imgm-box">
+		<div class="imgm-img">
+			<div class="imgm-jia">
+				<i class="fa fa-plus-square-o fa-5x" style="color:#ebebeb"></i>
+				<input type="file" class="imgm-tj" id="tupiantianjia" >
+			</div>
+		</div>
+		<input type="text" style="width:100%;height:30px;border:0px;margin-top:20px;" class="ui-input" placeholder="请填入图片链接" id="lianjie" value="http://">		
+
+		<input type="text" style="width:100%;height:30px;border:0px;margin-top:20px;" class="ui-input" placeholder="请填入图片顺序" id="shunxu" >	
+
+		<input class="color ui-input" type="text"  style="width:100%;height:30px;border:0px;margin-top:20px;padding-right:60px;" placeholder="请输入图片说明" id="yanse" >
+	
+		<div class="imgm-btn1">确定</div>
+
+		<div class="imgm-btn2">删除</div>
+	</div>
+ 	</div>
+<script type="text/javascript">
+	$(".imgm-btn2").click(function(){
+		if(confirm("您确定要删除吗？")){
+			$.ajax({
+			    url:"__ROOT__/maincarouselapi",
+			    type:"POST",
+			    data:{
+			        "psge":$(this).attr("data-page"),
+			        "orders":$(this).attr("data-order"),
+			        "url":$(this).attr("data-url"),
+			        "key":1
+			    },
+			    success: function(data){
+			        switch(data.state){
+	                    case "10013":
+	                    alert(data.detail);
+	                    loadContent("image_management.html"); 
+	                    break;
+	                    default: alert(data.detail);break;
+	                }
+			    },
+			    error: function(){
+			            
+			    }
+	    	});
+		}
+	});
+    var input = $(".imgm-tj")[0];
+
+    if(typeof FileReader==='undefined'){ 
+	    result.innerHTML = "抱歉，你的浏览器不支持 FileReader"; 
+	    input.setAttribute('disabled','disabled'); 
+	}
+	else{ 
+	    $(".imgm-zh").on('change','.imgm-tj',function(){
+	    	var file = this.files[0]; 
+	    	var result = $(this).parent().parent(".imgm-img")[0];
+		    if(!/image\/\w+/.test(file.type)){ 
+		        alert("文件必须为图片！"); 
+		        return false; 
+		    }
+		    var reader = new FileReader(); 
+		    reader.readAsDataURL(file); 
+		    reader.onload = function(e){ 
+		        result.innerHTML = '<img  style="width:260px;height:70px;" src="'+this.result+'" alt=""/>' 
+		    } 
+	    });
+	}
+      $('.bi').colpick();
+      var yanse;
+      var $tpresult;
+      $(".imgm-zh").on("click",".bi",function(){
+      	 $tpresult = $(this).prev();
+      });
+      $(".imgm-zh").on("click",".colpick_submit",function(){           
+    	 yanse=$(this).siblings(".colpick_hex_field").children("input").val();
+    	 console.log($tpresult);
+    	$tpresult.val("#"+yanse);
+    	$(".colpick").hide();
+      });
+    
+
+   	var isTypeOkey = false;
+    var imgbase64 = "";
+$("#tupiantianjia").bind("change",function(e){
+    var file = $(this)[0].files[0];
+    //如果有文件
+    if(file){
+        isTypeOkey = /image\/(png|gif|jpeg|jpg)/.exec(file.type);
+        //如果文件是图片
+        if(isTypeOkey){
+            var hccanvas = document.createElement("canvas");
+            var hcctx = hccanvas.getContext("2d");
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function(evt){
+                var fileString = evt.target.result;
+                imgbase64 = fileString.replace(/data:image\/(jpeg|png|jpg|gif);base64,/,"");
+            };
+        }
+        else{
+            alert("请上传正确格式的图片");
+            $(this).val("");
+        }
+    }
+});
+$(".imgm-btn1").click(function(){
+ 
+		if ($("#lianjie").val()=="") {alert("链接不能为空")}
+		else if ($("#shunxu").val()=="") {alert("顺序不能为空")}
+		else if ($("#yanse").val()=="") {alert("颜色不能为空")}
+		else if (imgbase64=="") {alert("图片不能为空")}
+		else{
+ 			$.ajax({
+			    url:"__ROOT__/maincarouselapi",
+			    type:"POST",
+			    data:{
+			        "url":$("#lianjie").val(),
+			        "page":$("#xuanze").val(),
+			        "orders":$("#shunxu").val(),
+			        "color":$("#yanse").val(),
+			        "photo":imgbase64,
+			        "key":0
+			    },
+			    success: function(data){
+			        switch(data.state){
+                        case "0":
+                        alert(data.detail);
+                        loadContent("image_management.html"); 
+                        break;
+                        default: alert(data.detail);break;
+                    }
+			    },
+			    error: function(){
+			            
+			    }
+
+    		});
+ 		}
+    });
+	</script>

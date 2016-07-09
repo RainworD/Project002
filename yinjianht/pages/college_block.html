@@ -1,0 +1,1059 @@
+	<style type="text/css">
+		.biaoge{
+			width:60%;
+		}
+	</style>
+	<div class="bmi-header">
+		<i class="fa fa-cogs fa-2x"></i>
+		<span style="font-size:28px;font-weight:400;">&nbsp;{$name}学校模块管理</span>
+	</div>
+	<div class="bmi-box" style="margin-top:20px;">
+		<a href="http://beta.cingta.com/data_axis.html?school={$name}"><div class="bmi-name">概况</div></a>
+		<div class="bmi-btn" id="btn1" data-name="{$name}">确认</div>
+		<a href="#/checkall?school={$name}&block=概况"><div class="chakanquanbu">查看全部</div></a>
+	</div>
+	<div class="bmi-plus">
+	<!-- <div class="ar-input">
+		<div class="lab-word">发布更新时间</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;">
+	</div> -->
+	<div class="ar-input">
+		<div class="lab-word">创建时间</div>
+		<input id="gk_time" type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.founding_time}">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">地理位置</div>
+		<input id="gk_loc" type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.location}">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">占地面积</div>
+		<input id="gk_area" type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.area}">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">图书馆藏书</div>
+		<input id="gk_lib" type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.library}">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">学生人数</div>
+		<input id="gk_stu" type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.student}">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word" style="line-height:25px;text-align:left;">专任教师</div>
+		<input id="gk_sub" type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.key_subject}">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">一级博士点</div>
+		<input id="gk_doc" type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.doctor}">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">一级硕士点</div>
+		<input id="gk_bdoc" type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.master}">
+	</div>
+	<div class="after"></div>
+	</div>
+	<if condition="$num1 eq 0">
+	<div class="bmi-box" style="margin-top:20px;">
+		<a href="http://beta.cingta.com/data_axis.html?school={$name}"><div class="bmi-name">师资队伍</div></a>
+		<div class="bmi-btn" id="btn2" data-name="{$name}">确认</div>
+		<a href="#/checkall?school={$name}&block=师资队伍"><div class="chakanquanbu">查看全部</div></a>
+	</div>
+	<div class="bmi-plus">
+	<!-- <div class="ar-input">
+		<div class="lab-word">发布更新时间</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;">
+	</div> -->
+	<div class="ar-input">
+		<div class="lab-word">表格数据1</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="两院院士" style="float:left; " <if condition="$school['cascae_name'] neq null">value="{$school.cascae_name}"<else />value="两院院士"</if> id="sz_chart1">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.cascae}" id="sz_data1">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据2</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="长江学者"  style="float:left; " <if condition="$school['longriver_name'] neq null">value="{$school.longriver_name}"<else />value="长江学者"</if> id="sz_chart2">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.longriver}" id="sz_data2">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据3</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="国家杰青"  style="float:left; " <if condition="$school['country_outstanding_name'] neq null">value="{$school.country_outstanding_name}"<else />value="国家杰青"</if> id="sz_chart3">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.country_outstanding}" id="sz_data3">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据4</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="国家优青"  style="float:left; " <if condition="$school['country_splendid_name'] neq null">value="{$school.country_splendid_name}"<else />value="国家优青"</if>  id="sz_chart4">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.country_splendid}" id="sz_data4">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据5</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="青年千人"  style="float:left; " <if condition="$school['youth_name'] neq null">value="{$school.youth_name}"<else />value="青年千人"</if> id="sz_chart5">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.youth}" id="sz_data5">
+	</div>
+	<div class="ar-input" style="width:100%;">
+		<div class="lab-word">图一</div>
+		<input type="file" id="img1">
+		<div id="put1" style="float:left;"></div>
+		<input type="text" class="nr ui-input" placeholder="请输入图片名称"  style="float:left;" value="{$school.cascae_photo_name}" id="img_word1">
+	</div>
+	<div class="ar-input" style="width:100%;">
+		<div class="lab-word">图二</div>
+		<input type="file" id="img2">
+		<div id="put2" style="float:left;"></div>
+		<input type="text" class="nr ui-input" placeholder="请输入图片名称"  style="float:left;" value="{$school.longriver_photo_name}" id="img_word2">
+	</div>
+	<div class="ar-input" style="width:100%;">
+		<div class="lab-word">图三</div>
+		<div id="put3" style="float:left;"></div>
+		<input type="file" id="img3">
+		<input type="text" class="nr ui-input" placeholder="请输入图片名称"  style="float:left;" 	value="{$school.youth_photo_name}" id="img_word3">
+	</div>
+	<div class="after"></div>
+	</div>
+	</if>
+	<if condition="$num2 eq 0">
+	<div class="bmi-box" style="margin-top:20px;">
+		<a href="http://beta.cingta.com/data_axis.html?school={$name}"><div class="bmi-name">科学研究</div></a>
+		<div class="bmi-btn" id="btn3" data-name="{$name}">确认</div>
+		<a href="#/checkall?school={$name}&block=科学研究"><div class="chakanquanbu">查看全部</div></a>
+	</div>
+	<div class="bmi-plus">
+	<!-- <div class="ar-input">
+		<div class="lab-word">发布更新时间</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;">
+	</div> -->
+	<div class="ar-input">
+		<div class="lab-word">表格数据1</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="近5年国家自然科学基金"  style="float:left; " <if condition="$school['ns_founding_name'] neq null">value="{$school.ns_founding_name}"<else />value="近5年国家自然科学基金"</if> id="kx_chart1">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.ns_founding}" id="kx_data1">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据2</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="近5年国家社科基金"  style="float:left; " <if condition="$school['social_founding_name'] neq null">value="{$school.social_founding_name}"<else />value="近5年国家社科基金"</if> id="kx_chart2">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.social_founding}" id="kx_data2">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据3</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="近5年获国家三大奖"  style="float:left; " <if condition="$school['reward_name'] neq null">value="{$school.reward_name}"<else />value="近5年获国家三大奖"</if> id="kx_chart3">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.reward}" id="kx_data3">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据4</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="国家级科研平台"  style="float:left; " <if condition="$school['science_paltform_name'] neq null">value="{$school.science_paltform_name}"<else />value="国家级科研平台"</if> id="kx_chart4">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.science_paltform}" id="kx_data4">
+	</div>
+	<div class="ar-input" style="width:100%;">
+		<div class="lab-word">图一</div>
+		<input type="file" id="img4">
+		<div id="put4" style="float:left;"></div>
+		<input type="text" class="nr ui-input" placeholder="请输入图片名称"  style="float:left;" value="{$school.ns_founding_photo_name}" id="img_word4">
+	</div>
+	<div class="ar-input" style="width:100%;">
+		<div class="lab-word">图二</div>
+		<input type="text" class="nr ui-input" placeholder="请输入图片名称"  id="img_word42" style="float:left;" value="{$school.reward_photo_name}">
+	</div>
+	<div class="ar-input" style="width:100%;">
+		<div class="lab-word">图三</div>
+		<input type="text" class="nr ui-input" placeholder="请输入图片名称"  id="img_word43" style="float:left;" value="{$school.science_paltform_photo_name}">
+	</div>
+	
+	<div class="after"></div>
+	</div>
+	</if>
+
+	<if condition="$num3 eq 0">
+	<div class="bmi-box" style="margin-top:20px;">
+		<a href="http://beta.cingta.com/data_axis.html?school={$name}"><div class="bmi-name">论文表现</div></a>
+		<div class="bmi-btn" id="btn4" data-name="{$name}">确认</div>
+		<a href="#/checkall?school={$name}&block=论文表现"><div class="chakanquanbu">查看全部</div></a>
+	</div>
+	<div class="bmi-plus">
+	<!-- <div class="ar-input">
+		<div class="lab-word">发布更新时间</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;">
+	</div> -->
+	<div class="ar-input">
+		<div class="lab-word">描述文字</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="请输入内容"  style="width:100%;float:left; " value="{$school.paper_peform}" id="ms_data1">
+	</div>
+	<div class="after"></div>
+    </div>
+	</if>
+	<if condition="$num4 eq 0">
+	<div class="bmi-box" style="margin-top:20px;">
+		<a href="http://beta.cingta.com/data_axis.html?school={$name}"><div class="bmi-name">教学建设</div></a>
+		<div class="bmi-btn" id="btn5" data-name="{$name}">确认</div>
+		<a href="#/checkall?school={$name}&block=教学建设"><div class="chakanquanbu">查看全部</div></a>
+	</div>
+	<div class="bmi-plus">
+	<!-- <div class="ar-input">
+		<div class="lab-word">发布更新时间</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;">
+	</div> -->
+	<div class="ar-input">
+		<div class="lab-word">表格数据1</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="ESI全球1%学科数"  style="float:left; " <if condition="$school['ecsi_name'] neq null">value="{$school.ecsi_name}"<else />value="ESI全球1%学科数"</if> id="jx_chart1">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.ecsi}" id="jx_data1">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据2</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="专任教师"  style="float:left; " <if condition="$school['key_branch_name'] neq null">value="{$school.key_branch_name}"<else />value="专任教师"</if> id="jx_chart2">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.key_branch}" id="jx_data2">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据3</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="国家精品课程"  style="float:left; " <if condition="$school['selected_course_name'] neq null">value="{$school.selected_course_name}"<else />value="国家精品课程"</if>  id="jx_chart3">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.selected_course}" id="jx_data3">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据4</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="国家级特色专业"  style="float:left; " <if condition="$school['chara_profession_name'] neq null">value="{$school.chara_profession_name}"<else />value="国家级特色专业"</if>   id="jx_chart4">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.chara_profession}" id="jx_data4">
+	</div>
+	<div class="ar-input" style="width:100%;">
+		<div class="lab-word">图一</div>
+		<input type="file" id="img5">
+		<div id="put5" style="float:left;"></div>
+		<input type="text" class="nr ui-input" placeholder="请输入图片名称"  style="float:left;" value="{$school.ecsi_photo_name}" id="img_word5">
+	</div>
+	<div class="ar-input" style="width:100%;">
+		<div class="lab-word">图二</div>
+		<input type="text" class="nr ui-input" placeholder="请输入图片名称"  style="float:left;" value="{$school.key_subject_photo_name}" id="img_word52">
+	</div>
+	<div class="ar-input" style="width:100%;">
+		<div class="lab-word">图三</div>
+		<input type="text" class="nr ui-input" placeholder="请输入图片名称"  style="float:left;" value="{$school.chara_profession_photo_name}" id="img_word53">
+	</div>
+	<div class="after"></div>
+	</div>
+	</if>
+	<if condition="$num5 eq 0">
+	<div class="bmi-box" style="margin-top:20px;">
+		<a href="http://beta.cingta.com/data_axis.html?school={$name}"><div class="bmi-name">就业数据</div></a>
+		<div class="bmi-btn" id="btn6" data-name="{$name}">确认</div>
+		<a href="#/checkall?school={$name}&block=就业数据"><div class="chakanquanbu">查看全部</div></a>
+	</div>
+	<div class="bmi-plus">
+	<!-- <div class="ar-input">
+		<div class="lab-word">发布更新时间</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;">
+	</div> -->
+	<div class="ar-input">
+		<div class="lab-word">表格数据1</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="国内深造比例"  style="float:left; "  <if condition="$school['inner_name'] neq null">value="{$school.inner_name}"<else />value="国内深造比例"</if> id="jy_chart1">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.inner}" id="jy_data1">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据2</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="出国留学比例"  style="float:left; " <if condition="$school['abroad_name'] neq null">value="{$school.abroad_name}"<else />value="出国留学比例"</if>  id="jy_chart2">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.abroad}" id="jy_data2">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据3</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="毕业五年毕业生平均薪资"  style="float:left; " <if condition="$school['average_payment_name'] neq null">value="{$school.average_payment_name}"<else />value="毕业五年毕业生平均薪资"</if>  id="jy_chart3">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.average_payment}" id="jy_data3">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据4</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="总体就业率"  style="float:left; " <if condition="$school['job_data_name'] neq null">value="{$school.job_data_name}"<else />value="总体就业率"</if> id="jy_chart4">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.job_data}" id="jy_data4">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据5</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="待定"  style="float:left; " value="{$school.jobdata5_name}" id="jy_chart5">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.jobdata5}" id="jy_data5">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据6</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="待定"  style="float:left; " value="{$school.jobdata6_name}" id="jy_chart6">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.jobdata6}" id="jy_data6">
+	</div>
+	<div class="after"></div>
+	</div>
+	</if>
+	<if condition="$num6 eq 0">
+	<div class="bmi-box" style="margin-top:20px;">
+		<a href="http://beta.cingta.com/data_axis.html?school={$name}"><div class="bmi-name">年度预决算</div></a>
+		<div class="bmi-btn" id="btn7" data-name="{$name}">确认</div>
+		<a href="#/checkall?school={$name}&block=年度预决算"><div class="chakanquanbu">查看全部</div></a>
+	</div>
+	<div class="bmi-plus">
+	<!-- <div class="ar-input">
+		<div class="lab-word">发布更新时间</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;">
+	</div> -->
+	<div class="ar-input">
+		<div class="lab-word">表格数据1</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="2016年度预算收入"  style="float:left;" <if condition="$school['budget1_name'] neq null">value="{$school.budget1_name}"<else />value="2016年度预算收入"</if> id="yjs_chart1">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.budget1}" id="yjs_data1">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据2</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="2016年度预算支出"  style="float:left; " <if condition="$school['revenue1_name'] neq null">value="{$school.revenue1_name}"<else />value="2016年度预算支出"</if> id="yjs_chart2">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.revenue1}" id="yjs_data2">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据3</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="2014年度决算收入"  style="float:left; " <if condition="$school['budget2_name'] neq null">value="{$school.budget2_name}"<else />value="2014年度决算收入"</if>  id="yjs_chart3">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.budget2}" id="yjs_data3">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据4</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="2014年度决算支出"  style="float:left; " <if condition="$school['revenue2_name'] neq null">value="{$school.revenue2_name}"<else />value="2014年度决算支出"</if> id="yjs_chart4">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.revenue2}" id="yjs_data4">
+	</div>
+	<div class="after"></div>
+	</div>
+	</if>
+	<if condition="$num7 eq 0">
+	<div class="bmi-box" style="margin-top:20px;">
+		<a href="http://beta.cingta.com/data_axis.html?school={$name}"><div class="bmi-name">社会评价</div></a>
+		<div class="bmi-btn" id="btn8" data-name="{$name}">确认</div>
+		<a href="#/checkall?school={$name}&block=社会评价"><div class="chakanquanbu">查看全部</div></a>
+	</div>
+	<div class="bmi-plus">
+	<!-- <div class="ar-input">
+		<div class="lab-word">发布更新时间</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;">
+	</div> -->
+	<div class="ar-input">
+		<div class="lab-word">表格数据1</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="2016年USNWEWS全球排名"  style="float:left; " <if condition="$school['usnews_name'] neq null">value="{$school.usnews_name}"<else />value="2016年USNWEWS全球排名"</if>  id="pj_chart1">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.usnews}" id="pj_data1">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据2</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="2015-16THE内地/全球排名"  style="float:left; " <if condition="$school['the_name'] neq null">value="{$school.the_name}"<else />value="2015-16THE内地/全球排名"</if>  id="pj_chart2">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.the}" id="pj_data2">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据3</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="2015-16QS内地/全球排名"  style="float:left; " <if condition="$school['qs_name'] neq null">value="{$school.qs_name}"<else />value="2015-16QS内地/全球排名"</if>  id="pj_chart3">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.qs}" id="pj_data3">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">表格数据4</div>
+		<input type="text" class="biaoge nr ui-input" placeholder="2015ARWU内地/全球排名"  style="float:left; " <if condition="$school['arwu_name'] neq null">value="{$school.arwu_name}"<else />value="2015ARWU内地/全球排名"</if> id="pj_chart4">
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;width:90px;margin-left:10px;" value="{$school.arwu}" id="pj_data4">
+	</div>
+	<div class="after"></div>
+	</div>
+	</if>
+	<if condition="$num8 eq 0">
+	<div class="bmi-box" style="margin-top:20px;">
+		<a href="http://beta.cingta.com/data_axis.html?school={$name}"><div class="bmi-name">人文历史</div></a>
+		<div class="bmi-btn" id="btn9" data-name="{$name}">确认</div>
+		<a href="#/checkall?school={$name}&block=人文历史"><div class="chakanquanbu">查看全部</div></a>
+	</div>
+	<div class="bmi-plus" >
+	<!-- <div class="ar-input">
+		<div class="lab-word">发布更新时间</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;">
+	</div> -->
+	<div class="ar-input">
+		<a href="http://beta.cingta.com/data_axis.html?school={$name}"><div class="lab-word">人文历史</div></a>
+		<input type="text" class="biaoge nr ui-input" placeholder="请输入内容"  style="width:100%;float:left; " value="{$school.culture}" id="rw_data1">
+	</div>
+	<div class="after"></div>
+    </div>
+	</if>
+	<div class="bmi-box" style="margin-top:20px;">
+		<a href="http://beta.cingta.com/data_axis.html?school={$name}"><div class="bmi-name">相关大学</div></a>
+		<div class="bmi-btn" id="btn10" data-name="{$name}">确认</div>
+		<!-- <div class="bmi-btn" style="width:80px;margin-right:15px;">查看全部</div> -->
+	</div>
+	<div class="bmi-plus" style="margin-bottom:30px;">
+	<!-- <div class="ar-input">
+		<div class="lab-word">发布更新时间</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;">
+	</div> -->
+	<div class="ar-input">
+		<div class="lab-word">大学1</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.relation1}" id="sch1">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">大学2</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.relation2}" id="sch2">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">大学3</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.relation3}" id="sch3">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">大学4</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.relation4}" id="sch4">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">大学5</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.relation5}" id="sch5">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">大学6</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.relation6}" id="sch6">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">大学7</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.relation7}" id="sch7">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">大学8</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.relation8}" id="sch8">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">大学9</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.relation9}" id="sch9">
+	</div>
+	<div class="ar-input">
+		<div class="lab-word">大学10</div>
+		<input type="text" class="nr ui-input" placeholder="请输入内容"  style="float:left;" value="{$school.relation10}" id="sch10">
+	</div>
+	<div class="after"></div>
+	</div>
+	
+	<div class="bmi-box" style="margin-top:20px;margin-bottom:20px;">
+		<a href="http://beta.cingta.com/data_axis.html?school={$name}"><div class="bmi-name">自定义代码块</div></a>
+		<!-- <div class="bmi-btn" id="btn9" data-name="{$name}">确认</div> -->
+		<a href="#/checkall?school={$name}&block=自定义代码块"><div class="chakanquanbu">点击修改</div></a>
+	</div>
+
+	<script type="text/javascript">
+
+
+ 
+$("#btn1").click(function(){
+	var time= $("#gk_time").val(),
+	    loc =$("#gk_loc").val(),
+	    area = $("#gk_area").val(),
+	    lib = $("#gk_lib").val(),
+	    stu = $("#gk_stu").val(),
+	    sub = $("#gk_sub").val(),
+	    doc = $("#gk_doc").val(),
+	    name = $(this).attr("data-name"),
+	    bdoc = $("#gk_bdoc").val();
+    if(time==""){
+        alert("请输入创建时间");
+    }
+    else if(loc==""){
+    	alert("请输入地理位置")
+    }
+    else if(area==""){
+    	alert("请输入占地面积")
+    }
+    else if(lib==""){
+    	alert("请输入图书馆藏书")
+    }
+    else if(stu==""){
+    	alert("请输入学生人数")
+    }
+    else if(sub==""){
+    	alert("请输入专任教师")
+    }
+    else if(doc==""){
+    	alert("请输入一级博士点")
+    }
+    else if(bdoc==""){
+    	alert("请输入一级硕士点")
+    }
+    else{
+        $.ajax({
+            url:"__ROOT__/profileapi",
+            type:"POST",
+            data:{
+                "founding_time":time,
+                "location":loc,
+                "area":area,
+                "library":lib,
+                "student":stu,
+                "key_subject":sub,
+                "doctor":doc,
+                "master":bdoc,
+                "name":name
+            },
+            success: function(data){
+                switch(data.state){
+                    case "0":
+                    alert(data.detail);
+                    break;
+                    default: alert(data.detail);break;
+                }
+            },
+            error: function(){
+                alert("网络异常");
+            }
+        });
+    }
+})
+function img1(infile,outfile){
+		var result = $(outfile)[0]; 
+		var input = $(infile)[0];
+		if(typeof FileReader==='undefined'){ 
+		    result.innerHTML = "抱歉，你的浏览器不支持 FileReader"; 
+		    input.setAttribute('disabled','disabled');
+		}
+		else{ 
+			input.addEventListener('change',readFile,false);
+		}
+		var imagefile;
+		function readFile(){ 
+		    var file = this.files[0]; 
+		    if(!/image\/\w+/.test(file.type)){ 
+		        alert("文件必须为图片！"); 
+		        return false; 
+		    } 
+		    var reader = new FileReader(); 
+		    reader.readAsDataURL(file);
+		    reader.onload = function(e){ 
+		        result.innerHTML = '<img style="width:0px;height:0px;" src="'+this.result+'" alt=""/>';
+		        imagefile = this.result.split(',')[1];
+		    }
+		}
+}
+$("#img1").mouseenter(function(event) {
+	img1("#img1","#put1");
+});
+$("#img2").mouseenter(function(event) {
+	img1("#img2","#put2");
+});
+$("#img3").mouseenter(function(event) {
+	img1("#img3","#put3");
+});
+$("#img4").mouseenter(function(event) {
+	img1("#img4","#put4");
+});
+$("#img5").mouseenter(function(event) {
+	img1("#img5","#put5");
+});
+
+$("#btn2").click(function(){
+	var cascae_name = $("#sz_chart1").val(),
+	    cascae = $("#sz_data1").val(),
+	    longriver_name = $("#sz_chart2").val(),
+	    longriver = $("#sz_data2").val(),
+	    country_outstanding_name = $("#sz_chart3").val(),
+	    country_outstanding = $("#sz_data3").val(),
+	    country_splendid_name = $("#sz_chart4").val(),
+	    country_splendid = $("#sz_data4").val(),
+	    youth_name = $("#sz_chart5").val(),
+	    youth = $("#sz_data5").val(),
+	    cascae_photo_name = $("#img_word1").val(),
+	    // cascae_photo = $("#put1 img").attr("src").split(',')[1],
+	    longriver_photo_name = $("#img_word2").val(),
+	    // longriver_photo = $("#put2 img").attr("src").split(',')[1],
+	    youth_photo_name = $("#img_word3").val(),
+	    // youth_photo = $("#put3 img").attr("src").split(',')[1],
+	    name = $(this).attr("data-name");
+
+    if(cascae_name==""||cascae==""){
+        alert("请输入表格数据1");
+    }
+    else if(longriver_name==""||longriver==""){
+    	alert("请输入表格数据2")
+    }
+    else if(country_outstanding_name==""||country_outstanding==""){
+    	alert("请输入表格数据3")
+    }
+    else if(country_splendid_name==""||country_splendid==""){
+    	alert("请输入表格数据4")
+    }
+    else if(youth_name==""||youth==""){
+    	alert("请输入表格数据5")
+    }
+    // else if(cascae_photo_name==""||cascae_photo==""){
+    // 	alert("请输入图片1")
+    // }
+    // else if(longriver_photo_name==""||longriver_photo==""){
+    // 	alert("请输入图片2")
+    // }
+    // else if(youth_photo_name==""||youth_photo==""){
+    // 	alert("请输入图片3")
+    // }
+    else{
+    	var data = {
+	    		"cascae_name":cascae_name,
+			    "cascae":cascae,
+			    "longriver_name":longriver_name,
+			    "longriver":longriver,
+			    "country_outstanding_name":country_outstanding_name,
+			    "country_outstanding":country_outstanding,
+			    "country_splendid_name":country_splendid_name,
+			    "country_splendid":country_splendid,
+			    "youth_name":youth_name,
+			    "youth":youth,
+			    "cascae_photo_name":cascae_photo_name,
+			    // "cascae_photo":cascae_photo,
+			    "longriver_photo_name":longriver_photo_name,
+			    // "longriver_photo":longriver_photo,
+			    "youth_photo_name":youth_photo_name,
+			    // "youth_photo":youth_photo,
+			    "name":name
+	    }
+	    if($("#put1 img").attr("src")!=(""||undefined)){
+				data["cascae_photo"]=$("#put1 img").attr("src").split(',')[1];
+		}
+		if($("#put2 img").attr("src")!=(""||undefined)){
+				data["longriver_photo"]=$("#put2 img").attr("src").split(',')[1];
+		}
+		if($("#put3 img").attr("src")!=(""||undefined)){
+				data["youth_photo"]=$("#put3 img").attr("src").split(',')[1];
+		}
+        $.ajax({
+            url:"__ROOT__/teacherapi",
+            type:"POST",
+            data:data,
+            success: function(data){
+                switch(data.state){
+                    case "0":
+                    alert(data.detail);
+                    break;
+                    default: alert(data.detail);break;
+                }
+            },
+            error: function(){
+                alert("网络异常");
+            }
+        });
+    }
+})
+$("#btn3").click(function(){
+	var ns_founding_name = $("#kx_chart1").val(),
+	    ns_founding = $("#kx_data1").val(),
+	    social_founding_name = $("#kx_chart2").val(),
+	    social_founding = $("#kx_data2").val(),
+	    reward_name = $("#kx_chart3").val(),
+	    reward = $("#kx_data3").val(),
+	    science_paltform_name = $("#kx_chart4").val(),
+	    science_paltform = $("#kx_data4").val(),
+	    ns_founding_photo_name = $("#img_word4").val(),
+	    reward_photo_name = $("#img_word42").val(),
+	    science_paltform_photo_name = $("#img_word43").val(),
+	    name = $(this).attr("data-name");
+    if(ns_founding_name==""||ns_founding==""){
+        alert("请输入表格数据1");
+    }
+    else if(social_founding_name==""||social_founding==""){
+    	alert("请输入表格数据2")
+    }
+    else if(reward_name==""||reward==""){
+    	alert("请输入表格数据3")
+    }
+    else if(science_paltform_name==""||science_paltform==""){
+    	alert("请输入表格数据4")
+    }
+    else if(ns_founding_photo_name==""||ns_founding==""){
+    	alert("请输入图片1")
+    }
+    else if(reward_photo_name==""){
+    	alert("请输入图片2")
+    }
+    else if(science_paltform_photo_name==""){
+    	alert("请输入图片3")
+    }
+    else{
+    	var data = {
+	    		"ns_founding_name":ns_founding_name,
+			    "ns_founding":ns_founding,
+			    "social_founding_name":social_founding_name,
+			    "social_founding":social_founding,
+			    "reward_name":reward_name,
+			    "reward":reward,
+			    "science_paltform_name":science_paltform_name,
+			    "science_paltform":science_paltform,
+			    "ns_founding_photo_name":ns_founding_photo_name,
+			    "reward_photo_name":reward_photo_name,
+			    "science_paltform_photo_name":science_paltform_photo_name,
+			    "name":name
+	    }
+	    if($("#put4 img").attr("src")!=(""||undefined)){
+				data["ns_founding_photo"]=$("#put4 img").attr("src").split(',')[1];
+		}
+        $.ajax({
+            url:"__ROOT__/foundingapi",
+            type:"POST",
+            data:data,
+            success: function(data){
+                switch(data.state){
+                    case "0":
+                    alert(data.detail);
+                    break;
+                    default: alert(data.detail);break;
+                }
+            },
+            error: function(){
+                alert("网络异常");
+            }
+        });
+    }
+})
+$("#btn4").click(function(){
+	var paper_peform = $("#ms_data1").val(),
+	    name = $(this).attr("data-name");
+    if(paper_peform==""){
+        alert("请输入描述文字");
+    }
+    
+    else{
+        $.ajax({
+            url:"__ROOT__/paperapi",
+            type:"POST",
+            data:{
+                "paper_peform":paper_peform,
+			    "name":name
+            },
+            success: function(data){
+                switch(data.state){
+                    case "0":
+                    alert(data.detail);
+                    break;
+                    default: alert(data.detail);break;
+                }
+            },
+            error: function(){
+                alert("网络异常");
+            }
+        });
+    }
+})
+$("#btn5").click(function(){
+	var ecsi_name = $("#jx_chart1").val(),
+	    ecsi = $("#jx_data1").val(),
+	    key_branch_name = $("#jx_chart2").val(),
+	    key_branch = $("#jx_data2").val(),
+	    selected_course_name = $("#jx_chart3").val(),
+	    selected_course = $("#jx_data3").val(),
+	    chara_profession_name = $("#jx_chart4").val(),
+	    chara_profession = $("#jx_data4").val(),
+	    ecsi_photo_name = $("#img_word5").val(),
+	    key_subject_photo_name = $("#img_word52").val(),
+	    chara_profession_photo_name = $("#img_word53").val(),
+	    name = $(this).attr("data-name");
+    if(ecsi_name==""||ecsi==""){
+        alert("请输入表格数据1");
+    }
+    else if(key_branch_name==""||key_branch==""){
+    	alert("请输入表格数据2")
+    }
+    else if(selected_course_name==""||selected_course==""){
+    	alert("请输入表格数据3")
+    }
+    else if(chara_profession_name==""||chara_profession==""){
+    	alert("请输入表格数据4")
+    }
+    else if(ecsi_photo_name==""){
+    	alert("请输入图片1")
+    }
+    else if(key_subject_photo_name==""){
+    	alert("请输入图片2")
+    }
+    else if(chara_profession_photo_name==""){
+    	alert("请输入图片3")
+    }
+    else{
+    	var data = {
+	    		"ecsi_name":ecsi_name,
+			    "ecsi":ecsi,
+			    "key_branch_name":key_branch_name,
+			    "key_branch":key_branch,
+			    "selected_course_name":selected_course_name,
+			    "selected_course":selected_course,
+			    "chara_profession_name":chara_profession_name,
+			    "chara_profession":chara_profession,
+			    "ecsi_photo_name":ecsi_photo_name,
+			    "key_subject_photo_name":key_subject_photo_name,
+			    "chara_profession_photo_name":chara_profession_photo_name,
+			    "name":name
+	    }
+	    if($("#put5 img").attr("src")!=(""||undefined)){
+				data["ecsi_photo"]=$("#put5 img").attr("src").split(',')[1];
+		}
+        $.ajax({
+            url:"__ROOT__/constructionapi",
+            type:"POST",
+            data:data,
+            success: function(data){
+                switch(data.state){
+                    case "0":
+                    alert(data.detail);
+                    break;
+                    default: alert(data.detail);break;
+                }
+            },
+            error: function(){
+                alert("网络异常");
+            }
+        });
+    }
+})
+$("#btn6").click(function(){
+	var inner_name = $("#jy_chart1").val(),
+	    inner = $("#jy_data1").val(),
+	    abroad_name = $("#jy_chart2").val(),
+	    abroad = $("#jy_data2").val(),
+	    average_payment_name = $("#jy_chart3").val(),
+	    average_payment = $("#jy_data3").val(),
+	    job_data_name = $("#jy_chart4").val(),
+	    job_data = $("#jy_data4").val(),
+	    jobdata5_name = $("#jy_chart5").val(),
+	    jobdata5 = $("#jy_data5").val(),
+	    jobdata6_name = $("#jy_chart6").val(),
+	    jobdata6 = $("#jy_data6").val(),
+	    name = $(this).attr("data-name");
+
+    if(inner_name==""||inner==""){
+        alert("请输入表格数据1");
+    }
+    else if(abroad_name==""||abroad==""){
+    	alert("请输入表格数据2")
+    }
+    else if(average_payment_name==""||average_payment==""){
+    	alert("请输入表格数据3")
+    }
+    else if(job_data_name==""||job_data==""){
+    	alert("请输入表格数据4")
+    }
+    else if(jobdata5_name==""||jobdata5==""){
+    	alert("请输入表格数据5")
+    }
+    else if(jobdata6_name==""||jobdata6==""){
+    	alert("请输入表格数据6")
+    }
+    else{
+    	var data = {
+	    		"inner_name":inner_name,
+			    "inner":inner,
+			    "abroad_name":abroad_name,
+			    "abroad":abroad,
+			    "average_payment_name":average_payment_name,
+			    "average_payment":average_payment,
+			    "job_data_name":job_data_name,
+			    "job_data":job_data,
+			    "jobdata5_name":jobdata5_name,
+			    "jobdata5":jobdata5,
+			    "jobdata6_name":jobdata6_name,
+			    "jobdata6":jobdata6,
+			    "name":name
+	    }
+        $.ajax({
+            url:"__ROOT__/jobapi",
+            type:"POST",
+            data:data,
+            success: function(data){
+                switch(data.state){
+                    case "0":
+                    alert(data.detail);
+                    break;
+                    default: alert(data.detail);break;
+                }
+            },
+            error: function(){
+                alert("网络异常");
+            }
+        });
+    }
+})
+$("#btn7").click(function(){
+	var budget1_name = $("#yjs_chart1").val(),
+	    budget1 = $("#yjs_data1").val(),
+	    revenue1_name = $("#yjs_chart2").val(),
+	    revenue1 = $("#yjs_data2").val(),
+	    budget2_name = $("#yjs_chart3").val(),
+	    budget2 = $("#yjs_data3").val(),
+	    revenue2_name = $("#yjs_chart4").val(),
+	    revenue2 = $("#yjs_data4").val(),
+	    name = $(this).attr("data-name");
+
+    if(budget1_name==""||budget1==""){
+        alert("请输入表格数据1");
+    }
+    else if(revenue1_name==""||revenue1==""){
+    	alert("请输入表格数据2")
+    }
+    else if(budget2_name==""||budget2==""){
+    	alert("请输入表格数据3")
+    }
+    else if(revenue2_name==""||revenue2==""){
+    	alert("请输入表格数据4")
+    }
+    else{
+    	var data = {
+	    		"budget1_name":budget1_name,
+			    "budget1":budget1,
+			    "revenue1_name":revenue1_name,
+			    "revenue1":revenue1,
+			    "budget2_name":budget2_name,
+			    "budget2":budget2,
+			    "revenue2_name":revenue2_name,
+			    "revenue2":revenue2,
+			    "name":name
+	    }
+        $.ajax({
+            url:"__ROOT__/budgetapi",
+            type:"POST",
+            data:data,
+            success: function(data){
+                switch(data.state){
+                    case "0":
+                    alert(data.detail);
+                    break;
+                    default: alert(data.detail);break;
+                }
+            },
+            error: function(){
+                alert("网络异常");
+            }
+        });
+    }
+})
+$("#btn8").click(function(){
+	var usnews_name = $("#pj_chart1").val(),
+	    usnews = $("#pj_data1").val(),
+	    the_name = $("#pj_chart2").val(),
+	    the = $("#pj_data2").val(),
+	    qs_name = $("#pj_chart3").val(),
+	    qs = $("#pj_data3").val(),
+	    arwu_name = $("#pj_chart4").val(),
+	    arwu = $("#pj_data4").val(),
+	    name = $(this).attr("data-name");
+
+    if(usnews_name==""||usnews==""){
+        alert("请输入表格数据1");
+    }
+    else if(the_name==""||the==""){
+    	alert("请输入表格数据2")
+    }
+    else if(qs_name==""||qs==""){
+    	alert("请输入表格数据3")
+    }
+    else if(arwu_name==""||arwu==""){
+    	alert("请输入表格数据4")
+    }
+    else{
+    	var data = {
+	    		"usnews_name":usnews_name,
+			    "usnews":usnews,
+			    "the_name":the_name,
+			    "the":the,
+			    "qs_name":qs_name,
+			    "qs":qs,
+			    "arwu_name":arwu_name,
+			    "arwu":arwu,
+			    "name":name
+	    }
+        $.ajax({
+            url:"__ROOT__/socialapi",
+            type:"POST",
+            data:data,
+            success: function(data){
+                switch(data.state){
+                    case "0":
+                    alert(data.detail);
+                    break;
+                    default: alert(data.detail);break;
+                }
+            },
+            error: function(){
+                alert("网络异常");
+            }
+        });
+    }
+})
+$("#btn9").click(function(){
+	var culture = $("#rw_data1").val(),
+	    name = $(this).attr("data-name");
+    if(culture==""){
+        alert("请输入描述文字");
+    }
+    
+    else{
+        $.ajax({
+            url:"__ROOT__/cultureapi",
+            type:"POST",
+            data:{
+                "culture":culture,
+			    "name":name
+            },
+            success: function(data){
+                switch(data.state){
+                    case "0":
+                    alert(data.detail);
+                    break;
+                    default: alert(data.detail);break;
+                }
+            },
+            error: function(){
+                alert("网络异常");
+            }
+        });
+    }
+})
+$("#btn10").click(function(){
+	var relation1 = $("#sch1").val(),
+		relation2 = $("#sch2").val(),
+		relation3 = $("#sch3").val(),
+		relation4 = $("#sch4").val(),
+		relation5 = $("#sch5").val(),
+		relation6 = $("#sch6").val(),
+		relation7 = $("#sch7").val(),
+		relation8 = $("#sch8").val(),
+		relation9 = $("#sch9").val(),
+		relation10 = $("#sch10").val(),
+	    name = $(this).attr("data-name");
+    
+    
+        $.ajax({
+            url:"__ROOT__/relationapi",
+            type:"POST",
+            data:{
+                "relation1":relation1,
+                "relation2":relation2,
+                "relation3":relation3,
+                "relation4":relation4,
+                "relation5":relation5,
+                "relation6":relation6,
+                "relation7":relation7,
+                "relation8":relation8,
+                "relation9":relation9,
+                "relation10":relation10,
+			    "name":name
+            },
+            success: function(data){
+                switch(data.state){
+                    case "0":
+                    alert(data.detail);
+                    break;
+                    default: alert(data.detail);break;
+                }
+            },
+            error: function(){
+                alert("网络异常");
+            }
+        });
+    
+})
+
+
+		// $(".bmi-btn").click(function(){
+			
+		// 	$.ajax({
+		// 	    url:"__ROOT__/codeapi",
+		// 	    type:"POST",
+		// 	    data:{
+		// 	        "page":0,
+		// 	        "index":$(this).attr("data-id"),
+		// 	        "key":1,
+		// 	        "value":$(this).parent().next().children().val()
+		// 	    },
+		// 	    success: function(data){
+		// 	        switch(data.state){
+  //                       case "0":
+                        
+  //                       alert(data.detail);
+  //                       break;
+  //                       default: alert(data.detail);break;
+  //                   }
+		// 	    },
+		// 	    error: function(){
+			            
+		// 	    }
+
+  //   		});
+		// })
+    
+	</script>
+

@@ -1,0 +1,131 @@
+<div class="col-header">
+		<i class="fa fa-database fa-2x" aria-hidden="true"></i>
+		<span style="font-size:28px;font-weight:400;">&nbsp;高校信息修改</span>
+</div>
+
+<div class="col-box2" style="margin-top:20px;height: 400px;">
+		<!-- <div class="col-save" id="gobackbutton">返回</div> -->
+		<div class="col-input">
+			<div class="col-word">学校名</div>
+			<input type="text" style="width: 400px;" class="nr ui-input" id="schoolname" placeholder="请输入学校名" value="{$info.name}">
+	    </div>
+	    <div class="col-input">
+			<div class="col-word">省/市/自治区</div>
+			<select id="getProvince">
+				<option>未选择</option>
+				<volist name="province" id="vo"><if condition="$vo eq $info['province_name']" ><option selected>{$vo}</option><else /><option>{$vo}</option></if></volist>
+			</select>
+		</div>
+	<div class="ar-input"<if condition="$state eq 1"> style="display:none"</if>>
+		<div class="ar-word">标签</div>
+		<div class="ar-label tagsAutoCom" style="width:90%;">
+			<div class="tagsbox">
+				
+					<volist name="tags" id="vo">
+					<span style="margin-left:2px;margin-top:4px;" class="lab-tag" data-type="0">{$vo}<i class="fa fa-close closeicon"></i></span>
+				    </volist>
+				
+			</div>
+			<input id="tagInput" class="nr tagInput" type="text" placeholder="输入标签"style="width:40%">
+			<div class="taglist onlyfocus"></div>
+		</div>
+	</div>
+		<div class="col-input">
+			<div class="col-word"></div>
+			<div id="addCollegeButton" class="button" style="width: 200px;height:40px;text-align:center;color: #fff;line-height:40px;background-color:#00acec;" data-id="{$id}">确定编辑</div>
+	    </div>
+	</div>
+<script type="text/javascript">
+$("#addCollegeButton").click(function(){
+		var name = $.trim($("#schoolname").val());
+		var province = $.trim($("#getProvince").val());
+		var value = [];
+		$.each($(".tagsAutoCom .tagsbox span"),function(){
+			value.push({"tags":$(this).text(),});
+		});
+		if(name==""){
+			alert("高校名不能为空");
+		}
+		else if(province=="未选择"){
+			alert("必须选择高校所在省份");
+		}
+		else{
+			$.ajax({
+	          	url:"__ROOT__/college_changeapi",
+	          	type:"POST",
+	          	data:{
+		          	"name":name,
+		          	"province": province,
+		          	"value":value,
+		          	"id":$(this).attr("data-id")
+		        },
+	          	success: function(data){
+	              switch(data.state){
+	                  case "0":
+	                  alert(data.detail);
+	                  break;
+	                  default: alert(data.detail);break;
+	             	 }
+	          	},
+	          	error: function(){
+	                  
+	          	}
+
+	    	});
+		}
+});
+function getTagListschool(baseurl,key){
+        var ajax = $.ajax({
+          url: baseurl+"/school_labelsearchapi",
+          type: "POST",
+          data:{
+            "key":key
+          }
+        });
+        return ajax;
+    }
+var timeout;
+$("#tagInput").bind("keyup",function(){
+	var keyword = $.trim($(this).val());
+	var $this = $(this);
+	clearTimeout(timeout);
+	if(keyword!=""){
+		timeout = setTimeout(function(){
+			$.when(getTagListschool("__ROOT__",keyword)).done(function(data){
+				if(data.state==0){
+					var order = data.order;
+					if(order.length){
+						var html = '';
+						for(var i = 0; i < order.length; i++){
+							html += "<div class='textline' data-type='"+order[i]["type"]+"'>"+order[i]+"</div>";
+						}
+						$this.next(".taglist").empty().append(html).addClass("show");
+					}
+				}
+				else{
+					console.log(data);
+				}
+			});
+		},300);
+	}
+});
+
+$(".taglist").on("click",".textline",function(){
+	var labelhtml=$('<span style="margin-left:2px;margin-top:4px;" class="lab-tag" data-type="'+$(this).attr("data-type")+'">'+
+						$(this).text()+
+						'<i class="fa fa-close closeicon"></i>'+
+				    '</span>');
+	$(".tagsbox").append(labelhtml);
+	tagInputResize();
+	$(this).closest(".taglist").removeClass("show").empty();
+});
+function tagInputResize(){
+	var total = $(".tagsAutoCom").width()-8;
+	var tagbox = $(".tagsbox").width();
+	$("#tagInput").width(total-tagbox).val("").focus();
+}
+$(".tagsbox").on("click",".closeicon",function(){
+	tagInputResize();
+	$(this).closest("span").remove();
+});		
+</script>

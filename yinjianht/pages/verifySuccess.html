@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>青塔</title>
+    <link href="__PUBLIC__/source/img/favicon.ico" rel="icon">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/public.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/public_mobile.css">
+    <link rel="stylesheet" href="__PUBLIC__/source/css/other.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/font-awesome-4.4.0/css/font-awesome.min.css">
+    <script src="__PUBLIC__/source/js/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+    <div class="sbox">
+        <div class="wbox">
+            <div class="sleft">
+                <h1 style="font-size: 30px;">注册成功</h1>
+                <p>1秒后回到首页</p>
+                <a class="button" href="__ROOT__/main.html">回首页</a>
+            </div>
+            <div class="sright">
+                <img src="__PUBLIC__/source/img/cingtalogo_1.jpg" />
+            </div>
+        </div>
+        <p class="scopyright">© <span id="yearnum"></span> 青塔网</p>
+    </div>
+<script src="__PUBLIC__/source/js/public.js"></script>
+<script>
+init();
+setTimeout(function(){
+    window.location.href="__ROOT__/main.html";
+},1000)
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<div class="col-header">
+		<i class="fa fa-database fa-2x" aria-hidden="true"></i>
+		<span style="font-size:28px;font-weight:400;">&nbsp;邀请码管理</span>
+	</div>
+
+
+<div class="col-box2" style="margin-top:20px;height: 400px;">
+		<div class="col-input">
+			<div class="col-word">邀请码</div>
+			<input type="text" style="width: 400px;" class="nr ui-input" id="yzm" placeholder="请输入验证码" value="{$data.code}">
+	    </div>
+        <div class="col-input">
+            <input type="radio" name="weizhi" style="margin-left:10px;" id="ra1" value="0" <if condition="$data['key'] eq 0">checked="checked"</if>>&nbsp;&nbsp;<label for="ra1">开</label>
+            <input type="radio" name="weizhi" style="margin-left:10px;" id="ra2" value="1" <if condition="$data['key'] eq 1">checked="checked"</if>>&nbsp;&nbsp;<label for="ra2" >关</label>
+        </div>
+		<div class="col-input">
+			<div class="col-word"></div>
+			<div id="yzmButton" class="button" style="width: 200px;height:40px;text-align:center;color: #fff;line-height:40px;background-color:#00acec;">添加</div>
+	    </div>
+</div>
+
+<script type="text/javascript">
+	$("#yzmButton").click(function(event) {
+		$.ajax({
+            url:"__ROOT__/inviteapi",
+            type:"POST",
+            data:{
+                "code":$("#yzm").val(),
+                "key":$('input:radio:checked').val()
+            },
+            success: function(data){
+                switch(data.state){
+                    case "0":
+                    alert(data.detail);
+                    break;
+                    default: alert(data.detail);break;
+                }
+            },
+            error: function(){
+                alert("网络异常");
+            }
+        });
+	});
+</script>

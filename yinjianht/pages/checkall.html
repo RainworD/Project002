@@ -1,0 +1,67 @@
+<style>
+.ar-input{
+	height: auto;
+}
+</style>
+	<div class="ar-header">
+		<i class="fa fa-star fa-2x"></i>
+		<span style="font-size:28px;">&nbsp;{$school}{$block}模块－查看全部页面</span>
+	</div>
+	<div class="ar-box">
+		<!-- <div class="ar-input">
+			<div class="ar-word">页面名</div>
+			<input id="article_title" type="text" class="nr ui-input" placeholder="请输入标题" style="width:90%;">
+		</div> -->
+		<div class="ar-input">
+			<div class="ar-word" style="width:100px;">模块是否显示</div>
+			<input type="checkbox" id="xianshi" style="margin-left:50px;"<php>if($key==="0"){</php>checked="checked"<php>;}</php>><label style="margin-left:10px;" for="xianshi">显示</label>
+		</div>
+		<div class="ar-input">
+			<div class="ar-word">内容编辑</div>
+			<script id="editor" type="text/plain" style="height: 500px;">{$article_text|htmlspecialchars_decode}</script>
+		</div>
+		<div class="fabu" id="fabu" data-school="{$school}" data-block="{$block}">发布</div>
+	</div>
+
+<script type="text/javascript">
+
+//实例化编辑器
+//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+UE.delEditor('editor')
+var ue = UE.getEditor('editor');
+// var ueditorcontent=ue.getContent();
+$("#fabu").bind('click',function(){
+	var school = $(this).attr("data-school"),
+		block = $(this).attr("data-block"),
+	    text = ue.getContent(),
+	    key;
+	if ($('#xianshi').prop("checked")==true) {
+		key=0;
+	}
+	else{
+		key=1;
+	}
+	$.ajax({
+		url: "__ROOT__/checkallapi",
+		type: "POST",
+		data: {
+			"school":school,
+			"block":block,
+			"text":text,
+			"key":key
+		},
+		success: function(data){
+                switch(data.state){
+                    case "0":
+                    alert(data.detail);
+                    break;
+                    default: alert(data.detail);break;
+                }
+            },
+        error: function(){
+                alert("网络异常");
+        }
+	});
+});
+
+</script>

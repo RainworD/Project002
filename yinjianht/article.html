@@ -1,0 +1,258 @@
+<style>
+.ar-input {
+    height: auto;
+}
+</style>
+<div class="ar-header">
+    <i class="fa fa-star fa-2x"></i>
+    <span style="font-size:28px;">&nbsp;发表普通文章</span>
+</div>
+<div class="ar-box">
+    <div class="ar-input">
+        <div class="ar-word">标题</div>
+        <input id="aticle_title" type="text" class="nr ui-input" placeholder="请输入标题" style="width:90%;">
+    </div>
+    <div class="ar-input" id="mainTagBox" style="margin-bottom: 10px;">
+        <div class="ar-word">发布位置</div>
+        <div class="themeTag" style="float:left">
+            <input type="radio" name="theme" style="margin-left:10px;" value="0">&nbsp;&nbsp;
+            <label for="column1" class="themeLabel">党团之声</label>
+        </div>
+        <!-- 一般管理员选择发布的栏目分类 -->
+    </div>
+    <div class="ar-input" id="display">
+        <div class="ar-word">是否置顶</div>
+        <input type="radio" name="xianshi" style="margin-left:10px;" id="shi" value="0">&nbsp;&nbsp;
+        <label for="shi">是</label>
+        <input type="radio" name="xianshi" style="margin-left:10px;" id="fou" value="1" checked>&nbsp;&nbsp;
+        <label for="fou">否</label>
+    </div>
+    <div class="ar-input">
+        <div class="ar-word">发布时间</div>
+        <div style="position:relative;">
+            <input id="dateinfo" type="text" class="datainp nr ui-input" placeholder="请输入发布时间" style="width:90%;" readonly>
+        </div>
+    </div>
+    <div class="ar-input imgList" style="height:400px">
+        <div class="ar-word">配图</div>
+        <!-- <input type="file" class="tianjia"> -->
+        <!-- <div class="ar-tupian"></div> -->
+        <div class="imgBox">
+            <div class="imgm-box">
+                <div class="imgm-img">
+                    <iframe src="iframe.html" frameborder="0" style="width:260px" class="picIframe">
+                    </iframe>
+                </div>
+                <div class="imgm-btn1 confirm">确定</div>
+                <div class="imgm-btn2">删除</div>
+            </div>
+            <div class="imgpara">
+                <textarea placeholder="请输入图片描述...(第一张图不需要)" class="enterde" disabled></textarea>
+            </div>
+            （若无则不上传）
+        </div>
+        <div class="imgm-btn1 uploadPic" style="width:260px;position:absolute;right:0;bottom:0;">上传图片</div>
+    </div>
+    <div class="ar-input">
+        <div class="ar-word">正文</div>
+        <script id="editor" type="text/plain" style="height: 500px;"></script>
+    </div>
+    <div class="fabu">发布</div>
+</div>
+<script type="text/javascript">
+//实例化编辑器
+//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+UE.delEditor('editor')
+var ue = UE.getEditor('editor');
+setTimeout(function() {
+    ue.execCommand("drafts");
+}, 500);
+
+$.get('/home/admin/theme_list', function(data) {
+    console.log(data);
+    for (var i = 0; i < data.length; i++) {
+        var msg = data[i];
+        var record = $(".themeTag").first().clone();
+        record.find('.themeLabel').text(msg.theme);
+        record.find('input').attr('value', msg.id);
+        $("#mainTagBox").append(record);
+        record.find('.themeLabel').attr('for', 'column' + i);
+        record.find('input').attr('id', "column" + i);
+    }
+    $(".themeTag").first().remove();
+});
+var result, input;
+var flag = -1;
+$(".picIframe").one('load', function(event) {
+    bindReadFile();
+    console.log("load");
+});
+// 上传图片按钮
+$(".uploadPic").on('click', function(event) {
+    $(".picIframe").contents().find('form').submit();
+    $(".picIframe").hide();
+    $(".imgm-img").append('上传成功');
+});
+
+function bindReadFile() {
+    flag = flag + 1;
+    result = $(".imgm-img");
+    console.log(flag);
+    input = $(".picIframe").contents().find(".imgm-tj")[flag];
+    console.log(input);
+    setTimeout(function() {
+        if (typeof FileReader === 'undefined') {
+            result.append("抱歉，你的浏览器不支持 FileReader");
+            input.setAttribute('disabled', 'disabled');
+        } else {
+            input.addEventListener('change', readFile, false);
+        }
+    }, 1000)
+}
+var imagefile;
+// 发布文章按钮
+$(".fabu").click(function() {
+    var picData = JSON.parse($(".picIframe").contents().find('body').text());
+    console.log(picData);
+    var data = {};
+    data.text = ue.getContent();
+    data.title = $("#aticle_title").val();
+    data.in_time = $("#dateinfo").val();
+    if ($("#shi").prop("checked")) {
+        data.type = 1;
+    } else {
+        data.type = 0;
+    }
+    data.theme_id = ($("#mainTagBox :checked").val());
+    data.info = info;
+    for (var i = 0; i < picData.length; i++) {
+        data.info[i][0] = picData[i].file;
+    }
+    console.log(data);
+    $.post('/home/admin/common_article_input', data, function(data, textStatus, xhr) {
+        var data = JSON.parse(data);
+        console.log(data);
+        console.log(data.state);
+        if (data.state == "0") {
+            alert("发布成功");
+            window.location.href = "index.html#/waiting_article.html";
+        }
+    });
+    ue.execCommand('clearlocaldata');
+});
+
+
+function readFile() {
+    var file = this.files[0];
+    console.log(this.files);
+    if (!/image\/\w+/.test(file.type)) {
+        alert("文件必须为图片！");
+        return false;
+    }
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function(e) {
+        result.append('<img style="width:260px;height:140px;position:relative;top:-155px" src="' + this.result + '" alt=""/>');
+        imagefile = this.result.split(',')[1];
+    }
+}
+var timeout;
+var textFlag = 1;
+var info = [];
+$(".confirm").on('click', function(event) {
+    var record = $(".imgm-img img");
+    record.css({
+        top: '40px',
+        left: '40px'
+    });;
+    console.log(record);
+    $(".imgList").append(record);
+    if ($(".enterde").val()) {
+        info.push(["file" + textFlag, $(".enterde").val()]);
+    } else {
+        info.push(["file" + textFlag, ""]);
+    }
+    textFlag = textFlag + 1;
+    $(".enterde").val("");
+    $(".enterde").removeAttr('disabled');
+    console.log(info);
+    bindReadFile();
+});
+$("#tagInput").bind("keyup", function() {
+    var keyword = $.trim($(this).val());
+    var $this = $(this);
+    clearTimeout(timeout);
+    if (keyword != "") {
+        timeout = setTimeout(function() {
+            $.when(getTagList("__ROOT__", keyword)).done(function(data) {
+                if (data.state == 0) {
+                    var order = data.order;
+                    if (order.length) {
+                        var html = '';
+                        for (var i = 0; i < order.length; i++) {
+                            html += "<div class='textline' data-type='" + order[i]["type"] + "'>" + order[i]["tags"] + "</div>";
+                        }
+                        $this.next(".taglist").empty().append(html).addClass("show");
+                    }
+                } else {
+                    console.log(data);
+                }
+            });
+        }, 300);
+    }
+});
+
+$(".taglist").on("click", ".textline", function() {
+    var labelhtml = $('<span style="margin-left:2px;margin-top:4px;" class="lab-tag" data-type="' + $(this).attr("data-type") + '">' +
+        $(this).text() +
+        '<i class="fa fa-close closeicon"></i>' +
+        '</span>');
+    $(".tagsbox").append(labelhtml);
+    tagInputResize();
+    $(this).closest(".taglist").removeClass("show").empty();
+});
+
+function tagInputResize() {
+    var total = $(".tagsAutoCom").width() - 8;
+    var tagbox = $(".tagsbox").width();
+    $("#tagInput").width(total - tagbox).val("").focus();
+}
+
+$(".tagsbox").on("click", ".closeicon", function() {
+    tagInputResize();
+    $(this).closest("span").remove();
+});
+// 绑定时间插件
+// $('#artile_dd').pickadate();
+jeDate({
+        dateCell: "#dateinfo",
+        format: "YYYY-MM-DD hh:mm:ss",
+        isinitVal: true,
+        isTime: true, //isClear:false,
+        minDate: "2014-09-19 00:00:00",
+        okfun: function(val) {
+            alert(val)
+        }
+    }) // 发布文章按钮
+
+// 勾选榜单后
+$("#bangdan").bind('change', function() {
+    if ($(this).prop("checked")) {
+        $("#yanse").show();
+    } else {
+        $("#yanse").hide();
+    }
+});
+// 勾选精选后
+// $("#jingxuan").bind('change',function(){
+// 	if($(this).prop("checked")){
+// 		$(".tagsbox").append('<span style="margin-left:2px;margin-top:4px;" class="lab-tag selectedTag" data-type="0">精选'+
+// 								'<i class="fa fa-close closeicon"></i>'+
+// 						    '</span>');
+// 		$("#tagInput").width($("#tagInput").width()-$(".tagsbox").width()).val("").focus();
+// 	}
+// 	else{
+// 		$(".tagsbox").find(".selectedTag").remove();
+// 	}
+// });
+</script>

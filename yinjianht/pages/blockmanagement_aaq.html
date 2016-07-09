@@ -1,0 +1,55 @@
+<div class="bmi-header">
+		<i class="fa fa-cogs fa-2x"></i>
+		<span style="font-size:28px;font-weight:400;">&nbsp;模块管理－问答</span>
+	</div>
+	<!-- <div style="margin-left:2%;margin-top:20px;">
+		<input type="checkbox" id="xuanze" checked />&nbsp;勾选显示模块
+	</div> -->
+	<volist name='code_block' id='vo'>
+	<div class="bmi-box" style="margin-top:20px;">
+		<div class="bmi-name">自定义代码模块{$vo.index}</div>
+		<div class="bmi-btn"  data-id="{$vo.index}">确认</div>
+	</div>
+	<div class="bmi-text">
+		<textarea class="bmi-word ui-textarea" placeholder="请输入您要自定义的代码">{$vo.value}</textarea>
+	</div>
+	</volist>
+
+	
+
+	
+
+	<script type="text/javascript">
+		$(".bmi-btn").click(function(){
+			var zhi;
+			if($('#xuanze').prop("checked")==true){
+				zhi=1;
+			}
+			else{
+				zhi=0;
+			}
+			$.ajax({
+			    url:"__ROOT__/codeapi",
+			    type:"POST",
+			    data:{
+			        "page":4,
+			        "index":$(this).attr("data-id"),
+			        "key":1,
+			        "value":$(this).parent().next().children().val()
+			    },
+			    success: function(data){
+			        switch(data.state){
+                        case "0":
+                        alert(data.detail);
+                        break;
+                        default: alert(data.detail);break;
+                    }
+			    },
+			    error: function(){
+			            
+			    }
+
+    		});
+		})
+	</script>
+

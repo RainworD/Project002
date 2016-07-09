@@ -1,0 +1,133 @@
+
+	<div class="bot-header">
+		<i class="fa fa-share-alt fa-2x"></i>
+		<span style="font-size:28px;font-weight:400;">&nbsp;底部超级链接管理</span>
+	</div>
+	<volist name='setting' id='vo'>
+	
+	<div class="bot-box" style="float:left">
+		<div class="bot-title" style="auto">中文描述：{$vo.value}</div>
+		<div class="bot-title">顺序：{$vo.orders}</div>
+		
+		<div class="bot-edi bianji" data-value="{$vo.value}" data-order="{$vo.orders}" data-text="{$vo.text}">编辑</div>
+		<div class="bot-del shanchu" data-value="{$vo.value}" data-order="{$vo.orders}" data-text="{$vo.text}">删除</div>
+	</div>
+	
+	</volist>
+	<div class="bot-box" style="float:left">
+		<div class="bot-title">中文描述：</div>
+		<div class="bot-title">顺序：</div>
+		
+		<div class="bot-edi2" id="bot-tianjia">编辑</div>
+		
+	</div>
+	<div class="bot-box2" style="height:auto;">
+	<div class="bot-fanhui">返回</div>
+	<div class="bot-h">编辑页</div>
+	
+	<div class="bot-input">
+		<div class="bot-word">中文描述</div>
+		<input id="zhongwenmiaoshu" type="text" class="nr ui-input" placeholder="请输入标题">
+	</div>
+	
+	<div class="bot-input">
+		<div class="bot-word">排序</div>
+		<select id="paixu">
+			<option>0</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+			<option>6</option>
+			<option>7</option>
+			<option>8</option>
+		</select>
+		<!-- <input type="text" class="nr" placeholder="请输入发布人"> -->
+	</div>
+	<div class="ar-input" style="height:auto">
+		<div class="ar-word">正文</div>
+		<script id="editor" type="text/plain" style="height: 300px; margin-top:5px;"></script>
+	</div>
+	<div class="fabu">发布</div>
+    </div>
+
+    <script type="text/javascript">
+        UE.delEditor('editor');
+        var ue = UE.getEditor('editor');
+    	$(".bot-edi").bind("click",function(){
+    		$(".bot-box").hide();
+    		$(".bot-box2").show();
+    		$("#zhongwenmiaoshu").val($(this).attr("data-value"));
+    		$("#paixu").val($(this).attr("data-order"));
+    		ue.setContent($(this).attr("data-text"));
+    	});
+
+    	$(".bot-edi2").click(function(){
+    		$(".bot-box").hide();
+    		$(".bot-box2").show();
+    		
+    	})
+
+    	$(".bot-fanhui").click(function(){
+    		window.location.reload();
+    	})
+
+    	$(".fabu").click(function(){
+    		if($("#zhongwenmiaoshu").val()==""){alert("中文描述不能为空")}
+    		if(ue.getContent()==""){alert("正文内容不能为空")}
+    			else{
+    		$.ajax({
+			    url:"__ROOT__/settingapi",
+			    type:"POST",
+			    data:{
+			        "value":$("#zhongwenmiaoshu").val(),
+			        "text":ue.getContent(),
+			        "orders":$("#paixu").val(),
+			        "key":0
+			    },
+			    success: function(data){
+			        switch(data.state){
+                        case "0":
+	                        alert(data.detail);
+							window.location.reload();
+                        break;
+                        default: alert(data.detail);break;
+                    }
+			    },
+			    error: function(){
+			            
+			    }
+
+    });}
+    		
+    	})
+
+    	$(".shanchu").click(function(){
+    		$.ajax({
+			    url:"__ROOT__/settingapi",
+			    type:"POST",
+			    data:{
+			        "value":$(this).attr("data-value"),
+			        
+			        "orders":$(this).attr("data-order"),
+			        "key":1
+			    },
+			    success: function(data){
+			        switch(data.state){
+                        case "0":
+                        alert(data.detail);
+						loadContent("bottom_management.html");
+                        break;
+                        default: 
+                        loadContent("bottom_management.html");alert(data.detail);break;
+                    }
+			    },
+			    error: function(){
+			            
+			    }
+
+    });
+    	})
+
+    </script>

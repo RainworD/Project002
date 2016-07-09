@@ -1,0 +1,71 @@
+
+	<div class="au-header">
+		<i class="fa fa-users fa-2x"></i>
+		<span style="font-size:28px;font-weight:400;">&nbsp;用户帐号管理</span>
+	</div>
+	
+	<!-- <div class="au-box"></div> -->
+	<div class="au-search">
+		<div class="icon_lqy">
+			<i class="fa fa-reply"></i>返回列表
+		</div>
+		<div style="float:right;height:30px;">
+			<span>Search:</span><input type="text" style="width:250px;height:30px;border:1px solid #ccc;margin-left:10px;" class="ui-input" id="search" placeholder="请输入用户名或ID">
+			<i class="fa fa-search" aria-hidden="true" style="margin-left:-30px;cursor:pointer;width:20px;height:20px;" id="searching"></i>
+		</div>
+	</div>
+	<table  class="au-table" border="1">
+		<thead>
+			<tr style="font-size:14px;" id="tianjia">
+				<td>用户ID</td>
+				<td>GUID</td>
+				<td style="width:150px;">用户名</td>
+				<td row="2">用户头像</td>
+				<td>所属单位</td>
+				<!-- <td>操作</td> -->	
+			</tr>
+		</thead>
+		<tbody>
+			<!-- <tr class="dianjiyc" style="background-color:#f9f9f9;">
+				<td></td>
+				<td style="width:150px;"></td>
+				<td><img class="userimg"></td>
+				<td></td>
+				<td>
+					<div class="y">
+						<i class="fa fa-edit" title="编辑" style="color:white;margin-left:2.5px;"></i>
+					</div>
+					<div class="x">
+						<i class="fa fa-remove" title="删除" style="color:white;margin-left:2.5px;"></i>
+					</div>
+				</td>	
+			</tr> -->
+		</tbody>
+		
+	</table>
+	<div class="bottom-search" >
+		
+	</div>
+	<script type="text/javascript">
+		$.get('/home/admin/client', function(data) {
+			for (var i = 0; i < data.length; i++) {
+				var usertable=$('<tr class="dianjiyc" style="background-color:#f9f9f9;">'+
+									'<td></td>'+
+									'<td></td>'+
+									'<td style="width:150px;"></td>'+
+									'<td><img class="userimg"></td>'+
+									'<td></td>'+
+								'</tr>');
+				usertable.children('td').eq(0).text(data[i].id);
+				usertable.children('td').eq(1).text(data[i].guid);
+				usertable.children('td').eq(2).text(data[i].nick);
+				usertable.children('td').eq(3).children('.userimg').attr("src",data[i].avatar);
+				usertable.children('td').eq(4).text(data[i].section);
+				$("tbody").append(usertable);
+			}
+		});
+		$(document).unbind('click');
+		TablePage(".au-table",10);
+		$("tr:odd").css({background: "#f9f9f9"}); 
+        $("tr:even").css({background: "white"}); 
+	</script>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="__PUBLIC__/admin/public/css/reset.css">
+    
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/public/css/index.css">
+    <script src="__PUBLIC__/admin/public/js/jquery-1.11.1.min.js"></script>
+     <script src="__PUBLIC__/admin/public/js/public.js"></script>
+     <script type="text/javascript" charset="utf-8" src="ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="lang/zh-cn/zh-cn.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/public/css/Font-Awesome-4.4.0/css/font-awesome.min.css">
+    <script src="__PUBLIC__/admin/public/js/colpick.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="__PUBLIC__/admin/public/css/colpick.css" type="text/css"/>
+   
+</head>
+
+<body>
+	
+
+	
+		
+	<div class="cont">
+     
+      <div class="header">
+           <div class="brand">
+          
+          <div class="heart"><i class="fa fa-heart-o fa-lg"></i></div>
+          <span style="font-size:20px;margin-left:10px;">Flatty</span>
+          
+            </div>
+
+            <div class="button01">
+              <i class="fa fa-bars"></i>
+            </div>
+
+             <div class="shuru">
+              <input class="search" type="text" placeholder="Search...">
+              <i class="fa fa-search" style="position:relative;top:-27px;left:170px;color:#F34541"></i>
+             </div>
+            
+            <div class="client" id="client">
+              <img src="__PUBLIC__/admin/public/images/avatar.jpg" class="personimg">
+              <div class="name">&nbsp;&nbsp;Mila Kunis</div>
+              <div class="xiala"><i class="fa fa-sort-desc" style="color:white"></i></div>
+            </div>
+
+            <div>
+              <!-- <i class="fa fa-caret-up shangbiao" ></i> -->
+              <ul class="dropdown-menu">
+              <li><i class="fa fa-user"></i>&nbsp;Profile</li>
+              <li><i class="fa fa-cog"></i>&nbsp;Settings</li>
+              <li class="fengexian"></li>
+              <li style="margin-top:5px;"><i class="fa fa-sign-out"></i>&nbsp;Sign Out</li>
+                
+              </ul>
+         </div>
+        </div>
+   
+   <div class="left">
+    <ul class="leftmenu" id="zh">
+      
+      <li id="da" class="xl">
+        <a href="#/summary"><div><i class="fa fa-tachometer fa-lg" ></i>
+        <span id="w01">概况</span></div></a>
+      </li>
+
+      <li id="bi" class="xl">
+        <a href="#/article"><div><i class="fa fa-star fa-lg" ></i>
+        <span style="margin-left:18px;" id="w02">发表文章</span></div></a>
+      </li>
+      
+      <li id="form" class="xl">
+        
+          <i class="fa fa-pencil-square-o fa-lg" ></i>
+            <span>用户管理</span>
+            <i class="fa fa-angle-down fa-lg" style="float:right;margin-top:13px;" id="xiala01"></i>
+        
+            </li>
+            <ul class="form" id="fo">
+                  <li><a href="#/comment"><div><i class="fa fa-caret-right fa-lg" ></i><span>用户评论</span></div></a></li>
+                  <li><a href="#/question"><div><i class="fa fa-caret-right fa-lg" ></i><span>用户提问</span></div></a></li>
+                  <li><a href="#/answer"><div><i class="fa fa-caret-right fa-lg" ></i><span>用户回答</span></div></a></li>
+                  <li><a href="#/Authority-management"><div><i class="fa fa-caret-right fa-lg" ></i><span>用户帐号管理</span></div></a></li>
+            </ul>
+      
+      <li style="padding-left:13px;" id="eiw" class="xl">
+        <i class="fa fa-tint fa-lg" ></i>
+        <span style="margin-left:20px;">图片管理</span>
+        <i class="fa fa-angle-down fa-lg" style="float:right;margin-top:13px;" id="xiala02"></i>
+      </li>
+      <ul class="form" id="ei">
+                  <li><a href="#/image-management"><div><i class="fa fa-caret-right fa-lg" ></i><span>轮播图管理</span></div></a></li>
+                  <!-- <li><i class="fa fa-caret-right fa-lg" ></i><span>右侧</span></li> -->
+                  
+            </ul>
+
+      <li id="com" class="xl">
+        <i class="fa fa-cogs fa-lg" ></i>
+        <span>模块管理</span>
+        <i class="fa fa-angle-down fa-lg" style="float:right;margin-top:13px;" id="xiala03"></i>
+      </li>
+      <ul class="form" id="co">
+                  <li><a href="#/blockmanagement-index"><div><i class="fa fa-caret-right fa-lg" ></i><span>首页</span></div></a></li>
+                  <li><a href="#/blockmanagement-selected"><div><i class="fa fa-caret-right fa-lg" ></i><span>精选</span></div></a></li>
+                  
+      </ul>
+
+      <li class="xl">
+        <a href="#/bottom-management"><div><i class="fa fa-tachometer fa-lg" ></i>
+        <span>底部超级链接管理</span></div></a>
+      </li>
+
+      <li class="xl">
+        <a href="#/college-data"><div><i class="fa fa-tachometer fa-lg" ></i>
+        <span>高校数据录入</span></div></a>
+      </li>
+
+      <li class="xl">
+        <a href="#/label-management"><div><i class="fa fa-tachometer fa-lg" ></i>
+        <span>标签库管理</span></div></a>
+      </li>
+    </ul>
+    </div>
+     
+     <div class="content1">
+     <div class="content">
+     </div>
+     </div>
+  </div>
+
+
+	<script type="text/javascript">
+      
+       var h =  $(window).height()-$(".header").height();
+       $(".content").css("height",h+"px");
+       $(".left").css("max-height",h+"px");
+      $(".client").click(function(){
+      	if($(".dropdown-menu").is(":hidden")){
+      		$(".dropdown-menu").show();}
+      	else{
+      		$(".dropdown-menu").hide();
+      	}
+
+      	
+      })
+
+      // $("#form").click(function(){
+      // 	$("#fo").slideToggle();
+      // })
+      // $("#eiw").click(function(){
+      // 	$("#ei").slideToggle();
+      // })
+      // $("#com").click(function(){
+      // 	$("#co").slideToggle();
+      // })
+      
+      $(".xl").click(function(){
+      	if($("#zh").is(".leftmenu.lixiao")){
+            
+      	}
+      	else{$(this).next("ul").slideToggle();}
+      });
+
+        
+
+      $(".button01").click(function(){
+      	
+      	$(".leftmenu>li span").toggle();
+      	$(".xl").next("ul").hide();
+      	// $(".leftmenu>ul").toggleClass("list")
+      	$("#xiala01").toggle();
+      	$("#xiala02").toggle();
+      	$("#xiala03").toggle();
+      	$("#xiala04").toggle();
+      	$("#xiala05").toggle();
+      	$("#xiala06").toggle();
+      	$("#zh").toggleClass("lixiao");
+      	$(".cont").toggleClass("cont1");
+        $(".left").toggleClass("left1");
+        // $("#form").unbind("click");
+      })
+
+      // $(".leftmenu.lixiao>li").hover(
+      // 	function(){
+      //     $(".leftmenu.lixiao>ul").addClass("list");
+
+      // 	},
+      // 	function(){
+      //     $(".leftmenu.lixiao>ul").removeClass("list");
+
+      // 	})
+       function isSmall(){
+       		return $("#zh").hasClass("lixiao")&&$("#zh").hasClass("leftmenu");
+       }
+     
+
+        $(".xl").hover(
+        	function(){
+      	       
+               isSmall()&&$(this).find("span").show();    
+
+            },
+            
+            function(){
+      	       
+      	         isSmall()&&$(this).find("span").hide();
+            }
+        	)
+
+       	$("#form,#fo").hover(
+       		function(){
+       		   isSmall()&&$("#form").addClass("hhh");
+      	       isSmall()&&$("#fo").addClass("list");
+      	       isSmall()&&$("#fo").show();
+               isSmall()&&$("#xiala01").show();
+               isSmall()&&$("#form>span").show(); 
+
+
+            },
+            
+            function(){
+               isSmall()&&$("#form").removeClass("hhh");
+               isSmall()&&$("#fo").hide();
+      	       isSmall()&&$("#fo").removeClass("list");
+      	       isSmall()&&$("#xiala01").hide(); 
+      	       isSmall()&&$("#form>span").hide();
+            }
+            );
+       	
+        $("#eiw,#ei").hover(
+        	function(){
+        	isSmall()&&$("#eiw").addClass("hhh");
+      	    isSmall()&&$("#ei").addClass("list");
+      	    isSmall()&&$("#ei").show();
+      	    isSmall()&&$("#xiala02").show();
+      	    isSmall()&&$("#eiw>span").show();
+            },
+            function(){
+            isSmall()&&$("#eiw").removeClass("hhh");
+      	    isSmall()&&$("#ei").removeClass("list");
+      	    isSmall()&&$("#ei").hide();
+      	    isSmall()&&$("#xiala02").hide(); 
+      	    isSmall()&&$("#eiw>span").hide();
+            });
+        $("#com,#co").hover(
+         	function(){
+      	    isSmall()&&$("#com").addClass("hhh");
+      	    isSmall()&&$("#co").addClass("list");
+      	    isSmall()&&$("#co").show();
+      	    isSmall()&&$("#xiala03").show();
+      	    isSmall()&&$("#com>span").show();
+            },
+            function(){
+      	    isSmall()&&$("#com").removeClass("hhh");
+      	    isSmall()&&$("#co").removeClass("list");
+      	    isSmall()&&$("#co").hide();
+      	    isSmall()&&$("#xiala03").hide(); 
+      	    isSmall()&&$("#com>span").hide();
+            }
+            );
+        // $(".leftmenu.lixiao>li").hover(
+        // 	function(){
+        // 		isSmall()&&$(".leftmenu.lixiao>li span").show();
+        // 	},
+        // 	function(){
+        // 		isSmall()&&$(".leftmenu.lixiao>li span").hide();
+        // 	});
+
+          
+            Router.route('/summary', function () { 
+               loadContent("summary.html"); 
+            }); 
+
+            Router.route('/article', function () { 
+             loadContent("article.html"); 
+            }); 
+
+            Router.route('/comment', function () { 
+             loadContent("comment.html"); 
+            });
+
+            Router.route('/question', function () { 
+             loadContent("question.html"); 
+            });
+
+            Router.route('/answer', function () { 
+             loadContent("answer.html"); 
+            });
+
+            Router.route('/Authority-management', function () { 
+             loadContent("Authority-management.html"); 
+            });
+
+            Router.route('/image-management', function () { 
+             loadContent("image-management.html"); 
+            });
+
+            Router.route('/blockmanagement-index', function () { 
+             loadContent("blockmanagement-index.html"); 
+            });
+
+            Router.route('/blockmanagement-selected', function () { 
+             loadContent("blockmanagement-selected.html"); 
+            });
+
+            Router.route('/bottom-management', function () { 
+             loadContent("bottom-management.html"); 
+            });
+
+            Router.route('/college-data', function () { 
+             loadContent("college-data.html"); 
+            });
+
+            Router.route('/label-management', function () { 
+             loadContent("label-management.html"); 
+            });
+
+
+           
+          
+          
+         
+	</script>
+</body>
+</html>

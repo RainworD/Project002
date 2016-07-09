@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../common/css/reset.css">
+    <link rel="stylesheet" href="../common/css/ui.css">
+    <link rel="stylesheet" type="text/css" href="../common/css/index.css">
+    <link rel="stylesheet" type="text/css" href="../common/css/Font-Awesome-4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../common/css/colpick.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/classic.css">
+    <link rel="stylesheet" type="text/css" href="../common/css/classic.date.css">
+    <script src="../common/js/jquery-1.11.1.min.js"></script>
+    <script src="../common/js/jedate.js"></script>
+    <script src="../common/js/public.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.all.min.js">
+    </script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script src="../common/js/colpick.js" type="text/javascript"></script>
+    <script src="../common/js/page.js"></script>
+    <script src="../common/js/legacy.js"></script>
+    <script src="../common/js/picker.js"></script>
+    <script src="../common/js/picker.date.js"></script>
+</head>
+
+<body>
+    <div class="cont">
+        <div class="header">
+            <div class="brand">
+                <div class="heart"><i class="fa fa-heart-o fa-lg"></i></div>
+                <span style="font-size:18px;margin-left:10px;">银监青年</span>
+            </div>
+            <div class="button01">
+                <i class="fa fa-bars"></i>
+            </div>
+            <!-- <div class="shuru">
+              <input class="search" type="text" placeholder="Search...">
+              <i class="fa fa-search" style="position:relative;top:-27px;left:170px;color:#F34541"></i>
+             </div> -->
+            <div class="client" id="client">
+                <img src="../common/images/tompson.jpg" class="personimg">
+                <div class="name">&nbsp;&nbsp;Simpson</div>
+                <div class="xiala"><i class="fa fa-sort-desc" style="color:white"></i></div>
+            </div>
+            <div>
+                <!-- <i class="fa fa-caret-up shangbiao" ></i> -->
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#/managementor.html">
+                            <div><i class="fa fa-user"></i>&nbsp;修改密码</div>
+                        </a>
+                    </li>
+                    <li class="fengexian" style="height:1px;"></li>
+                    <li style="margin-top:5px;" id="logout"><i class="fa fa-sign-out"></i>&nbsp;登出</li>
+                </ul>
+            </div>
+        </div>
+        <div class="left">
+            <ul class="leftmenu" id="zh">
+                <!--     <if condition="$state eq 0"> -->
+                <li id="bi" class="xl">
+                    <i class="fa fa-star fa-lg"></i>
+                    <span style="margin-left:18px;" id="w2">文章管理</span>
+                    <i class="fa fa-angle-down fa-lg" style="float:right;margin-top:13px;" id="xiala01"></i>
+                </li>
+                <ul class="form" id="fo">
+                    <li>
+                        <a href="#/article.html">
+                            <div><i class="fa fa-caret-right fa-lg"></i><span>发布文章</span></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/waiting_article.html">
+                            <div><i class="fa fa-caret-right fa-lg"></i><span>待审核文章</span></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/finished_article.html">
+                            <div><i class="fa fa-caret-right fa-lg"></i><span>已发布文章</span></div>
+                        </a>
+                    </li>
+                </ul>
+                <li id="form" class="xl">
+                    <i class="fa fa-users fa-lg"></i>
+                    <span>用户管理</span>
+                    <i class="fa fa-angle-down fa-lg" style="float:right;margin-top:13px;" id="xiala06"></i>
+                </li>
+                <ul class="form" id="guanli">
+                    <li>
+                        <a href="#/comment.html">
+                            <div><i class="fa fa-caret-right fa-lg"></i><span>用户评论</span></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/Authority_management.html">
+                            <div><i class="fa fa-caret-right fa-lg"></i><span>用户帐号管理</span></div>
+                        </a>
+                    </li>
+                </ul>
+                <li style="padding-left:13px;" id="eiw" class="xl">
+                    <i class="fa fa-picture-o fa-lg" style="margin-left:-3px;"></i>
+                    <span style="margin-left:15px;">图片管理</span>
+                    <i class="fa fa-angle-down fa-lg" style="float:right;margin-top:13px;" id="xiala02"></i>
+                </li>
+                    <li id="form" class="xl">
+                        <a href="#/vote_management.html">
+                        <i class="fa fa-users fa-lg"></i>
+                        <span>投票管理</span>
+                        <i class="fa fa-angle-down fa-lg" style="float:right;margin-top:13px;" id="xiala06"></i>
+                        </a>
+                    </li>
+                    <li id="com" class="xl">
+                        <i class="fa fa-cogs fa-lg"></i>
+                        <span>栏目管理</span>
+                        <i class="fa fa-angle-down fa-lg" style="float:right;margin-top:13px;" id="xiala03"></i>
+                    </li>
+                    <ul class="form" id="column">
+                        <li>
+                            <a href="#/unit_management.html">
+                                <div><i class="fa fa-caret-right fa-lg"></i><span>单位管理</span></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/column_management.html">
+                                <div><i class="fa fa-caret-right fa-lg"></i><span>栏目管理</span></div>
+                            </a>
+                        </li>
+                    </ul>
+                    <li id="form" class="xl">
+                        <a href="#/hot_word.html">
+                        <i class="fa fa-users fa-lg"></i>
+                        <span>热词管理</span>
+                        <i class="fa fa-angle-down fa-lg" style="float:right;margin-top:13px;"></i>
+                        </a>
+                    </li>
+                    <!-- <li id="com" class="xl">
+                        <i class="fa fa-cogs fa-lg"></i>
+                        <span>模块管理</span>
+                        <i class="fa fa-angle-down fa-lg" style="float:right;margin-top:13px;" id="xiala03"></i>
+                    </li>
+                    <ul class="form" id="column">
+                        <li>
+                            <a href="#/blockmanagement_index.html">
+                                <div><i class="fa fa-caret-right fa-lg"></i><span>图文文章</span></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/blockmanagement_selected.html">
+                                <div><i class="fa fa-caret-right fa-lg"></i><span>普通文章</span></div>
+                            </a>
+                        </li>
+                    </ul> -->
+                    <!--     </if> -->
+                </ul>
+        </div>
+        <div class="content1">
+            <div class="content"></div>
+        </div>
+        <script type="text/javascript">
+        $("#logout").click(function() {
+            $.ajax({
+                url: "/home/admin/logoutapi",
+                type: "POST",
+                data: {},
+                success: function(data) {
+                    switch (data.state) {
+                        case "0":
+
+                            location.href = "sign_in.html";
+                            break;
+                        default:
+                            alert(data.detail);
+                            break;
+                    }
+                },
+                error: function() {
+
+                }
+
+            });
+        })
+        </script>
+</body>
+
+</html>
