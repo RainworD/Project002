@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Search</title>	
+	<link rel="stylesheet" type="text/css" href="../source/font/flaticon.css">
+	<link rel="stylesheet" type="text/css" href="../source/flaticon/flaticon.css">
+	<link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/reset.css">
+	<link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/search.css">
+	<script type="text/javascript" src="../source/js/jquery-1.7.2.js"></script>
+</head>
+<body>
+	<!-- <div class="searchTitle">
+		<a href="index.html">
+            <p class="backBtn">
+            	<i class="flaticon-back backfont"></i>
+            </p>
+        </a>
+        <p class="bookTitle">搜索框</p>
+	</div> -->
+	<div class="searchContainer">
+		<div class="searchHeader">
+			<div class="searchBar">
+				<p class="searchIcon">
+					<i class="flaticon-search-1" id="searching"></i>
+				</p>
+				<input class="searchInput" id="search" placeholder="请输入关键字"></input>
+			</div>
+		</div>
+		<div class="searchContent">
+			<div class="searchHistory">
+				<!-- <div class="searchHistoryTitle">
+					<p class="readHistory">阅读历史</p>
+					<p class="readMore">查看更多</p>
+				</div> -->
+				<!-- <div class="searchHistoryContent">
+					<p class="searchHistoryPara">谷歌今日单挑整个世界</p>
+					<p class="searchHistoryPara">家属围殴医生致死</p>
+					<p class="searchHistoryPara paraHidden">用户阅读历史3</p>
+					<p class="searchHistoryPara paraHidden">用户阅读历史4</p>
+					<p class="readLess">收起更多</p>
+				</div> -->
+				<div class="searchHistoryTitle">
+					<p class="readHistory">近期热词</p>
+				</div>
+				<div class="hotList">
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<script type="text/javascript">
+		$.get('/home/index/hotwords', function(data) {
+			for (var i = 0; i < data.length; i++) {
+				var id=data[i].id;
+				var hotwords=$('<div class="hotWordsBox">'+
+								'<p class="hotWords"></p>'+
+							'</div>');
+				hotwords.find(".hotWords").text(data[i].hotword);
+				$(".hotList").append(hotwords);
+			}
+		});
+	</script>
+	<script type="text/javascript">
+		$(".readMore").bind('click',function(){
+			$(".paraHidden").show();
+			$(".readLess").show();
+		})
+		$(".readLess").bind('click',function(){
+			$(".paraHidden").hide();
+			$(".readLess").hide();
+		})
+	</script>
+	<script type="text/javascript">
+		$("#searching ").on("click ",function() {
+			$(".yincang ").hide();
+			$.post('/home/index/searchapi', {key:"通知公告",number:"10" }, function(data, textStatus, xhr) {
+				 switch(data.state){
+	                    case "0 ":
+	                        $(".bottom-search ").hide();
+	                    	$(".dianjiyc ").hide();
+	                    	var order=data.order;
+	                    	for (var i = 0; i <order.length; i++){
+	                    var orderhtml=$('<tr class="yincang ">'+
+				'<td><a href="index.html?p='+order[i].id+' " target="_blank ">'+
+				order[i].title+
+				'</a></td>'+
+				'<td>'+
+				order[i].function+
+				'</td >'+
+				'<td >'+
+				order[i].like_count+
+				'</td>'+
+				'<td >'+
+				order[i].comment_count+
+				'</td>'+
+				'<td>'+
+				order[i].photo+
+				'</td>'+
+				'<td>'+
+				order[i].photo_photo+
+				'</td>'+
+				'<td>'+
+				order[i].photo_text+
+				'</td>'+
+				'<td>'+
+				
+				'<div class="y " data-id='+order[i].id+'>'+
+				'<i class="fa fa-pencil " style="color:white;margin-left:4.5px; ">'+
+				'</i>'+
+				'</div>'+
+				
+				
+				'<div class="x " data-id='+order[i].id+'>'+
+				'<i class="fa fa-remove " style="color:white;margin-left:4.5px; ">'+
+				'</i>'+
+				'</div>'+
+			    
+				
+			    '</td>'+	
+		        '</tr>')
+	                    $("tr:odd ").css({background: "#f9f9f9 "}); 
+	    				$("tr:even ").css({background: "white "}); 
+	                    $("#tianjia ").after(orderhtml);
+	                    	}
+	                    break;
+	                    default: 
+	                    // alert(data.detail);
+	                    
+	                    break;
+	                }
+			    })
+			});
+			// $.ajax({
+			//     url:"/home/index/searchapi",
+			//     type:"POST ",
+			//     data:{
+			//         "key ":$("#search ").val(),
+			//         "number":10
+			//     },
+			//     success: function(data){
+			//         switch(data.state){
+	  //                   case "0 ":
+	  //                       $(".bottom-search ").hide();
+	  //                   	$(".dianjiyc ").hide();
+	  //                   	var order=data.order;
+	  //                   	for (var i = 0; i <order.length; i++){
+	  //                   var orderhtml=$('<tr class="yincang ">'+
+			// 	'<td><a href="index.html?p='+order[i].id+' " target="_blank ">'+
+			// 	order[i].title+
+			// 	'</a></td>'+
+			// 	'<td>'+
+			// 	order[i].function+
+			// 	'</td >'+
+			// 	'<td >'+
+			// 	order[i].like_count+
+			// 	'</td>'+
+			// 	'<td >'+
+			// 	order[i].comment_count+
+			// 	'</td>'+
+			// 	'<td>'+
+			// 	order[i].photo+
+			// 	'</td>'+
+			// 	'<td>'+
+			// 	order[i].photo_photo+
+			// 	'</td>'+
+			// 	'<td>'+
+			// 	order[i].photo_text+
+			// 	'</td>'+
+			// 	'<td>'+
+				
+			// 	'<div class="y " data-id='+order[i].id+'>'+
+			// 	'<i class="fa fa-pencil " style="color:white;margin-left:4.5px; ">'+
+			// 	'</i>'+
+			// 	'</div>'+
+				
+				
+			// 	'<div class="x " data-id='+order[i].id+'>'+
+			// 	'<i class="fa fa-remove " style="color:white;margin-left:4.5px; ">'+
+			// 	'</i>'+
+			// 	'</div>'+
+			    
+				
+			//     '</td>'+	
+		 //        '</tr>')
+	  //                   $("tr:odd ").css({background: "#f9f9f9 "}); 
+	  //   				$("tr:even ").css({background: "white "}); 
+	  //                   $("#tianjia ").after(orderhtml);
+	  //                   	}
+	  //                   break;
+	  //                   default: 
+	  //                   // alert(data.detail);
+	                    
+	  //                   break;
+	  //               }
+			//     },
+			//     error: function(){
+			            
+			//     }
+
+			// });
+	</script>
+
+</body>
+</html>

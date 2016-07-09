@@ -1,0 +1,92 @@
+.like {
+  float: left;
+  padding-right: 10px;
+}
+.like .likefont {
+  font-size: 16px;
+  color: red;
+}
+.reply {
+  float: left;
+}
+.reply .editfont {
+  font-size: 16px;
+}
+.after:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+.item-title {
+  font-size: 14px;
+  color: #757575;
+  font-weight: 600px;
+}
+.bookHeader {
+  position: relative;
+  height: 50px;
+  background-color: #ccc;
+}
+.bookHeader .backlink {
+  display: block;
+  padding: 0 10px;
+  float: left;
+}
+.bookHeader .backlink .backBtn {
+  height: 50px;
+  font-size: 25px;
+  line-height: 50px;
+  color: #fff;
+}
+.bookHeader [class^="flaticon-"]:before,
+.bookHeader [class*=" flaticon-"]:before,
+.bookHeader [class^="flaticon-"]:after,
+.bookHeader [class*=" flaticon-"]:after {
+  margin-left: 0;
+}
+.bookHeader .searchBar {
+  float: left;
+  background-color: #fff;
+  height: 40px;
+  border-radius: 8px;
+  margin-top: 5px;
+  padding-right: 40px;
+}
+.bookHeader .searchBar .searchIcon {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  color: #bbb;
+  padding: 0 10px;
+}
+.bookHeader .searchBar .searchInput {
+  border: none;
+  float: left;
+  height: 40px;
+  display: block;
+  font-size: 16px;
+  color: #555;
+}
+.bookHeader .searchBar:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+.bookHeader .searchBtn {
+  padding: 0 10px;
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  color: #fff;
+}
+.bookHeader .blue {
+  color: #70a0e2;
+}
+.bookHeader:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+/*# sourceMappingURL=searchColumn.css.map */

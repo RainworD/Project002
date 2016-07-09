@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>订阅栏目</title>
+    <link rel="stylesheet" type="text/css" href="../source/font/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="../source/flaticon/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="../source/css/mui.min.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/reset.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/book.css">
+    <script type="text/javascript" src="../source/js/jquery-1.7.2.js"></script>
+    <script src="../source/js/mui.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+<!--     <div class="bookHeader">
+        <a href="index.html">
+            <p class="backBtn"><i class="flaticon-back backfont"></i></p>
+        </a>
+        <p class="bookTitle">订阅栏目</p>
+    </div> -->
+    <div class="bookContainer">
+        <div class="bookContent">
+            <a href="column.html" class="bookMore">
+                <p class="bookMoreBtn">
+                    <i class="flaticon-plus"></i>&nbsp;&nbsp;订阅更多栏目
+                </p>
+            </a>
+            <ul id="OA_task_1" class="mui-table-view columnList">
+            </ul>
+        </div>
+        <script type="text/javascript">
+        $.get('/home/index/userblank', function(data) {
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                var booked=$('<li class="mui-table-view-cell mui-transitioning slbli slbli1">'+
+                            '<div class="mui-slider-right mui-disabled">'+
+                                '<a class="mui-btn mui-btn-red slbdel" style="transform: translate(0px, 0px);">删除</a>'+
+                            '</div>'+
+                            '<div class="mui-slider-handle slblip" style="transform: translate(0px, 0px);">'+
+                                '<img class="collogo">'+
+                                '<div class="rightItem">'+
+                                    '<p class="followColumn"></p>'+
+                                    '<p class="followunit"></p>'+
+                                '</div>'+
+                                '<p class="followDate"></p>'+
+                            '</div>'+
+                        '</li>');
+                var date=data[i].in_time;
+                var column=data[i].theme;
+                booked.find(".followunit").text(data[i].nick);
+                booked.find(".collogo").attr("src",data[i].logo);
+                booked.find(".followColumn").text(column);
+                booked.find(".followDate").text(date);
+                $(".columnList").append(booked);
+            }
+        });
+        	$(".slbdel").bind("click",function(){
+				$(this).parent().parent().remove();
+	        })
+        </script>
+</body>
+</html>

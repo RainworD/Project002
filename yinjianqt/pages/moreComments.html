@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>更多评论</title>
+    <link rel="stylesheet" type="text/css" href="../source/font/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="../source/flaticon/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="../source/css/mui.min.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/reset.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/comments.css?201606281300">
+    <script type="text/javascript" src="../source/js/jquery-1.7.2.js"></script>
+</head>
+
+<body>
+    <div class="comContainer">
+        <!-- <div class="bookHeader">
+			        <a id="backLink">
+			            <p class="backBtn"><i class="flaticon-back backfont"></i></p>
+			        </a>
+				</div>
+			-->
+        <div class="comHeader">
+            <!-- <div class="headContent">
+				<p class="headPara">评论：&nbsp;300</p>
+			</div> -->
+        </div>
+        <div class="comContent">
+            <div id="pullrefresh" class="mui-content mui-scroll-wrapper refresh">
+                <div class="mui-scroll">
+                    <!--数据列表-->
+                    <ul class="mui-table-view mui-table-view-chevron" id="commentListAll">
+                    </ul>
+                </div>
+            </div>
+            <div class="sendComments">
+                <p class="edit">
+                    <i class="flaticon-edit editFont"></i>
+                    <input class="inputComments" type="text" placeholder="评论">
+                </p>
+                <p class="likeIcon deliver">
+                    发送
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="../source/js/mui.min.js"></script>
+    <script type="text/javascript">
+    // var tapNum=0;
+    // $(".mui-table-view").on('tap',".likeFont",function(){  
+    // 	if(tapNum%2==0){
+    //          		$(this).addClass("red");
+    //          	}
+    //          	else{
+    //          		$(this).removeClass("red");
+    //          	}
+    //          	tapNum++;
+    //          });
+    </script>
+    <script type="text/javascript">
+    var tapNum = 0;
+    var param = window.location.search;
+    var paramsep = param.split(",");
+    var idsep = paramsep[0].split("=");
+    var id = idsep[1];
+    $.post('/home/index/commentcount', {
+        id: id
+    }, function(data, textStatus, xhr) {
+        var count = $('<div class="headContent">' +
+            '<p class="headPara">评论：&nbsp;<span class="commentsNum"></span></p>' +
+            '</div>');
+        count.find('.commentsNum').text(data);
+        $(".comHeader").append(count);
+    });
+    $(".sendComments").on('tap', ".deliver", function() {
+        var commenttxt = $(".inputComments").val();
+        $.post('/home/index/commentapi', {
+            id: id,
+            text: commenttxt
+        }, function(data, textStatus, xhr) {
+            console.log("comments" + data);
+            if (data.state == 0) {
+                alert("发布成功");
+                window.location.reload();
+                $(".inputComments").val("");
+
+            } else {
+                window.location.reload();
+                alert(data.detail);
+            }
+        });
+    });
+    $.post('/home/index/commentlist', {
+        id: id,
+        page: '1',
+        number: '5'
+    }, function(data, textStatus, xhr) {
+        for (var i = 0; i < data.length; i++) {
+            var avatar = data[i].avatar;
+            var commentid = data[i].id;
+            var time = data[i].in_time;
+            var nick = data[i].nick;
+            var text = data[i].text;
+            var count = data[i].count;
+            var comments = $('<li class="mui-table-view-cell commentItems">' +
+                '<div class="CommentItems">' +
+                '<img class="leftItem">' +
+                '<div class="rightItem">' +
+                '<p class="rightPara1 rightPara"></p>' +
+                '<p class="rightPara2 rightPara"></p>' +
+                '<p class="rightPara3 rightPara"></p>' +
+                '</div>' +
+                '<p class="like">' +
+                '<i class="flaticon-heart likeFont"></i>&nbsp;&nbsp;' +
+                '<span class="likeCount"></span>' +
+                '</p>' +
+                '</div>' +
+                '</li>');
+            comments.find(".leftItem").attr("src", avatar);
+            comments.find(".rightPara1").text(nick);
+            comments.find(".rightPara2").text(time);
+            comments.find(".rightPara3").text(text);
+            comments.find(".likeCount").text(count);
+            comments.attr("data-id", commentid);
+            $("#commentListAll").append(comments);
+        }
+        page++;
+    });
+    mui.init({
+        pullRefresh: {
+            container: '#pullrefresh',
+           
+            up: {
+            	height:50,//可选.默认50.触发上拉加载拖动距离
+      			auto:false,
+            	contentnomore:'没有更多数据了',
+                contentrefresh: '正在加载...',
+                callback: pullupRefresh
+            }
+        }
+    });
+    /**
+     * 下拉刷新具体业务实现
+     */
+    // function pulldownRefresh() {
+    //     setTimeout(function() {
+    //         // var tapNum=0;
+    //         // $(".likeFont").on('tap',function(){  
+    //         // if(tapNum%2==0){
+    //         //        			$(this).addClass("red");
+    //         //        		}
+    //         //        		else{
+    //         //        			$(this).removeClass("red");
+    //         //        		}
+    //         //        		tapNum++;
+    //         //        	});
+    //         var table = document.body.querySelector('.mui-table-view');
+    //         var cells = document.body.querySelectorAll('.mui-table-view-cell');
+    //         // var page = "2";
+    //         for (var j = cells.length, len = j + 3; j < len; j++) {
+    //             // mui.ajax({
+    //             //     type: "post",
+    //             //     url: "/home/index/ajaxcommentlist",
+    //             //     data: {
+    //             //         number: '5',
+    //             //         page: page,
+    //             //         id: id
+    //             //     },
+    //             //     success: function(data) {
+    //             //         console.log(data);
+    //             //         for (var i = 0; i < data.length; i++) {
+    //             //             var avatar = data[i].avatar;
+    //             //             var commentid = data[i].id;
+    //             //             var time = data[i].in_time;
+    //             //             var nick = data[i].nick;
+    //             //             var text = data[i].text;
+    //             //             var count = data[i].count;
+    //             //             var li = document.createElement('li');
+    //             //             li.className = 'mui-table-view-cell commentItems';
+    //             //             li.innerHTML = '<div class="CommentItems">' +
+    //             //                 '<img class="leftItem">' +
+    //             //                 '<div class="rightItem">' +
+    //             //                 '<p class="rightPara1 rightPara"></p>' +
+    //             //                 '<p class="rightPara2 rightPara"></p>' +
+    //             //                 '<p class="rightPara3 rightPara"></p>' +
+    //             //                 '</div>' +
+    //             //                 '<p class="like">' +
+    //             //                 '<i class="flaticon-heart likeFont"></i>&nbsp;&nbsp;' +
+    //             //                 '<span class="likeCount"></span>' +
+    //             //                 '</p>' +
+    //             //                 '</div>';
+    //             //             li.firstChild.firstChild.setAttribute('src', avatar);
+    //             //             li.firstChild.firstChild.nextSibling.childNodes[0].innerHTML = nick;
+    //             //             li.firstChild.firstChild.nextSibling.childNodes[1].innerHTML = time;
+    //             //             li.firstChild.firstChild.nextSibling.childNodes[2].innerHTML = text;
+    //             //             li.firstChild.lastChild.lastChild.innerHTML = count;
+    //             //             li.setAttribute("data-id", commentid);
+    //             //             // li.find(".rightPara1").text(nick);
+    //             //             // li.find(".rightPara2").text(time);
+    //             //             // li.find(".rightPara3").text(text);
+    //             //             // li.find(".likeCount").text(count);
+    //             //             // li.attr("data-id",commentid);
+    //             //             // $("#commentListAll").prepend(comments);
+    //             //             table.insertBefore(li, table.firstChild);
+    //             //         }
+    //             //         page++;
+    //             //     }
+    //             // })
+    //         }
+    //         mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+    //     }, 1500);
+    // }
+    var count = 0;
+    /**
+     * 上拉加载具体业务实现
+     */
+    var page = "1";
+    var stop = true;
+
+    function pullupRefresh() {
+        setTimeout(function() {
+            mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 1)); //参数为true代表没有更多数据了。
+            var table = document.body.querySelector('.mui-table-view');
+            var cells = document.body.querySelectorAll('.mui-table-view-cell');
+
+            for (var j = cells.length, len = j + 5; j < len; j++) {
+                if (stop == true) {
+                    stop = false;
+                    mui.ajax({
+                        type: "post",
+                        url: "/home/index/ajaxcommentlist",
+                        data: {
+                            number: '5',
+                            page: page,
+                            id: id
+                        },
+                        success: function(data) {
+                        	stop=true;
+                            for (var i = 0; i < data.length; i++) {
+                                var avatar = data[i].avatar;
+                                var commentid = data[i].id;
+                                var time = data[i].in_time;
+                                var nick = data[i].nick;
+                                var text = data[i].text;
+                                var count = data[i].count;
+                                var li = document.createElement('li');
+                                li.className = 'mui-table-view-cell commentItems';
+                                li.innerHTML = '<div class="CommentItems">' +
+                                    '<img class="leftItem">' +
+                                    '<div class="rightItem">' +
+                                    '<p class="rightPara1 rightPara"></p>' +
+                                    '<p class="rightPara2 rightPara"></p>' +
+                                    '<p class="rightPara3 rightPara"></p>' +
+                                    '</div>' +
+                                    '<p class="like">' +
+                                    '<i class="flaticon-heart likeFont"></i>&nbsp;&nbsp;' +
+                                    '<span class="likeCount"></span>' +
+                                    '</p>' +
+                                    '</div>';
+                                li.firstChild.firstChild.setAttribute('src', avatar);
+                                li.firstChild.firstChild.nextSibling.childNodes[0].innerHTML = nick;
+                                li.firstChild.firstChild.nextSibling.childNodes[1].innerHTML = time;
+                                li.firstChild.firstChild.nextSibling.childNodes[2].innerHTML = text;
+                                li.firstChild.lastChild.lastChild.innerHTML = count;
+                                li.setAttribute("data-id", commentid);
+                                // li.find(".rightPara1").text(nick);
+                                // li.find(".rightPara2").text(time);
+                                // li.find(".rightPara3").text(text);
+                                // li.find(".likeCount").text(count);
+                                // li.attr("data-id",commentid);
+                                // $("#commentListAll").prepend(comments);
+                                table.appendChild(li);
+                            }
+                         	page++;
+                        }
+                    })
+               }
+            }
+
+            mui('#pullrefresh').pullRefresh().endPulldownToRefresh(true); //refresh completed
+            // mui('#pullrefresh').pullRefresh().refresh(true);
+        }, 1500);
+    }
+
+    // if (mui.os.plus) {
+    //     mui.plusReady(function() {
+    //         setTimeout(function() {
+    //             mui('#pullrefresh').pullRefresh().pullupLoading();
+    //         }, 1000);
+
+    //     });
+    // } else {
+    //     mui.ready(function() {
+    //         mui('#pullrefresh').pullRefresh().pullupLoading();
+    //     });
+    // }
+    </script>
+    <script type="text/javascript">
+    // $(".mui-table-view").on('tap',".commentItems",function(){  
+    // 	var id=$(this).attr("data-id");
+    // 	$(".CommentItems").on('tap','.likeFont',function(){
+    // 		$.post('/home/index/article_likeapi', {id: id}, function(data, textStatus, xhr) {
+    // 		if(tapNum%2==0&&data.state==0){
+    //        		$(this).addClass("red");
+    //        		alert(data.detail);
+    //        	}
+    //        	else if(state='100005'){
+    //        		alert(data.detail);
+    //        		$(this).removeClass("red");
+    //        	}
+    //       	});  
+
+    // 	})
+    // });
+    $(".mui-table-view").on('tap', ".likeFont", function() {
+        var myid = $(this).parents(".mui-table-view-cell").attr("data-id");
+        var mycount = $(this).parents(".mui-table-view-cell").attr("data-count");
+        $.post('/home/index/comment_likeapi', {
+            id: myid
+        }, function(data, textStatus, xhr) {
+            if (tapNum % 2 == 0 && data.state == 0) {
+                $(this).addClass("red");
+                alert(data.detail);
+
+                //mycount++;
+            } else {
+                alert("取消点赞！");
+                $(this).removeClass("red");
+                //mycount--;
+            }
+            location.reload("newsDetail.html");
+            //$("#"+myid).find(".likeCount").text(mycount);
+        });
+
+    });
+    </script>
+</body>
+
+</html>

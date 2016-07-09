@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>银监青年</title>
+    <link rel="stylesheet" type="text/css" href="../source/font/flaticon.css">
+    <link rel="stylesheet" href="../source/css/onLarge.css">
+    <link rel="stylesheet" type="text/css" href="../source/css/barselect.css">
+    <link rel="stylesheet" type="text/css" href="../source/css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="../source/css/app.css" />
+    <link rel="stylesheet" type="text/css" href="../source/css/media.css?201606281300">
+    <link rel="stylesheet" type="text/css" href="../source/css/reset.css">
+    <script type="text/javascript" src="../source/js/jquery-1.7.2.js"></script>
+</head>
+<style>
+html,
+body {
+    background-color: #efeff4;
+}
+
+.mui-bar~.mui-content .mui-fullscreen {
+    top: 0px;
+    height: auto;
+}
+
+.mui-pull-top-tips {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    margin-left: -25px;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    z-index: 1;
+}
+
+.mui-bar~.mui-pull-top-tips {
+    top: 24px;
+}
+
+.mui-pull-top-wrapper {
+    width: 42px;
+    height: 42px;
+    display: block;
+    text-align: center;
+    background-color: #efeff4;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    background-clip: padding-box;
+    box-shadow: 0 4px 10px #bbb;
+    overflow: hidden;
+}
+
+.mui-pull-top-tips.mui-transitioning {
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
+}
+
+.mui-pull-top-tips .mui-pull-loading {
+    /*-webkit-backface-visibility: hidden;
+                -webkit-transition-duration: 400ms;
+                transition-duration: 400ms;*/
+    margin: 0;
+}
+
+.mui-pull-top-wrapper .mui-icon,
+.mui-pull-top-wrapper .mui-spinner {
+    margin-top: 7px;
+}
+
+.mui-pull-top-wrapper .mui-icon.mui-reverse {
+    /*-webkit-transform: rotate(180deg) translateZ(0);*/
+}
+
+.mui-pull-bottom-tips {
+    text-align: center;
+    background-color: #efeff4;
+    font-size: 15px;
+    line-height: 40px;
+    color: #777;
+}
+
+.mui-pull-top-canvas {
+    overflow: hidden;
+    background-color: #fafafa;
+    border-radius: 40px;
+    box-shadow: 0 4px 10px #bbb;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+}
+
+.mui-pull-top-canvas canvas {
+    width: 40px;
+}
+
+.mui-slider-indicator.mui-segmented-control {
+    background-color: #efeff4;
+}
+</style>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="mui-content">
+                <div id="slider" class="mui-slider mui-fullscreen mui-slider-overflowa">
+                    <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+                        <div class="mui-scroll columnList" id="scrollBar">
+                            <a class="mui-control-item mui-active" href="#itemnmobile" id="mainPage">
+                                首页
+                            </a>
+                            <!-- <a class="mui-control-item" href="#item3mobile">
+                                党团之声
+                            </a>
+                            <a class="mui-control-item" href="#item4mobile">
+                                评优评先
+                            </a>
+                            <a class="mui-control-item" href="#item5mobile">
+                                意见反馈
+                            </a>
+                            <a class="mui-control-item" href="#item6mobile">
+                                青年心得
+                            </a> -->
+                        </div>
+                        <div class="plusContainer">
+                            <a href="book.html" class="plusa"><i class="flaticon-add plusi"></i></a>
+                        </div>
+                    </div>
+                    <div class="mui-slider-group" id="myscroll">
+                        <div id="itemnmobile" class="mui-slider-item mui-control-content mui-active">
+                            <div id="scroll1" class="mui-scroll-wrapper">
+                                <div class="mui-scroll">
+                                    <div id="slider" class="mui-slider mui-slider-overflowb">
+                                        <div class="mui-slider-group mui-slider-loop" id="lunboContainer">
+                                        </div>
+                                        <div class="mui-slider-indicator mui-text-right" id="lunbodot" style="bottom:0px">
+                                        </div>
+                                    </div>
+                                    <ul class="mui-table-view" id="mainList">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../source/js/mui.min.js"></script>
+    <script src="../source/js/mui.pullToRefresh.js"></script>
+    <script src="../source/js/mui.pullToRefresh.material.js"></script>
+    <script src="../source/js/barselect.js"></script>
+    <script src="../source/js/mui.zoom.js"></script>
+    <script src="../source/js/mui.previewimagenew.js"></script>
+    <script>
+    var count=100;
+    var brancount=10000
+    function getBlank() {
+        var ajax = $.get('/home/index/blank', function(data) {
+            for (var i = 0; i < data.length; i++) {
+                var column = $(".mui-control-item").first().clone().removeClass("mui-active");
+                column.text(data[i].theme);
+                column.attr("href", '#item' + data[i].theme_id + 'mobile');
+                column.attr("data-id", data[i].theme_id);
+                column.attr("id", "");
+                $("#scrollBar").append(column);
+            }
+        });
+
+        return ajax;
+
+    }
+
+    function getCarousel() {
+        var ajax = $.get('/home/index/carousel', function(data) {
+            for (var i = 0; i < data.length; i++) {
+                var id = data[i].id;
+                var fun = data[i].function;
+                var lunbo = $('<div class="mui-slider-item lunbodiv">' +
+                    '<img class="lunboimg">' +
+                    '<p class="mui-slider-title"></p>' +
+                    '</div>');
+                lunbo.find(".lunboimg").attr("src", data[i].photo);
+                lunbo.find(".mui-slider-title").text(data[i].title);
+                lunbo.attr("data-id", id);
+                lunbo.attr("data-fun", fun);
+                $("#lunboContainer").append(lunbo);
+                var lunbodot = $('<div class="mui-indicator"></div>');
+                $("#lunbodot").append(lunbodot);
+            }
+            $("#lunbodot").children().eq(0).addClass("mui-active");
+            var lunbolast =
+                $("#lunboContainer").children().eq(0).clone();
+            lunbolast.addClass("mui-slider-item-duplicate");
+            $("#lunboContainer").append(lunbolast);
+            var lunbofirst =
+                $("#lunboContainer").children().eq(data.length - 1).clone();
+            lunbofirst.addClass('mui-slider-item-duplicate');
+            $("#lunboContainer").prepend(lunbofirst);
+            /*optional stuff to do after success */
+        });
+        return ajax;
+    }
+
+    function postMain() {
+        var ajax = $.post('/home/index/main', {number: 10}, function(data, textStatus, xhr) {
+            for (i = 0; i < data.length; i++) {
+                var sorts = data[i].function;
+                var sortsNum = Number(sorts);
+                var id = data[i].id;
+                var title = data[i].title;
+                var theme = data[i].theme;
+                var author = data[i].author;
+                var comment_count = data[i].comment_count;
+                var like_count = data[i].like_count;
+                switch (sortsNum) {
+                    case 1:
+                        if (data[i].photo = "") {
+                            var news = $('<li class="mui-table-view-cell goDetail">' +
+                                '<div class="item-content-whole">' +
+                                '<p class="item-vedio-title"></p>' +
+                                '<p class="article-sorts">' +
+                                '<span class="columnSorts"></span>&nbsp;' +
+                                '<span class="unitSorts"></span>&nbsp;' +
+                                '<span class="commentsNum"></span>评论&nbsp;' +
+                                '<span class="likesNum"></span>赞' +
+                                '</p>' +
+                                '</div>' +
+                                '</li>');
+                            news.find(".item-vedio-title").text(data[i].title);
+                            news.find(".mui-table-view-cell").attr("id", data[i].id);
+                            news.find("columnSorts").text(data[i].theme);
+                            news.find(".unitSorts").text(data[i].author);
+                            news.find(".commentsNum").text(data[i].comment_count);
+                            news.find(".likesNum").text(data[i].like_count);
+                            $('#mainList').append(news);
+                            $('#mainList').children("mui-table-view-cell").find(".goDetail").attr("moreComments.html");
+                            //window.localStorage.setItem("newsid",id);
+                            //news.find('.goDetail').attr("data-id",id);
+                            // window.localStorage.setItem("newsid",id);
+                            news.attr("data-id", id);
+                            news.attr("data-fun", sorts);
+                        } else {
+                            var news = $('<li class="mui-table-view-cell goDetail">' +
+                                '<div class="item-container newsDetail">' +
+                                '<img class="item-img">' +
+                                '<div class="item-content">' +
+                                '<p class="item-title"></p>' +
+                                '<p class="article-sorts2">' +
+                                '<span class="columnSorts"></span>&nbsp;' +
+                                '<span class="unitSorts"></span>&nbsp;' +
+                                '<span class="commentsNum"></span>评论&nbsp;' +
+                                '<span class="likesNum"></span>赞' +
+                                '</p>' +
+                                '</div>' +
+                                '</div>' +
+                                '</li>');
+                            news.find(".item-title").text(data[i].title);
+                            news.find(".item-img").attr("src", data[i].photo);
+                            news.find(".mui-table-view-cell").attr("id", data[i].id);
+                            news.find("columnSorts").text(data[i].theme);
+                            news.find(".unitSorts").text(data[i].author);
+                            news.find(".commentsNum").text(data[i].comment_count);
+                            news.find(".likesNum").text(data[i].like_count);
+                            $('#mainList').append(news);
+                            //window.localStorage.setItem("newsid",id);
+                            news.attr("data-id", id);
+                            news.attr("data-fun", sorts);
+                            // window.localStorage.setItem("newsid",id);
+                        }
+                        break;
+                    case 2:
+                        var news = $('<li class="mui-table-view-cell" notgodetail>' +
+                            '<p class="item-vedio-title"></p>' +
+                            '<div class="item-vedio-img">' +
+
+                            '</div>' +
+                            '<p class="article-sorts">' +
+                            '<span class="columnSorts"></span>&nbsp;' +
+                            '<span class="unitSorts"></span>&nbsp;' +
+                            '<span class="commentsNum"></span>评论&nbsp;' +
+                            '<span class="likesNum"></span>赞' +
+                            '</p>' +
+                            '</li>');
+                        myAjaxImg(id,news);
+                        news.find(".item-vedio-title").text(title);
+                        news.find(".mui-table-view-cell").attr("id", id);
+                        news.find(".columnSorts").text(theme);
+                        news.find(".unitSorts").text(author);
+                        news.find(".commentsNum").text(data[i].comment_count);
+                        news.find(".likesNum").text(data[i].like_count);
+                        // window.localStorage.setItem("newsid",id);
+                        news.attr("data-id", id);
+                        news.attr("data-fun", sorts);
+
+                        break;
+                    case 3:
+
+                        break;
+                }
+            }
+            function myAjaxImg(id,news){
+                    console.log(id);
+                    $.post('/home/index/photo_news', {id: id}, function(ganma, textStatus, xhr) {
+                        console.log(ganma);
+                        for (var k = 0; k < ganma.length; k++) {
+                           
+                            var detail = ganma[k].detail;
+
+                            
+                            // window.localStorage.setItem("newsid",id);
+                            news.attr("data-id", id);
+                            news.attr("data-fun", sorts);
+                            for (var w = 0; w < detail.length; w++) {
+                                 var imglar = $('<img class="imageLar" data-preview-src="" data-preview-group="2" data-content="">');
+                                imglar.attr("src", detail[w].photo_photo);
+                                imglar.attr("data-content", detail[w].photo_text);
+                                news.find(".item-vedio-img").append(imglar); 
+                                imglar.attr("data-preview-group",count);
+                            }
+                            news.find(".item-vedio-title").text(ganma[k].title);
+                            news.attr("id", "lili"+ganma[k].id);
+                            news.find(".unitSorts").text(ganma[k].author);
+                            news.find(".commentsNum").text(ganma[k].comment_count);
+                            news.find(".likesNum").text(ganma[k].like_count);
+                            $('#mainList').append(news);
+
+                        }
+                        count++;
+                         $(".imageLar").bind('click',function(){
+                            mui.previewImage();
+                        })
+                    });
+            }
+            /*optional stuff to do after success */
+        });
+        return ajax;
+    }
+
+    function postBranch() {
+        var length = $(".mui-control-item").length;
+        for (var i = 0; i < length; i++) {
+            if (i != 0) {
+                var themeid = $(".mui-control-item").eq(i).attr("data-id");
+                var listContainer = $('<div id=item' + themeid + 'mobile class="mui-slider-item mui-control-content">' +
+                    '<div class="mui-scroll-wrapper">' +
+                    '<div class="mui-scroll">' +
+                    '<ul class="mui-table-view branchList">' +
+                    '</ul>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>');
+                listContainer.attr("data-id", themeid);
+                $("#myscroll").append(listContainer);
+                myAjax(themeid);
+            }
+        }
+
+        function myAjax(themeid) {
+            var ajax = $.post('/home/index/lists', {
+                theme_id: themeid,
+                number: 30
+            }, function(data, textStatus, xhr) {
+                for (var j = 0; j < data.length; j++) {
+                    var sorts = data[j].function;
+                    var sortsNum = Number(sorts);
+                    var id = data[j].id;
+                    var title = data[j].title;
+                    var theme = data[j].theme;
+                    var author = data[j].author;
+                    var comment_count = data[j].comment_count;
+                    var like_count = data[j].like_count;
+                    switch (sortsNum) {
+                        case 1:
+                            if (data[j].photo = "") {
+                                var news = $('<li class="mui-table-view-cell goDetail">' +
+                                    '<div class="item-content-whole">' +
+                                    '<p class="item-vedio-title"></p>' +
+                                    '<p class="article-sorts">' +
+                                    '<span class="columnSorts"></span>&nbsp;' +
+                                    '<span class="unitSorts"></span>&nbsp;' +
+                                    '<span class="commentsNum"></span>评论&nbsp;' +
+                                    '<span class="likesNum"></span>赞' +
+                                    '</p>' +
+                                    '</div>' +
+                                    '</li>');
+                                news.find(".item-vedio-title").text(data[j].title);
+                                news.attr("id", "lili"+data[j].id);
+                                news.find(".columnSorts").text(data[j].theme);
+                                news.find(".unitSorts").text(data[j].author);
+                                news.find(".commentsNum").text(data[j].comment_count);
+                                news.find(".likesNum").text(data[j].like_count);
+                                $("#item" + themeid + "mobile").find(".branchList").append(news);
+                                //$('#mainList').append(news);
+                                //$('#mainList').children("mui-table-view-cell").find(".goDetail").attr("moreComments.html");
+                                //window.localStorage.setItem("newsid",id);
+                                //news.find('.goDetail').attr("data-id",id);
+                                // window.localStorage.setItem("newsid",id);
+                                news.attr("data-id", id);
+                                news.attr("data-fun", sorts);
+                            } else {
+                                var news = $('<li class="mui-table-view-cell goDetail">' +
+                                    '<div class="item-container newsDetail">' +
+                                    '<img class="item-img">' +
+                                    '<div class="item-content">' +
+                                    '<p class="item-title"></p>' +
+                                    '<p class="article-sorts2">' +
+                                    '<span class="columnSorts"></span>&nbsp;' +
+                                    '<span class="unitSorts"></span>&nbsp;' +
+                                    '<span class="commentsNum"></span>评论&nbsp;' +
+                                    '<span class="likesNum"></span>赞' +
+                                    '</p>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</li>');
+                                news.find(".item-title").text(data[j].title);
+                                news.find(".item-img").attr("src", data[j].photo);
+                                news.attr("id", "lili"+data[j].id);
+                                news.find("columnSorts").text(data[j].theme);
+                                news.find(".unitSorts").text(data[j].author);
+                                news.find(".commentsNum").text(data[j].comment_count);
+                                news.find(".likesNum").text(data[j].like_count);
+                                //listContainer.find("#branchList").append(news);
+                                //window.localStorage.setItem("newsid",id);
+                                $("#item" + themeid + "mobile").find(".branchList").append(news);
+                                news.attr("data-id", id);
+                                news.attr("data-fun", sorts);
+                                // window.localStorage.setItem("newsid",id);
+                            }
+                            break;
+                        case 2:
+                            var news = $('<li class="mui-table-view-cell notgodetail">' +
+                                '<p class="item-vedio-title"></p>' +
+                                '<div class="item-vedio-img">' +
+
+                                '</div>' +
+                                '<p class="article-sorts">' +
+                                '<span class="columnSorts"></span>&nbsp;' +
+                                '<span class="unitSorts"></span>&nbsp;' +
+                                '<span class="commentsNum"></span>评论&nbsp;' +
+                                '<span class="likesNum"></span>赞' +
+                                '</p>' +
+                                '</li>');
+                            // news.find(".item-vedio-title").text(data[j].title);
+                            // news.attr("id", "lili"+data[j].id);
+                            // news.find(".unitSorts").text(data[j].author);
+                            // news.find(".commentsNum").text(data[j].comment_count);
+                            // news.find(".likesNum").text(data[j].like_count);
+                            //listContainer.find("#branchList").append(news);
+                            // window.localStorage.setItem("newsid",id);
+                            $("#item" + themeid + "mobile").find(".branchList").append(news);
+                            news.attr("data-id", id);
+                            news.attr("data-fun", sorts);
+                            myAjaxImg(id,news);
+                            break;
+                        case 3:
+
+                            break;
+                    }
+                    /*optional stuff to do after success */
+                }
+                function myAjaxImg(id,news){
+                    console.log(id);
+                    $.post('/home/index/photo_news', {id: id}, function(ganma, textStatus, xhr) {
+                        console.log(ganma);
+                        for (var k = 0; k < ganma.length; k++) {
+                            var detail = ganma[k].detail;
+                            for (var w = 0; w < detail.length; w++) {
+                                 var imglar = $('<img class="imageLar" data-preview-src="" data-preview-group="3" data-content="">');
+                                imglar.attr("src", detail[w].photo_photo);
+                                imglar.attr("data-content", detail[w].photo_text);
+                                news.find(".item-vedio-img").append(imglar); 
+                                imglar.attr("data-preview-group",brancount);
+                                var imgnum=imglar.attr("data-preview-group");
+                            }
+                             news.find(".item-vedio-title").text(ganma[k].title);
+                            news.attr("id", "lili"+ganma[k].id);
+                            news.find(".unitSorts").text(ganma[k].author);
+                            news.find(".commentsNum").text(ganma[k].comment_count);
+                            news.find(".likesNum").text(ganma[k].like_count);
+                        }
+                         brancount++;
+                         $(".imageLar").bind('click',function(){
+                            mui.previewImage();
+                        })
+                    });
+                count++;
+                }
+                return ajax;
+            });
+        }
+    }
+    $.when(getBlank(), getCarousel(), postMain()).done(function(data) {
+        $.when(postBranch()).done(function(data) {
+            mui.init();
+            initDeceleration(mui);
+            eventBind();
+        })
+
+    })
+
+
+    function eventBind() {
+        // $(".mui-table-view-cell").on('tap', '.notgodetail', function() {
+        //     mui.previewImage();
+        // });
+        var slider = mui(".mui-slider-overflowb");
+        slider.slider({
+            interval: 5000
+        });
+        $(".plusi").bind('tap', function() {
+            mui.openWindow({
+                url: 'book.html',
+                class: 'plusi'
+            })
+        })
+        $(".searchLink").bind('tap', function() {
+            mui.openWindow({
+                url: 'search.html',
+                class: 'searchLink'
+            })
+        })
+        $("#obema").bind('tap', function() {
+            mui.openWindow({
+                url: 'newsDetail.html',
+                id: 'obema'
+            })
+        })
+        $(".mui-table-view").on('tap', '.commentsFont', function() {
+            mui.openWindow({
+                url: 'moreComments.html',
+                class: 'commentsFont'
+            })
+        });
+        $(".mui-table-view").on('tap', '.goDetail', function() {
+            var myid = $(this).attr("data-id");
+            var myfun = $(this).attr("data-fun");
+            mui.openWindow({
+                url: 'newsDetail.html?id=' + myid + ',' + 'function=' + myfun,
+                class: 'goDetail'
+            })
+        })
+        $(".mui-slider-overflowb").on('tap', '.lunbodiv', function() {
+            var myid = $(this).attr("data-id");
+            var myfun = $(this).attr("data-fun");
+            mui.openWindow({
+                url: 'newsDetail.html?id=' + myid + ',' + 'function=' + myfun,
+                class: 'lunbodiv'
+            })
+        })
+    }
+    </script>
+</body>
+
+</html>

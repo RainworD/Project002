@@ -1,0 +1,14 @@
+.voteContainer {
+  width: 100%;
+}
+.voteContainer .header {
+  width: 100%;
+  padding: 0 20px;
+  height: 50px;
+}
+.voteContainer .header .headerPara {
+  color: #222;
+  font-weight: 400;
+  font-style: normal;
+}
+/*# sourceMappingURL=vote.css.map */

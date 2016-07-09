@@ -1,0 +1,244 @@
+@import url('init.less');
+body{
+	position: fixed;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+}
+.mui-bar-nav~.mui-content{
+	padding-top:0;
+	top:0;
+}
+.header {
+	z-index:2;
+	width:100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: @pagecolor_green;
+    height: 50px;
+}
+.bar{
+	position: relative;
+	width:100%;
+	padding:0 10px;
+	.lfbar{
+		position: absolute;
+		top:0px;
+		height:30px;
+		.lfbarimg{
+			height:30px;
+			width:30px;
+			float: left;
+			margin-top:10px;
+			.logo{
+				width:30px;
+				height:30px;
+			}
+		}
+		.lfbarp{
+			padding-left:15px;
+			float: left;
+			font-size: 20px;
+			color:#fff;
+			height:50px;
+			line-height: 50px;
+		}
+	}
+	.rtbar{
+		width:20px;
+		height:20px;
+		position: absolute;
+		top:5px;
+		right:15px;
+		.searchicon{
+			font-size: 20px;
+			color:#fff;
+
+
+		}
+	}
+
+}
+.container{
+	width:100%;
+	height:100%;
+	.content{
+		width:100%;
+		height:100%;
+		padding:0 10px;
+		.mui-content .mui-fullscreen{
+			padding-top:0;
+		}
+		.selbar{
+			.selbarlist{
+				padding-left:0;
+				.selbaritem{
+					font-size: 16px;
+					display:inline-block;
+					padding:15px 5px;
+
+				}
+			}
+		}
+		.mui-slider-group .mui-scroll-wrapper{
+			.mui-control-item{
+				padding:0 8px;
+			}
+		}
+		.mui-slider .mui-slider-group .mui-slider-item{
+			a{
+				height:100%;
+			}
+		}
+		.mui-slider .mui-slider-group .lunbodiv{
+			height:200px;
+		}
+		.mui-slider .mui-slider-group .mui-slider-item a  .lunboimg{
+			margin-top:0;
+		}
+		.mui-slider .mui-slider-group .mui-slider-item .mui-slider-title{
+			line-height:50px;
+			height:50px;
+			font-size: 16px;
+			padding:0 10px;
+		}
+		.mui-segmented-control.mui-scroll-wrapper .mui-scroll{
+			padding-right:60px;
+		}
+		.mui-segmented-control.mui-scroll-wrapper .mui-control-item{
+			padding:0 8px;
+		}
+		.mui-content .mui-slider .plusContainer{
+			width:45px;
+            position: absolute;
+            right:0px;
+            bottom:0px;
+            z-index:2;
+            background-color:#fff;
+            .plusa{
+            	display:block;
+            	padding-bottom:3px;
+            	padding-right:5px;
+            	padding-left:15px;
+            	z-index:3;
+                .plusi{
+                	font-size: 20px;
+	            	color:#bbb;
+	            	font-weight:bold;
+	            	z-index:4;
+                }
+            }
+		}
+		.mui-slider-indicator.mui-segmented-control{
+			background-color: #fff;
+		}
+		.mui-table-view-cell .item-container{
+			width:100%;
+			padding:5px 0;
+			position: relative;
+			.item-img{
+				display: block;
+				width:100px;
+				height:100px;
+				float: left;
+				margin-right:15px;
+		    }
+			.item-content{
+				.item-title{
+					font-size: 15px;
+					color:#757575;
+				}
+				.article-sorts2{
+					position: absolute;
+					bottom:0;
+					right:0;
+					font-size: 12px;
+					color:#aaa;
+
+				}
+				.like-and-reply{
+					position: absolute;
+					right:0;
+					bottom:0;
+					font-size: 13px;
+					color:#6c6c6c;
+					.like;
+					.reply;
+					.after;
+				}
+			}
+			.after;
+
+		}
+		.mui-table-view-cell{
+			.item-vedio-title{
+				font-size: 15px;
+				color:#757575;
+				padding-bottom:15px;
+                .item-title{
+					font-size: 15px;
+					color:#757575;
+				}
+			}
+			.item-vedio-img{
+				width:100%;
+				overflow:hidden;
+				height:130px;
+				.imageLar,.imagelarge{
+					display: block;
+					width:auto;
+					height:auto;
+					max-width:100%;
+				}
+				.imageHide{
+					display:none;
+				}
+			}
+			.article-sorts{
+				font-size: 12px;
+				color:#aaa;
+				font-weight: normal;
+
+			}
+		}
+		.item-content-whole{
+			position: relative;
+			width:100%;
+			.item-vedio{
+				width:100%;
+				height:90px;
+				margin-bottom:10px;	
+				background-image:url('../img/rain.jpg');
+				-webkit-background-size: cover;
+						background-size: cover;		
+			    .vedio-img{
+			    	width:100%;
+			    	height:80px;
+			    }
+			}
+			.article-sorts{
+				font-size: 12px;
+				color:#aaa;
+				font-weight: normal;
+
+			}
+			.like-and-reply{
+				position: absolute;
+				right:0;
+				bottom:0;
+				font-size: 13px;
+				color:#6c6c6c;
+				.like;
+				.reply;
+				.after;
+			}
+		}
+	}
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after{
+	margin-left:0;
+	font-size: inherit;
+}

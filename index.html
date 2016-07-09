@@ -6,41 +6,97 @@
     <title>银监青年</title>
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/font/flaticon.css">
     <link rel="stylesheet" href="__PUBLIC__/source/css/onLarge.css">
-    <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="__PUBLIC__/source/css/media.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/barselect.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/mui.min.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/app.css"/>
-    <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="__PUBLIC__/source/css/media.css">
-    <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="__PUBLIC__/source/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/media.css?201606271326">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/source/css/reset.css">
     <script type="text/javascript" src="__PUBLIC__/source/js/jquery-1.7.2.js"></script>
     </head>
+    <style>
+            html,
+            body {
+                background-color: #efeff4;
+            }
+            .mui-bar~.mui-content .mui-fullscreen {
+                top: 0px;
+                height: auto;
+            }
+            .mui-pull-top-tips {
+                position: absolute;
+                top: -20px;
+                left: 50%;
+                margin-left: -25px;
+                width: 40px;
+                height: 40px;
+                border-radius: 100%;
+                z-index: 1;
+            }
+            .mui-bar~.mui-pull-top-tips {
+                top: 24px;
+            }
+            .mui-pull-top-wrapper {
+                width: 42px;
+                height: 42px;
+                display: block;
+                text-align: center;
+                background-color: #efeff4;
+                border: 1px solid #ddd;
+                border-radius: 25px;
+                background-clip: padding-box;
+                box-shadow: 0 4px 10px #bbb;
+                overflow: hidden;
+            }
+            .mui-pull-top-tips.mui-transitioning {
+                -webkit-transition-duration: 200ms;
+                transition-duration: 200ms;
+            }
+            .mui-pull-top-tips .mui-pull-loading {
+                /*-webkit-backface-visibility: hidden;
+                -webkit-transition-duration: 400ms;
+                transition-duration: 400ms;*/
+                
+                margin: 0;
+            }
+            .mui-pull-top-wrapper .mui-icon,
+            .mui-pull-top-wrapper .mui-spinner {
+                margin-top: 7px;
+            }
+            .mui-pull-top-wrapper .mui-icon.mui-reverse {
+                /*-webkit-transform: rotate(180deg) translateZ(0);*/
+            }
+            .mui-pull-bottom-tips {
+                text-align: center;
+                background-color: #efeff4;
+                font-size: 15px;
+                line-height: 40px;
+                color: #777;
+            }
+            .mui-pull-top-canvas {
+                overflow: hidden;
+                background-color: #fafafa;
+                border-radius: 40px;
+                box-shadow: 0 4px 10px #bbb;
+                width: 40px;
+                height: 40px;
+                margin: 0 auto;
+            }
+            .mui-pull-top-canvas canvas {
+                width: 40px;
+            }
+            .mui-slider-indicator.mui-segmented-control {
+                background-color: #efeff4;
+            }
+        </style>
     <body>
-    <div class="header">
-        <div class="bar">
-            <div class="lfbar">
-                <div class="lfbarimg">
-                    <img class="logo" src="">
-                </div>
-                <p class="lfbarp">银监青年</p>
-            </div>
-            <a class="searchLink">
-                <div class="rtbar">
-                    <i class="flaticon-search-1 searchicon"></i>
-                </div>
-            </a>
-        </div>
-    </div>
     <div class="container">
         <div class="content">
             <div class="mui-content">
                 <div id="slider" class="mui-slider mui-fullscreen mui-slider-overflowa">
                     <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-                        <div class="mui-scroll">
-                            <a class="mui-control-item mui-active" href="#item1mobile" id="mainPage">
+                        <div class="mui-scroll" id="scrollBar">
+                            <a class="mui-control-item mui-active" href="#itemnmobile" id="mainPage">
                                 首页
-                            </a>
-                            <a class="mui-control-item" href="#item2mobile">
-                                
                             </a>
                             <!-- <a class="mui-control-item" href="#item3mobile">
                                 党团之声
@@ -59,48 +115,48 @@
                            <a href="book.html" class="plusa"><i class="flaticon-add plusi"></i></a>
                         </div>
                     </div>
-                    <div class="mui-slider-group">
-                        <div id="item1mobile" class="mui-slider-item mui-control-content mui-active">                                
+                    <div class="mui-slider-group" id="myscroll">
+                        <div id="itemnmobile" class="mui-slider-item mui-control-content mui-active">                                
                             <div id="scroll1" class="mui-scroll-wrapper">
                                 <div class="mui-scroll">
                                     <div id="slider" class="mui-slider mui-slider-overflowb">
-                                        <div class="mui-slider-group mui-slider-loop">
+                                        <div class="mui-slider-group mui-slider-loop" id="lunboContainer">
                                         <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-                                            <div class="mui-slider-item mui-slider-item-duplicate">
+                                            <div class="mui-slider-item lunbodiv mui-slider-item-duplicate">
                                                 <a href="#">
-                                                    <img src="__PUBLIC__/source/img/dsn4.jpeg">
-                                                    <p class="mui-slider-title">上海迪士尼开园图4</p>
+                                                    <img class="lunboimg">
+                                                    <p class="mui-slider-title"></p>
                                                 </a>
                                             </div>
-                                            <div class="mui-slider-item">
+                                            <div class="mui-slider-item lunbodiv">
                                                 <a href="#">
-                                                    <img src="__PUBLIC__/source/img/dsn1.png">
-                                                    <p class="mui-slider-title">上海迪士尼开园图1</p>
+                                                    <img class="lunboimg">
+                                                    <p class="mui-slider-title"></p>
                                                 </a>
                                             </div>
-                                            <div class="mui-slider-item">
+                                            <div class="mui-slider-item lunbodiv">
                                                 <a href="#">
-                                                    <img src="__PUBLIC__/source/img/dsn2.jpeg">
-                                                    <p class="mui-slider-title">上海迪士尼开园图2</p>
+                                                    <img class="lunboimg">
+                                                    <p class="mui-slider-title"></p>
                                                 </a>
                                             </div>
-                                            <div class="mui-slider-item">
+                                            <div class="mui-slider-item lunbodiv" >
                                                 <a href="#">
-                                                    <img src="__PUBLIC__/source/img/dsn3.jpeg">
-                                                    <p class="mui-slider-title">上海迪士尼开园图3</p>
+                                                    <img class="lunboimg">
+                                                    <p class="mui-slider-title"></p>
                                                 </a>
                                             </div>
-                                            <div class="mui-slider-item">
+                                            <div class="mui-slider-item lunbodiv">
                                                 <a href="#">
-                                                    <img src="__PUBLIC__/source/img/dsn4.jpeg">
-                                                    <p class="mui-slider-title">上海迪士尼开园图4</p>
+                                                    <img class="lunboimg">
+                                                    <p class="mui-slider-title"></p>
                                                 </a>
                                             </div>
                                             <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-                                            <div class="mui-slider-item mui-slider-item-duplicate">
+                                            <div class="mui-slider-item lunbodiv mui-slider-item-duplicate">
                                                 <a href="#">
-                                                    <img src="__PUBLIC__/source/img/dsn1.png">
-                                                    <p class="mui-slider-title">上海迪士尼开园图1</p>
+                                                    <img class="lunboimg" >
+                                                    <p class="mui-slider-title"></p>
                                                 </a>
                                             </div>
                                         </div>
@@ -182,272 +238,76 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="item2mobile" class="mui-slider-item mui-control-content">
+                        <!-- <div id="itemmmobile" class="mui-slider-item mui-control-content">
                             <div class="mui-scroll-wrapper">
                                 <div class="mui-scroll">
                                     <ul class="mui-table-view">
                                         <li class="mui-table-view-cell">
                                             <div class="item-container">
                                                 <div class="item-content">
-                                                    <div class="item-img"></div>
                                                     <p class="item-title">
-                                                        美国总统奥巴马与副总统拜登到访枪击案临时纪念地，悼念遇难者。
-                                                    </p>
-                                                    <p class="article-sorts">
-                                                        北京银监会
                                                     </p>
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-content-whole">
-                                                <p class="item-vedio-title">
-                                                    直播：广西环江遭暴雨侵袭 121名群众被洪水围困
-                                                </p>
-                                                <div class="item-vedio">
-                                                    <!-- <embed src="http://v.163.com/paike/VBHLIPIJM/VBOQMUL8H.html#from=vindex_hot" width="100%" height="85" autostart="true"></embed> -->
-                                                    
-                                                </div>
-                                                <p class="article-sorts">
-                                                    北京银监会
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-content-whole">
-                                                <p class="item-vedio-title">
-                                                    习近平今启程访欧亚三国并出席上合峰会
-                                                </p>
-                                                <p class="article-sorts">
-                                                    北京银监会
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-content-whole">
-                                                <p class="item-vedio-title">
-                                                    军方：中国军舰正常通过日临近海域 符合国际法
-                                                </p>
-                                                <p class="article-sorts">
-                                                    北京银监会
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <!-- <li class="mui-table-view-cell">
-                                            第1个选项卡子项-6
-                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                        <div id="item3mobile" class="mui-slider-item mui-control-content">
-                            <div class="mui-scroll-wrapper">
-                                <div class="mui-scroll">
-                                   <ul class="mui-table-view">
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-container">
-                                                <div class="item-content">
-                                                    <div class="item-img"></div>
-                                                    <p class="item-title">
-                                                        美国总统奥巴马与副总统拜登到访枪击案临时纪念地，悼念遇难者。
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-content-whole">
-                                                <p class="item-vedio-title">
-                                                    直播：广西环江遭暴雨侵袭 121名群众被洪水围困
-                                                </p>
-                                                <div class="item-vedio">
-                                                    <!-- <embed src="http://v.163.com/paike/VBHLIPIJM/VBOQMUL8H.html#from=vindex_hot" width="100%" height="85" autostart="true"></embed> -->
-                                                    
-                                                </div>
-                                                
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-content-whole">
-                                                <p class="item-vedio-title">
-                                                    习近平今启程访欧亚三国并出席上合峰会
-                                                </p>
-                                                
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-content-whole">
-                                                <p class="item-vedio-title">
-                                                    军方：中国军舰正常通过日临近海域 符合国际法
-                                                </p>
-                                                
-                                            </div>
-                                        </li>
-                                        <!-- <li class="mui-table-view-cell">
-                                            第1个选项卡子项-6
-                                        </li> -->
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="item4mobile" class="mui-slider-item mui-control-content">
-                            <div class="mui-scroll-wrapper">
-                                <div class="mui-scroll">
-                                    <ul class="mui-table-view">
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-container">
-                                                <div class="item-content">
-                                                    <div class="item-img"></div>
-                                                    <p class="item-title">
-                                                        美国总统奥巴马与副总统拜登到访枪击案临时纪念地，悼念遇难者。
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-content-whole">
-                                                <p class="item-vedio-title">
-                                                    直播：广西环江遭暴雨侵袭 121名群众被洪水围困
-                                                </p>
-                                                <div class="item-vedio">
-                                                    <!-- <embed src="http://v.163.com/paike/VBHLIPIJM/VBOQMUL8H.html#from=vindex_hot" width="100%" height="85" autostart="true"></embed> --> 
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-content-whole">
-                                                <p class="item-vedio-title">
-                                                    习近平今启程访欧亚三国并出席上合峰会
-                                                </p>
-                                                
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-content-whole">
-                                                <p class="item-vedio-title">
-                                                    军方：中国军舰正常通过日临近海域 符合国际法
-                                                </p>
-                                                
-                                            </div>
-                                        </li>
-                                        <!-- <li class="mui-table-view-cell">
-                                            第1个选项卡子项-6
-                                        </li> -->
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="item5mobile" class="mui-slider-item mui-control-content">
-                            <div class="mui-scroll-wrapper">
-                                <div class="mui-scroll">
-                                    <ul class="mui-table-view">
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-container">
-                                                <div class="item-content">
-                                                    <div class="item-img"></div>
-                                                    <p class="item-title">
-                                                        美国总统奥巴马与副总统拜登到访枪击案临时纪念地，悼念遇难者。
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-content-whole">
-                                                <p class="item-vedio-title">
-                                                    直播：广西环江遭暴雨侵袭 121名群众被洪水围困
-                                                </p>
-                                                <div class="item-vedio">
-                                                    <!-- <embed src="http://v.163.com/paike/VBHLIPIJM/VBOQMUL8H.html#from=vindex_hot" width="100%" height="85" autostart="true"></embed> -->
-                                                    
-                                                </div>
-                                                
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-content-whole">
-                                                <p class="item-vedio-title">
-                                                    习近平今启程访欧亚三国并出席上合峰会
-                                                </p>
-                                                
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-content-whole">
-                                                <p class="item-vedio-title">
-                                                    军方：中国军舰正常通过日临近海域 符合国际法
-                                                </p>
-                                                
-                                            </div>
-                                        </li>
-                                        <!-- <li class="mui-table-view-cell">
-                                            第1个选项卡子项-6
-                                        </li> -->
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="item6mobile" class="mui-slider-item mui-control-content">
-                            <div class="mui-scroll-wrapper">
-                                <div class="mui-scroll">
-                                    <ul class="mui-table-view">
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-container">
-                                                <div class="item-content">
-                                                    <div class="item-img"></div>
-                                                    <p class="item-title">
-                                                        美国总统奥巴马与副总统拜登到访枪击案临时纪念地，悼念遇难者。
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-content-whole">
-                                                <p class="item-vedio-title">
-                                                    直播：广西环江遭暴雨侵袭 121名群众被洪水围困
-                                                </p>
-                                                <div class="item-vedio">
-                                                    <!-- <embed src="http://v.163.com/paike/VBHLIPIJM/VBOQMUL8H.html#from=vindex_hot" width="100%" height="85" autostart="true"></embed> -->
-                                                    
-                                                </div>
-                                                
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-content-whole">
-                                                <p class="item-vedio-title">
-                                                    习近平今启程访欧亚三国并出席上合峰会
-                                                </p>
-                                                
-                                            </div>
-                                        </li>
-                                        <li class="mui-table-view-cell">
-                                            <div class="item-content-whole">
-                                                <p class="item-vedio-title">
-                                                    军方：中国军舰正常通过日临近海域 符合国际法
-                                                </p>
-                                                
-                                            </div>
-                                        </li>
-                                        <!-- <li class="mui-table-view-cell">
-                                            第1个选项卡子项-6
-                                        </li> -->
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
         <script type="text/javascript">
+            $(".mui-table-view").css("min-height","100%");
             $.get('/home/index/blank', function(data) {
                 for (var i = 0; i < data.length; i++) {
-                    var column=$(".mui-control-item").eq(1).clone();
+                    var column=$(".mui-control-item").first().clone().removeClass("mui-active");
                     column.text(data[i].theme);
                     column.attr("href",'#item'+data[i].theme_id+'mobile');
-                    $(".mui-scroll").append(column);
+                    column.attr("id","");
+                    $("#scrollBar").append(column);
+                    var listContainer=$('<div id=item'+data[i].theme_id+'mobile class="mui-slider-item mui-control-content">'+
+                                            '<div class="mui-scroll-wrapper">'+
+                                                '<div class="mui-scroll">'+
+                                                    '<ul class="mui-table-view">'+
+                                                        '<li class="mui-table-view-cell">'+
+                                                            '<div class="item-container">'+
+                                                                '<div class="item-content">'+
+                                                                    '<p class="item-title"></p>'+
+                                                                '</div>'+
+                                                            '</div>'+
+                                                        '</li>'+
+                                                    '</ul>'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>');
+                    // var listContainer=$(".mui-slider-group").children().eq(1).clone();
+                    //listContainer.find(".mui-control-content").attr('id','item'+data[i].theme_id+'mobile');
+                    listContainer.find(".item-title").text(data[i].theme);
+                    $("#myscroll").append(listContainer);
                 }
+                 mui.init();
             });
+            $.get('/home/index/carousel', function(data) {
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    var j=$(".lunboimg").length;
+                    $(".lunboimg").first().clone($(".lunboimg").eq(j-2));
+                    $(".lunboimg").last().clone($(".lunboimg").eq(1));
+                    $(".lunboimg").attr("src",data[i].photo);
+                    $(".mui-slider-title").text(data[i].title);
+
+                }
+                
+                /*optional stuff to do after success */
+            });
+            $.get('/home/index/show', function(data) {
+                console.log('detail:'+data);
+                /*optional stuff to do after success */
+            });
+
         </script>
         <script src="__PUBLIC__/source/js/mui.min.js"></script>
         <script src="__PUBLIC__/source/js/mui.pullToRefresh.js"></script>
@@ -468,13 +328,13 @@
             $(".plusi").bind('tap',function(){
               mui.openWindow({
                 url:'book.html',
-                class:'.plusi'
+                class:'plusi'
               })  
             })
             $(".searchLink").bind('tap',function(){
                 mui.openWindow({
                     url:'search.html',
-                    class:'.searchLink'
+                    class:'searchLink'
                 })
             })
             $("#obema").bind('tap',function(){
@@ -483,13 +343,18 @@
                     id:'obema'
                 })
             })
-            $(".goDetail").bind('tap',function(){
+            $(".mui-table-view").on('tap','.goDetail',function(){
                  mui.openWindow({
                     url:'newsDetail.html',
-                    class:'mui-table-view-cell'
+                    class:'goDetail'
                 })
             })
-
+            $(".mui-table-view").on('tap','.commentsFont',function(){
+                mui.openWindow({
+                    url:'moreComments.html',
+                    class:'commentsFont'
+                })
+            })
         </script>
     </body>
 </html>

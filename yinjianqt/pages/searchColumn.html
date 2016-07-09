@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>SearchColumn</title>
+	<link rel="stylesheet" type="text/css" href="../source/font/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="../source/flaticon/flaticon.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/searchColumn.css">
+    <script type="text/javascript" src="../source/js/jquery-1.7.2.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen and (max-width:800px)" href="../source/css/reset.css">
+    <script type="text/javascript" src="../source/js/jquery-1.7.2.js"></script>
+</head>
+<body>
+	<div class="bookHeader">
+        <a href="column.html" class="backlink">
+            <p class="backBtn"><i class="flaticon-back"></i></p>
+        </a>
+		<div class="searchBar">
+			<p class="searchIcon">
+				<i class="flaticon-search-1"></i>
+			</p>
+			<input id="inputId" class="searchInput" onpropertychange="handle();" oninput="handle();" type="text" placeholder="请输入栏目名称或单位名称"></input>
+		</div>
+		<p class="searchBtn">搜索</p>
+    </div>
+    <div class="searchResult">
+    	
+    </div>
+    <script type="text/javascript">
+			function handle()   
+			{
+				var m=document.getElementById('inputId').value.length; 
+				if(m!=0){
+					$(".searchBtn").addClass("blue");
+					$(".searchBtn").bind('click',function(){
+
+					})					
+				} 
+				else{
+					$(".searchBtn").removeClass("blue");
+				}
+			}  
+    </script>
+</body>
+</html>
