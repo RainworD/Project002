@@ -32,10 +32,11 @@
 					auto: false,
 					offset: 100, //距离底部高度(到达该高度即触发)
 					show: true,
+					contentinit: '上拉显示更多',
 					contentdown: '上拉显示更多',
 					contentrefresh: '正在加载...',
 					contentnomore: '没有更多数据了',
-					callback:pullfresh-function
+					callback: false
 				},
 				preventDefaultException: {
 					tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT)$/
@@ -90,7 +91,9 @@
 					this._dragup(e);
 					break;
 				case 'scrollbottom':
-					this.pullUpLoading(e);
+					if (e.target === this.element) {
+						this.pullUpLoading(e);
+					}
 					break;
 			}
 		},
@@ -125,7 +128,7 @@
 						if (!self.options.up.show) {
 							element.classList.add(CLASS_HIDDEN);
 						}
-						element.innerHTML = '<div class="mui-pull-bottom-wrapper"><span class="mui-pull-loading">' + self.options.up.contentdown + '</span></div>';
+						element.innerHTML = '<div class="mui-pull-bottom-wrapper"><span class="mui-pull-loading">' + self.options.up.contentinit + '</span></div>';
 						self.element.appendChild(element);
 					}
 					self.pullUpTipsIcon = element.querySelector(SELECTOR_PULL_LOADING);
@@ -400,117 +403,5 @@
 			pullRefreshApis.push(pullRefreshApi);
 		});
 		return pullRefreshApis.length === 1 ? pullRefreshApis[0] : pullRefreshApis;
-	}
-	function pullfresh-function(){
-		var self = this;
-		var ajax = $.post('/home/index/main', {number: 10}, function(data, textStatus, xhr) {
-            for (i = 0; i < data.length; i++) {
-                var sorts = data[i].function;
-                var sortsNum = Number(sorts);
-                var id = data[i].id;
-                var title = data[i].title;
-                var theme = data[i].theme;
-                var author = data[i].author;
-                var comment_count = data[i].comment_count;
-                var like_count = data[i].like_count;
-                switch (sortsNum) {
-                    case 1:
-                        if (data[i].photo = "") {
-                            var news = $('<li class="mui-table-view-cell goDetail">' +
-                                '<div class="item-content-whole">' +
-                                '<p class="item-vedio-title"></p>' +
-                                '<p class="article-sorts">' +
-                                '<span class="columnSorts"></span>&nbsp;' +
-                                '<span class="unitSorts"></span>&nbsp;' +
-                                '<span class="commentsNum"></span>评论&nbsp;' +
-                                '<span class="likesNum"></span>赞' +
-                                '</p>' +
-                                '</div>' +
-                                '</li>');
-                            news.find(".item-vedio-title").text(data[i].title);
-                            news.find(".mui-table-view-cell").attr("id", data[i].id);
-                            news.find("columnSorts").text(data[i].theme);
-                            news.find(".unitSorts").text(data[i].author);
-                            news.find(".commentsNum").text(data[i].comment_count);
-                            news.find(".likesNum").text(data[i].like_count);
-                            $('#mainList').append(news);
-                            $('#mainList').children("mui-table-view-cell").find(".goDetail").attr("moreComments.html");
-                            //window.localStorage.setItem("newsid",id);
-                            //news.find('.goDetail').attr("data-id",id);
-                            // window.localStorage.setItem("newsid",id);
-                            news.attr("data-id", id);
-                            news.attr("data-fun", sorts);
-                        } else {
-                            var news = $('<li class="mui-table-view-cell goDetail">' +
-                                '<div class="item-container newsDetail">' +
-                                '<img class="item-img">' +
-                                '<div class="item-content">' +
-                                '<p class="item-title"></p>' +
-                                '<p class="article-sorts2">' +
-                                '<span class="columnSorts"></span>&nbsp;' +
-                                '<span class="unitSorts"></span>&nbsp;' +
-                                '<span class="commentsNum"></span>评论&nbsp;' +
-                                '<span class="likesNum"></span>赞' +
-                                '</p>' +
-                                '</div>' +
-                                '</div>' +
-                                '</li>');
-                            news.find(".item-title").text(data[i].title);
-                            news.find(".item-img").attr("src", data[i].photo);
-                            news.find(".mui-table-view-cell").attr("id", data[i].id);
-                            news.find("columnSorts").text(data[i].theme);
-                            news.find(".unitSorts").text(data[i].author);
-                            news.find(".commentsNum").text(data[i].comment_count);
-                            news.find(".likesNum").text(data[i].like_count);
-                            $('#mainList').append(news);
-                            //window.localStorage.setItem("newsid",id);
-                            news.attr("data-id", id);
-                            news.attr("data-fun", sorts);
-                            // window.localStorage.setItem("newsid",id);
-                        }
-                        break;
-                    case 2:
-                        var news = $('<li class="mui-table-view-cell" notgodetail>' +
-                            '<p class="item-vedio-title"></p>' +
-                            '<div class="item-vedio-img">' +
-
-                            '</div>' +
-                            '<p class="article-sorts">' +
-                            '<span class="columnSorts"></span>&nbsp;' +
-                            '<span class="unitSorts"></span>&nbsp;' +
-                            '<span class="commentsNum"></span>评论&nbsp;' +
-                            '<span class="likesNum"></span>赞' +
-                            '</p>' +
-                            '</li>');
-
-                        $.post('/home/index/photo_news', {
-                            id: id
-                        }, function(beta, textStatus, xhr) {
-                            for (var j = 0; j < beta.length; j++) {
-                                var imglar = $('<img class="imageLar" data-preview-src="" data-preview-group="1" data-content="">');
-                                var detail = beta[j].detail;
-                                imglar.attr("src", detail.photo_photo);
-                                imglar.attr("data-content", detail.photo_text);
-                            }
-                        });
-                        news.find(".item-vedio-title").text(title);
-                        news.find(".mui-table-view-cell").attr("id", id);
-                        news.find(".columnSorts").text(theme);
-                        news.find(".unitSorts").text(author);
-                        news.find(".commentsNum").text(data[i].comment_count);
-                        news.find(".likesNum").text(data[i].like_count);
-                        $('#mainList').append(news);
-                        // window.localStorage.setItem("newsid",id);
-                        news.attr("data-id", id);
-                        news.attr("data-fun", sorts);
-
-                        break;
-                    case 3:
-
-                        break;
-                }
-            }
-        });
-		self.endPulldownToRefresh();
 	}
 })(mui, window, document);
